@@ -1,7 +1,7 @@
-## hey there! this is the post 1
+## hey there! this is the post 2
 
 ```js
-function(){
-  console.log('this is an anonymous function =D')
-}
+const someCode = () => console.log("woohoo!")
+
+someCode()
 ```
