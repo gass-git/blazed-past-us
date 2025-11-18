@@ -11,9 +11,13 @@ import chalk from 'chalk'
   const files = fs.readdirSync(postsPath, {})
   const postsOutputDir = path.resolve(__dirname, '../../dist/posts')
 
-  for (const fileName of files){
+  const data = []
+
+  for (const [i, fileName] of files.entries()){
     const filePath = path.join(postsPath, fileName as string)
     const html = await parseMarkdown(filePath)
+
+    data.push({id: i, title: (fileName as string).replace('.md', '')})
 
     const outputFile = path.join(postsOutputDir, (fileName as string).replace('.md', '.html'))
 
@@ -25,6 +29,12 @@ import chalk from 'chalk'
       .then(() => console.log(chalk.green(`✔ ${fileName} built`)))
       .catch(error => console.error(error))
   }
+
+  const jsonPosts = JSON.stringify(data)
+
+  console.log(jsonPosts)
+
+  fs.writeFileSync(`${postsOutputDir}/data.json`, jsonPosts)
 
   console.log(chalk.yellow('All posts have been parsed into HTML ✅'))
 })()

@@ -1,3 +1,5 @@
+import posts from '../posts.json'
+
 async function handleInject(postNumber: string): Promise<void> { 
   getPostHtml(postNumber)
     .then(resp => resp.text())
