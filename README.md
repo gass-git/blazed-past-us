@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./bolt.png" width="100">
+  <img src="./bolt.png" width="200">
 </p>
 
 ## Blazed Past Us..
