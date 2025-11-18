@@ -5,7 +5,7 @@
 ## Blazed Past Us..
 
 **Silver Surfer asked:**  
-*"How fast can a blog go?"*
+*"How fast can a dev blog go?"*
 
 **Gas Git, intrigued, answered:**  
 *"I don't know… shall we see?"*
