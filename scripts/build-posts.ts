@@ -17,7 +17,14 @@ import chalk from 'chalk'
     const filePath = path.join(postsPath, fileName as string)
     const html = await parseMarkdown(filePath)
 
-    data.push({id: i, title: (fileName as string).replace('.md', '')})
+    const stats = await fsPromises.stat(filePath)
+
+    data.push({
+      id: i, 
+      title: (fileName as string).replace('.md', ''), 
+      created: stats.birthtime,
+      modified: stats.mtime
+    })
 
     const outputFile = path.join(postsOutputDir, (fileName as string).replace('.md', '.html'))
 
