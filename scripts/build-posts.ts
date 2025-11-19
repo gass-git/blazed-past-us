@@ -4,6 +4,7 @@ import fsPromises from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import chalk from 'chalk'
+import type { PostData } from '../types.d.ts'
 
 (async function(): Promise<void> {
   const __dirname = fileURLToPath(import.meta.url)
@@ -11,29 +12,34 @@ import chalk from 'chalk'
   const files = fs.readdirSync(postsPath, {})
   const postsOutputDir = path.resolve(__dirname, '../../dist/posts')
 
-  const data = []
+  const data: Array<PostData> = []
 
-  for (const [i, fileName] of files.entries()){
-    const filePath = path.join(postsPath, fileName as string)
+  for (const [i, filename] of files.entries()){
+    const filePath = path.join(postsPath, filename as string)
     const html = await parseMarkdown(filePath)
 
     const stats = await fsPromises.stat(filePath)
+    const fileContent = await fsPromises.readFile(filePath, 'utf-8')
+
+    const htmlFilename = (filename as string).replace('.md', '.html')
 
     data.push({
-      id: i, 
-      title: getTitle((fileName as string)), 
+      id: i.toString(),
+      filename: htmlFilename,
+      title: getTitle((htmlFilename)), 
+      brief: getBrief(fileContent),
       created: stats.birthtime,
       modified: stats.mtime
     })
 
-    const outputFile = path.join(postsOutputDir, (fileName as string).replace('.md', '.html'))
+    const outputFile = path.join(postsOutputDir, htmlFilename)
 
     // make sure the folder exists
     await fsPromises.mkdir(postsOutputDir, {recursive: true})
 
     // write the file
     await fsPromises.writeFile(outputFile, html, 'utf-8')
-      .then(() => console.log(chalk.green(`✔ ${fileName} built`)))
+      .then(() => console.log(chalk.green(`✔ ${filename} built`)))
       .catch(error => console.error(error))
   }
 
@@ -47,6 +53,10 @@ import chalk from 'chalk'
 })()
 
 
-function getTitle(fileName: string): string {
-  return fileName.replace('.md', '').replaceAll('-',' ')
+function getTitle(htmlFilename: string): string {
+  return htmlFilename.replace('.html', '').replaceAll('-',' ')
+}
+
+function getBrief(fileContent: string): string {
+  return fileContent.split('\n')[0]
 }

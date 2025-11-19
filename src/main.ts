@@ -1,18 +1,14 @@
 // >> the title of the post will be the name of the file.
+import type { PostData } from '../types.d.ts'
 
 const root = document.getElementById("root") as HTMLElement;
 const postsDataPath = `./posts/data.json`
 
-async function getAllPosts(): Promise<Array<{id: string, title: string}>> {
+async function getAllPosts(): Promise<Array<PostData>> {
   const resp = await fetch(postsDataPath)
   const data = await resp.json()
-  const mappedData = data.map(
-    (post: {id: Number; title: String}) => { 
-      return {...post, id: post.id.toString() }
-    }
-  )
-
-  return mappedData
+  
+  return data
 }
 
 const postsData = await getAllPosts()
@@ -21,6 +17,7 @@ function renderHome(): void {
   root.innerHTML = `<h1>Home</h1>`
   postsData.forEach(post => {
     root.innerHTML += `<h2>${post.title}</h2>`
+    root.innerHTML += `<h3>${post.brief}</h3>`
   })
 }
 
@@ -40,6 +37,7 @@ async function router(): Promise<void> {
     return
   }
   else if (postExists(pathname.split("/")[1])) {
+    console.log(pathname.split("/")[1])
     renderPost(pathname.split("/")[1])
     return
   }
@@ -58,10 +56,9 @@ async function injectPost(postId: string): Promise<void> {
 }
 
 async function getPostHtml(postId: string): Promise<Response>{
-  const title = postsData.find(post => post.id === postId)?.title
+  const filename = postsData.find(post => post.id === postId)?.filename
 
-  const file = `${title}.html`
-  const htmlResp = await fetch(`./posts/${file}`)
+  const htmlResp = await fetch(`./posts/${filename}`)
 
   return htmlResp
 }
