@@ -1,4 +1,5 @@
-import { inject, postExists } from './utils';
+import { postExists } from './utils';
+import inject from './injector';
 
 export default function render(val: 'home' | 'post' | '404', postid?: string) {
   switch (val) {
