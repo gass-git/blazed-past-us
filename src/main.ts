@@ -1,8 +1,13 @@
-// >> the title of the post will be the name of the file.
 import type { PostData } from '../types.d.ts'
+import config from '../config.json'
+
+// TODO
+// - clean up
+// - improve folder structure
+// - split file into sub modules
 
 const root = document.getElementById("root") as HTMLElement;
-const postsDataPath = `./posts/data.json`
+const postsDataPath = config.posts_data_path;
 
 async function getAllPosts(): Promise<Array<PostData>> {
   const resp = await fetch(postsDataPath)
@@ -37,7 +42,6 @@ async function router(): Promise<void> {
     return
   }
   else if (postExists(pathname.split("/")[1])) {
-    console.log(pathname.split("/")[1])
     renderPost(pathname.split("/")[1])
     return
   }
