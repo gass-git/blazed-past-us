@@ -2,8 +2,11 @@ import type { PostData } from './types';
 import { root, postsMetaData } from '../src/main';
 import config from '../src/config.json';
 
-function getPostTitle(id: string): string | undefined {
-  return postsMetaData.find((post: PostData) => post.id === id)?.title;
+function getPostData(
+  id: string,
+  option: 'title' | 'created' | 'modified' | 'brief'
+): string | Date | undefined {
+  return postsMetaData.find((post: PostData) => post.id === id)?.[option];
 }
 
 async function getPostHtml(postId: string): Promise<String | void> {
@@ -26,4 +29,4 @@ async function getPostsMetaData(): Promise<Array<PostData>> {
   return data;
 }
 
-export { getPostTitle, getPostHtml, getPostsMetaData };
+export { getPostData, getPostHtml, getPostsMetaData };

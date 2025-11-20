@@ -8,19 +8,8 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
-  font-family: 'Inter Bold';
-  font-size: 40px;
-}
-
 .capitalize-first::first-letter {
   text-transform: capitalize;
-}
-
-h3 {
-  font-family: 'PT Regular';
-  color: #d6d6d6;
-  font-size: 20px;
 }
 
 p {
@@ -44,13 +33,6 @@ code {
   border-radius: 20px;
 }
 
-a {
-  font-family: 'Inter Extra Bold';
-  color: rgb(208, 208, 208);
-  font-size: 24px;
-  z-index: 1;
-}
-
 a:link {
   text-decoration: none;
 }
@@ -60,12 +42,33 @@ a:visited {
   color: #b2dcfc;
 }
 
+.main-title {
+  font-family: 'Inter Bold';
+  font-size: 40px;
+}
+
 .post-card {
   border-radius: 20px;
 }
 
+.post-card .title {
+  font-family: 'Inter Extra Bold';
+  color: rgb(208, 208, 208);
+  font-size: 34px;
+}
+
 .post-card:hover {
   box-shadow: inset 0 0 0 2px rgb(255, 255, 255, 0.2);
+}
+
+.post {
+  padding: 20px;
+}
+
+.post .title {
+  font-family: 'Inter Extra Bold';
+  color: rgb(208, 208, 208);
+  font-size: 40px;
 }
 
 .padding-20 {
