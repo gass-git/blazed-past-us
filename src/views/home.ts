@@ -3,7 +3,7 @@ import { postsMetaData } from '../main';
 export default function home(): string {
   let html = '';
 
-  html += `<h1>Home</h1>`;
+  html += `<h1>gass-git</h1>`;
 
   postsMetaData.forEach((post) => {
     html += `

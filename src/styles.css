@@ -18,11 +18,47 @@
   src: url('./assets/fonts/inter/Inter_18pt-Bold.ttf');
 }
 
+@font-face {
+  font-family: 'Inter Extra Bold';
+  src: url('./assets/fonts/inter/Inter_18pt-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Extra Bold Italic';
+  src: url('./assets/fonts/inter/Inter_18pt-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'PT Regular';
+  src: url('./assets/fonts/pt/PTSerifCaption-Regular.ttf');
+}
+
 body {
-  font-family: 'Inter Light';
-  font-size: 18px;
-  background-color: #37353e;
+  background-color: rgb(40, 44, 53);
   color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Inter Extra Bold';
+}
+
+h2::first-letter {
+  text-transform: capitalize;
+}
+
+h3 {
+  font-family: 'PT Regular';
+  color: #d6d6d6;
+  font-size: 20px;
+}
+
+a {
+  font-family: 'Inter Extra Bold';
+  color: rgb(208, 208, 208);
+  font-size: 24px;
 }
 
 a:link {
@@ -31,4 +67,5 @@ a:link {
 
 a:visited {
   text-decoration: none;
+  color: #b2dcfc;
 }
