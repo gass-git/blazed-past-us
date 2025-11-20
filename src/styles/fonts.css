@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Inter Light';
+  src: url('../assets/fonts/inter/Inter_28pt-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Regular';
+  src: url('../assets/fonts/inter/Inter_18pt-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Medium';
+  src: url('../assets/fonts/inter/Inter_28pt-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Bold';
+  src: url('../assets/fonts/inter/Inter_28pt-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Extra Bold';
+  src: url('../assets/fonts/inter/Inter_28pt-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Extra Bold Italic';
+  src: url('../assets/fonts/inter/Inter_28pt-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Inter Bold Italic';
+  src: url('../assets/fonts/inter/Inter_28pt-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'PT Regular';
+  src: url('../assets/fonts/pt/PTSerifCaption-Regular.ttf');
+}
