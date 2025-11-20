@@ -33,18 +33,19 @@ code {
   border-radius: 20px;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inter Bold';
+  font-size: 40px;
+}
+
 a:link {
   text-decoration: none;
 }
 
 a:visited {
   text-decoration: none;
-  color: #b2dcfc;
-}
-
-.main-title {
-  font-family: 'Inter Bold';
-  font-size: 40px;
 }
 
 .post-card {
@@ -67,8 +68,8 @@ a:visited {
 
 .post .title {
   font-family: 'Inter Extra Bold';
-  color: rgb(208, 208, 208);
-  font-size: 40px;
+  color: rgb(241, 241, 241);
+  font-size: 34px;
 }
 
 .padding-20 {
