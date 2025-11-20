@@ -13,7 +13,7 @@ h1 {
   font-size: 40px;
 }
 
-h2::first-letter {
+.capitalize-first::first-letter {
   text-transform: capitalize;
 }
 
@@ -21,6 +21,27 @@ h3 {
   font-family: 'PT Regular';
   color: #d6d6d6;
   font-size: 20px;
+}
+
+p {
+  font-family: 'PT Regular';
+  color: #d6d6d6;
+  font-size: 20px;
+}
+
+figure {
+  margin: 40px 0 20px 0px;
+}
+
+pre {
+  border-radius: 20px;
+}
+
+code {
+  font-size: 20px;
+  padding: 20px;
+  background-color: #191d27;
+  border-radius: 20px;
 }
 
 a {

@@ -13,7 +13,7 @@ export default function home(): string {
     html += `
       <a href="${post.id}">
         <div class="post-card">
-          <h2>${post.title}</h2>
+          <h2 class="capitalize-first">${post.title}</h2>
           <h3>${post.brief}</h3>
         </div>
       </a>
