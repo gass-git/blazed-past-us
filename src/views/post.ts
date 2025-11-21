@@ -6,7 +6,7 @@ export default async function post(id: string): Promise<string> {
 
   html += `<div class="post">`;
   html += `<div class="title capitalize-first">${getPostData(id, 'title')}</div>`;
-  html += `<p>${beautifyDate(getPostData(id, 'created') as Date)}</p>`;
+  html += `<div class="date">${beautifyDate(getPostData(id, 'created') as Date)}</div>`;
   html += await getPostHtml(id);
   html += `</div>`;
 

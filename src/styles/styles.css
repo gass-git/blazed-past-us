@@ -101,7 +101,7 @@ code {
   font-size: 34px;
 }
 
-.post-card .subtitle {
+.date {
   font-family: 'Inter Regular';
   color: #d6d6d6;
   margin-top: 5px;
@@ -121,7 +121,8 @@ code {
 }
 
 .post {
-  padding: 20px;
+  padding: 25px 35px 25px 20px;
+  margin-top: 20px;
 }
 
 .post .title {
