@@ -1,7 +1,16 @@
 @import 'fonts.css';
 
-header {
+.wrapper {
   padding: 50px 20px 50px 20px;
+  display: flex;
+  justify-content: left;
+}
+
+.bolt {
+  margin-right: 8px;
+  margin-top: 2px;
+  width: 63px;
+  height: 63px;
 }
 
 header .top {
@@ -14,12 +23,24 @@ header .bottom {
   font-size: 16px;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
 .green-font {
   color: rgb(0, 190, 0);
 }
 
 .yellow-font {
-  color: yellow;
+  color: #f5ca2a;
 }
 
 header .main-title {
@@ -27,13 +48,6 @@ header .main-title {
   text-transform: uppercase;
   font-family: 'Inter Bold';
   font-size: 35px;
-}
-
-.bolt {
-  margin-right: 8px;
-  padding-top: 0px;
-  width: 40px;
-  height: 40px;
 }
 
 body {
@@ -67,18 +81,6 @@ code {
   padding: 20px;
   background-color: #191d27;
   border-radius: 20px;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
 }
 
 .post-card {

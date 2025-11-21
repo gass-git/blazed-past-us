@@ -7,17 +7,22 @@
   </head>
   <body>
     <header>
-      <a href="/">
-        <div class="top">
+      <div class="wrapper">
+        <div>
           <img src="./bolt.png" class="bolt" />
-          <span class="main-title">blazed-past-us</span>
         </div>
-        <div class="bottom">
-          <span class="green-font">cosmic speed: </span>
-          <span class="yellow-font" id="cosmic-speed"> </span>
+
+        <div>
+          <div class="top">
+            <a class="main-title" href="/">blazed-past-us</a>
+          </div>
+          <div class="bottom">
+            <span class="yellow-font" id="cosmic-speed"> </span>
+          </div>
         </div>
-      </a>
+      </div>
     </header>
+
     <div id="root"></div>
     <script type="module" src="./src/main.js"></script>
     <script>
@@ -25,7 +30,7 @@
         list.getEntries().forEach((en) => {
           if (en.name === 'first-contentful-paint') {
             document.getElementById('cosmic-speed').innerHTML +=
-              `${en.startTime} <span> ms</span>`;
+              `${en.startTime}<span> ms</span>`;
           }
         });
       }).observe({ type: 'paint', buffered: true });
