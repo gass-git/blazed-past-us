@@ -54,21 +54,21 @@ header .bottom {
 }
 
 .top-triangle {
-  top: 10%;
-  left: 20%;
+  top: 19%;
+  left: 33%;
   width: 0;
   height: 0;
-  border-left: 20px solid transparent;
-  border-bottom: 30px solid #ffe6ff;
+  border-left: 15px solid transparent;
+  border-bottom: 22.15px solid #ffe6ff;
 }
 
 .bottom-triangle {
-  top: 40%;
-  right: 25%;
+  top: 46%;
+  right: 30%;
   width: 0;
   height: 0;
-  border-right: 20px solid transparent;
-  border-top: 30px solid #ffe6ff;
+  border-right: 15px solid transparent;
+  border-top: 22.5px solid #ffe6ff;
 }
 
 .neon-font-color {
