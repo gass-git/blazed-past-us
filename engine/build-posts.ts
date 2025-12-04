@@ -20,12 +20,14 @@ import type { PostData } from './types';
     const stats = await fsPromises.stat(filePath);
     const fileContent = await fsPromises.readFile(filePath, 'utf-8');
     const htmlFilename = (filename as string).replace('.md', '.html');
+    const tags = getTags(fileContent);
 
     data.push({
       id: i.toString(),
       filename: htmlFilename,
       title: getTitle(htmlFilename),
       brief: getBrief(fileContent),
+      tags: tags,
       created: stats.birthtime,
       modified: stats.mtime,
     });
@@ -52,5 +54,21 @@ function getTitle(htmlFilename: string): string {
 }
 
 function getBrief(fileContent: string): string {
-  return fileContent.split('\n')[0];
+  return (
+    fileContent
+      .split('\n')
+      .find((str) => !str.includes('tags') && str.length > 10) || ''
+  );
+}
+
+function getTags(fileContent: string) {
+  return (
+    fileContent
+      .split('\n')
+      ?.find((str) => str.includes('**tags:**'))
+      ?.split('**tags:**')
+      ?.slice(1)[0]
+      ?.split(',')
+      .map((str) => str.trim()) || []
+  );
 }
