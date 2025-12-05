@@ -7,6 +7,9 @@
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "bin": {
+    "blazed-past-us": "cli/install-scaffold.js"
+  },
   "scripts": {
     "build": "vite build && node engine/build-posts.ts"
   },
