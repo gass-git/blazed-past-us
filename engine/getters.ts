@@ -1,6 +1,6 @@
 import type { PostData } from './types';
 import { root, postsMetaData } from '../src/main';
-import config from '../src/config.json';
+import config from '../template/src/config.json';
 
 function getPostData(
   id: string,

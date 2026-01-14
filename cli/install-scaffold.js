@@ -1,10 +1,15 @@
+#!/usr/bin/env node
+
 import fs from 'node:fs';
 import path from 'node:path';
+import chalk from 'chalk';
 
-const path = {
+const dir = {
   template: path.resolve(import.meta.dirname, '../template'),
   target: process.cwd(),
 };
+
+copyRecursive(dir.template, dir.target);
 
 function copyRecursive(src, destination) {
   // does source path exist ?
@@ -24,7 +29,5 @@ function copyRecursive(src, destination) {
     }
   }
 }
-
-copyRecursive(path.template, path.target);
 
 console.log(chalk.yellow('Scafollding set ✅'));
