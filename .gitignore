@@ -1,4 +1,4 @@
 /node_modules
 /dist
 .prettierrc
-/template/src/node_modules
+/src/template/node_modules

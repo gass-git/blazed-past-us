@@ -2,20 +2,40 @@ import { parseMarkdown } from './parse-markdown.ts';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
 import type { PostData } from './types';
 
-(async function (): Promise<void> {
-  const __dirname = fileURLToPath(import.meta.url);
-  const postsPath = path.resolve(__dirname, '../../posts');
-  const files = fs.readdirSync(postsPath, {});
-  const postsOutputDir = path.resolve(__dirname, '../../dist/posts');
+(function main() {
+  const projectRoot = process.cwd();
+  const paths = initPaths(projectRoot);
+  parse(paths);
+})();
 
+function initPaths(root: string) {
+  const posts = {
+    inputPath: path.resolve(root, 'posts'),
+    outputPath: path.resolve(root, 'dist/posts'),
+  };
+
+  const postFiles = fs.readdirSync(posts.inputPath, {}) as string[];
+  return { posts, postFiles };
+}
+
+async function parse({
+  posts,
+  postFiles,
+}: {
+  posts: {
+    inputPath: string;
+    outputPath: string;
+  };
+  postFiles: Array<string>;
+}): Promise<void> {
   const data: Array<PostData> = [];
 
-  for (const [i, filename] of files.entries()) {
-    const filePath = path.join(postsPath, filename as string);
+  for (const [i, filename] of postFiles.entries()) {
+    const filePath = path.join(posts.inputPath, filename as string);
+
     const html = await parseMarkdown(filePath);
     const stats = await fsPromises.stat(filePath);
     const fileContent = await fsPromises.readFile(filePath, 'utf-8');
@@ -32,10 +52,10 @@ import type { PostData } from './types';
       modified: stats.mtime,
     });
 
-    const outputFile = path.join(postsOutputDir, htmlFilename);
+    const outputFile = path.join(posts.outputPath, htmlFilename);
 
     // make sure the folder exists
-    await fsPromises.mkdir(postsOutputDir, { recursive: true });
+    await fsPromises.mkdir(posts.outputPath, { recursive: true });
 
     // write the file
     await fsPromises
@@ -45,9 +65,9 @@ import type { PostData } from './types';
   }
 
   const jsonPosts = JSON.stringify(data);
-  fs.writeFileSync(`${postsOutputDir}/data.json`, jsonPosts);
+  fs.writeFileSync(`${posts.outputPath}/data.json`, jsonPosts);
   console.log(chalk.yellow('All posts have been parsed into HTML ✅'));
-})();
+}
 
 function getTitle(htmlFilename: string): string {
   return htmlFilename.replace('.html', '').replaceAll('-', ' ');

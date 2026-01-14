@@ -1,0 +1,23 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "rootDir": "./src", // compiled JS output
+    "outDir": "./dist", // source files location
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "target": "ES2020", // modern JS
+    "module": "ESNext", // ESM modules
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true, // generate .d.ts types
+    "strict": true, // enable strict type checking
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src"]
+}

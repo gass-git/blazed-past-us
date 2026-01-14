@@ -6,9 +6,19 @@
   "author": "gass-git",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "bin": {
-    "blazed-past-us": "cli/install-scaffold.js"
+    "blazed-past-us": "cli/install-scaffold.js",
+    "blaze": "cli/build.js"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "devDependencies": {
     "chalk": "^5.6.2",
@@ -18,7 +28,6 @@
     "remark": "^15.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.2.2"
+    "typescript": "^5.9.3"
   }
 }
