@@ -1,7 +1,7 @@
 {
   "name": "blazed-past-us",
   "version": "1.0.0",
-  "description": "",
+  "description": "A fast, performance-focused dev blog framework (with beautiful code snippets) where content can be written easily in Markdown via the IDE.",
   "license": "MIT",
   "author": "gass-git",
   "type": "module",
@@ -10,11 +10,14 @@
   "bin": {
     "blazed-past-us": "cli/install-scaffold.js"
   },
-  "scripts": {
-    "build": "vite build && node engine/build-posts.ts"
-  },
   "devDependencies": {
+    "chalk": "^5.6.2",
     "prettier": "^3.6.2",
+    "rehype-pretty-code": "^0.14.1",
+    "rehype-stringify": "^10.0.1",
+    "remark": "^15.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
     "typescript": "^5.9.3",
     "vite": "^7.2.2"
   }
