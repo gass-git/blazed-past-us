@@ -1,5 +1,5 @@
-import render from '../../engine/render';
-import { postExists } from '../../engine/utils';
+import { render } from 'blazed-past-us';
+import { postExists } from 'blazed-past-us';
 import home from './views/home';
 import post from './views/post';
 import notFound from './views/notFound';

@@ -1,4 +1,4 @@
-import { parseMarkdown } from './parse-markdown';
+import { parseMarkdown } from './parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
@@ -13,7 +13,7 @@ import type { PostData } from './types';
 
 function initPaths(root: string) {
   const posts = {
-    inputPath: path.resolve(root, 'posts'),
+    inputPath: path.resolve(root, 'src/posts'),
     outputPath: path.resolve(root, 'dist/posts'),
   };
 

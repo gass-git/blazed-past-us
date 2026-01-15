@@ -1,7 +1,7 @@
-import { postExists } from './utils';
-import inject from './injector';
+import { postExists } from './utils.js';
+import { inject } from './injector.js';
 
-export default function render(
+function render(
   view: 'home' | 'post' | '404',
   root: HTMLElement,
   home: any,
@@ -25,3 +25,5 @@ export default function render(
       inject('404', root, home, post, notFound, postsMetaData);
   }
 }
+
+export { render };

@@ -15,7 +15,7 @@
   },
   "bin": {
     "blazed-past-us": "dist/cli/install-scaffold.js",
-    "blaze": "dist/cli/build.js"
+    "blazed": "dist/cli/build.js"
   },
   "scripts": {
     "build": "tsc && xcopy \"src\\template\" \"dist\\template\" /E /I /Y"

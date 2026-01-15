@@ -1,5 +1,5 @@
 import { postsMetaData } from '../main';
-import { beautifyDate } from '../../../engine/utils';
+import { beautifyDate } from 'blazed-past-us';
 
 export default function home() {
   let html = '';

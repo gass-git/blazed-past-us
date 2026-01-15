@@ -1,6 +1,6 @@
-import { postExists } from './utils';
+import { postExists } from './utils.js';
 
-export default async function inject(
+async function inject(
   view: 'home' | 'post' | '404',
   root: HTMLElement,
   home: any,
@@ -17,3 +17,5 @@ export default async function inject(
     root.innerHTML = notFound();
   }
 }
+
+export { inject };

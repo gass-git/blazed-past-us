@@ -1,5 +1,5 @@
-import { getPostData, getPostHtml } from '../../../engine/getters';
-import { beautifyDate } from '../../../engine/utils';
+import { getPostData, getPostHtml } from 'blazed-past-us';
+import { beautifyDate } from 'blazed-past-us';
 import { postsMetaData } from '../main';
 import { root } from '../main';
 
