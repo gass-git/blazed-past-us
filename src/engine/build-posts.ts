@@ -1,4 +1,4 @@
-import { parseMarkdown } from './parse-markdown.ts';
+import { parseMarkdown } from './parse-markdown';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';

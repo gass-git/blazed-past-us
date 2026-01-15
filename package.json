@@ -14,11 +14,11 @@
     }
   },
   "bin": {
-    "blazed-past-us": "cli/install-scaffold.js",
-    "blaze": "cli/build.js"
+    "blazed-past-us": "dist/cli/install-scaffold.js",
+    "blaze": "dist/cli/build.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && xcopy \"src\\template\" \"dist\\template\" /E /I /Y"
   },
   "devDependencies": {
     "chalk": "^5.6.2",

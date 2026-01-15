@@ -1,2 +1,2 @@
-export * from './engine/getters.ts';
-export * from './engine/utils.ts';
+export * from './engine/getters';
+export * from './engine/utils';

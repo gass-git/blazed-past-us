@@ -10,7 +10,7 @@ const dir = {
 
 copyRecursive(dir.template, dir.target);
 
-function copyRecursive(src, destination) {
+function copyRecursive(src: string, destination: string) {
   // does source path exist ?
   if (fs.existsSync(src)) {
     // does source path point to a directory ?

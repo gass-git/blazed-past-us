@@ -1,7 +1,7 @@
 import { postsMetaData } from '../main';
-import { beautifyDate } from '../../engine/utils';
+import { beautifyDate } from '../../../engine/utils';
 
-export default function home(): string {
+export default function home() {
   let html = '';
 
   postsMetaData.forEach((post) => {

@@ -1,13 +1,13 @@
-import config from '../config.json';
+import config from './config.json';
 import { getPostsMetaData } from '../../engine/getters';
-import router from '../router';
+import router from './router';
 import { showCosmiscSpeed } from '../../engine/utils';
 
-const root = document.getElementById(config.root_id);
+const root = document.getElementById(config.root_id) as HTMLElement;
 const speedElement = document.getElementById(config.speed_element_id);
-const postsMetaData = await getPostsMetaData();
+const postsMetaData = await getPostsMetaData(config);
 
 showCosmiscSpeed(speedElement as HTMLElement);
-router();
+router(root, postsMetaData);
 
 export { root, postsMetaData };

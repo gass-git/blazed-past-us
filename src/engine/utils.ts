@@ -1,6 +1,4 @@
-import { postsMetaData } from '../src/main';
-
-function postExists(id: string): boolean {
+function postExists(postsMetaData: any[], id: string): boolean {
   return postsMetaData.some((post) => post.id === id);
 }
 
