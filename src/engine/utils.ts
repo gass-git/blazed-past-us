@@ -7,7 +7,7 @@ function postExists(postsMetaData: any[], id: string): boolean {
   return postsMetaData.some((post) => post.id === id);
 }
 
-function beautifyDate(d: Date | undefined) {
+function beautifyDate(d: Date | undefined): undefined | string {
   if (!d) return;
   const date = new Date(d);
 

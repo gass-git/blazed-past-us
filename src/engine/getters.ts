@@ -25,7 +25,7 @@ async function getPostHtml(
   return html;
 }
 
-async function getPostsMetaData(config: any): Promise<Array<PostData>> {
+async function getPostsMetaData(config: any): Promise<PostData[]> {
   const resp = await fetch(config.posts_data_path);
   const data = await resp.json();
 
@@ -44,7 +44,7 @@ function getBrief(fileContent: string): string {
   );
 }
 
-function getTags(fileContent: string) {
+function getTags(fileContent: string): string[] {
   return (
     fileContent
       .split('\n')

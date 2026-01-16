@@ -9,7 +9,7 @@ function render(
   notFound: any,
   postsMetaData: any[],
   postid?: string
-) {
+): void {
   switch (view) {
     case 'home':
       inject('home', root, home, post, notFound, postsMetaData);

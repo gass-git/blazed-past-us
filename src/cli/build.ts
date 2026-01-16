@@ -36,6 +36,7 @@ function initPaths(root: string): PostsPaths {
 
 /**
  * Processes all post files:
+ *
  * parses Markdown to HTML, generates metadata,
  * writes transformed files, and emits a JSON index.
  */
