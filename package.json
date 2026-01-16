@@ -1,12 +1,10 @@
 {
   "name": "blazed-past-us",
   "version": "1.0.0",
-  "description": "A fast, performance-focused dev blog framework (with beautiful code snippets) where content can be written easily in Markdown via the IDE.",
+  "description": "A fast dev blog framework where content can be written easily in Markdown via the IDE.",
   "license": "MIT",
   "author": "gass-git",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
