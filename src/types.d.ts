@@ -8,4 +8,9 @@ interface PostData {
   modified: Date;
 }
 
-export { PostData };
+interface PostsPaths {
+  input: string;
+  output: string;
+}
+
+export { PostData, PostsPaths };

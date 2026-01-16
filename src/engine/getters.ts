@@ -1,4 +1,4 @@
-import type { PostData } from './types';
+import type { PostData } from '../types';
 
 function getPostData(
   postsMetaData: any[],
@@ -32,4 +32,35 @@ async function getPostsMetaData(config: any): Promise<Array<PostData>> {
   return data;
 }
 
-export { getPostData, getPostHtml, getPostsMetaData };
+function getTitle(htmlFilename: string): string {
+  return htmlFilename.replace('.html', '').replaceAll('-', ' ');
+}
+
+function getBrief(fileContent: string): string {
+  return (
+    fileContent
+      .split('\n')
+      .find((str) => !str.includes('tags') && str.length > 10) || ''
+  );
+}
+
+function getTags(fileContent: string) {
+  return (
+    fileContent
+      .split('\n')
+      ?.find((str) => str.includes('**tags:**'))
+      ?.split('**tags:**')
+      ?.slice(1)[0]
+      ?.split(',')
+      .map((str) => str.trim()) || []
+  );
+}
+
+export {
+  getPostData,
+  getPostHtml,
+  getPostsMetaData,
+  getTitle,
+  getTags,
+  getBrief,
+};
