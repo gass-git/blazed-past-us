@@ -1,11 +1,10 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
+  // Visit https://aka.ms/tsconfig to read more about this file.
   "compilerOptions": {
-    "rootDir": "./src", // compiled JS output
-    "outDir": "./dist", // source files location
+    "rootDir": "./src",
+    "outDir": "./dist",
 
     // Environment Settings
-    // See also https://aka.ms/tsconfig/module
     "target": "ES2020", // modern JS
     "module": "ESNext", // ESM modules
 
