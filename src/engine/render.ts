@@ -3,13 +3,16 @@ import { postExists, inject } from './utils.js';
 function render(
   view: 'home' | 'post' | '404',
   root: HTMLElement,
-  home: any,
-  post: any,
-  notFound: any,
+  views: {
+    home: () => string;
+    post: (id: string) => Promise<string>;
+    notFound: () => string;
+  },
   postsMetaData: any[],
   postId?: string
 ): void {
   const r = root;
+  const { home, post, notFound } = { ...views };
 
   switch (view) {
     case 'home':
