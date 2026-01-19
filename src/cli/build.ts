@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { parseMarkdown } from '../engine/parse-markdown.js';
+import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
@@ -8,7 +8,7 @@ import type { PostData, PostsPaths } from '../types.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
-} from '../engine/utils.js';
+} from '../server/file-builder.js';
 
 /**
  * CLI entry point.
