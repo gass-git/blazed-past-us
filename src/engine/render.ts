@@ -12,7 +12,7 @@ function render(
   postId?: string
 ): void {
   const r = root;
-  const { home, post, notFound } = { ...views };
+  const { home, post, notFound } = views;
 
   switch (view) {
     case 'home':
