@@ -1,5 +1,4 @@
 import { postExists } from './utils.js';
-import { inject } from './injector.js';
 
 function render(
   view: 'home' | 'post' | '404',
@@ -8,21 +7,21 @@ function render(
   post: any,
   notFound: any,
   postsMetaData: any[],
-  postid?: string
+  postId?: string
 ): void {
   switch (view) {
     case 'home':
-      inject('home', root, home, post, notFound, postsMetaData);
+      root.innerHTML = home();
       break;
 
     case 'post':
-      postid && postExists(postsMetaData, postid)
-        ? inject('post', root, home, post, notFound, postsMetaData, postid)
-        : inject('404', root, home, post, notFound, postsMetaData);
+      postId && postExists(postsMetaData, postId)
+        ? post(postId).then((html: string) => (root.innerHTML = html))
+        : (root.innerHTML = notFound());
       break;
 
     default:
-      inject('404', root, home, post, notFound, postsMetaData);
+      root.innerHTML = notFound();
   }
 }
 
