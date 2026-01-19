@@ -1,4 +1,4 @@
-import { postExists } from './utils.js';
+import { postExists, inject } from './utils.js';
 
 function render(
   view: 'home' | 'post' | '404',
@@ -9,19 +9,21 @@ function render(
   postsMetaData: any[],
   postId?: string
 ): void {
+  const r = root;
+
   switch (view) {
     case 'home':
-      root.innerHTML = home();
+      inject(r, home());
       break;
 
     case 'post':
       postId && postExists(postsMetaData, postId)
-        ? post(postId).then((html: string) => (root.innerHTML = html))
-        : (root.innerHTML = notFound());
+        ? post(postId).then((html: string) => inject(r, html))
+        : inject(r, notFound());
       break;
 
     default:
-      root.innerHTML = notFound();
+      inject(r, notFound());
   }
 }
 

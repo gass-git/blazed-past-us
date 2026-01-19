@@ -59,10 +59,15 @@ async function generatePostMetadata(
   });
 }
 
+function inject(root: HTMLElement, html: string) {
+  root.innerHTML = html;
+}
+
 export {
   postExists,
   beautifyDate,
   showCosmiscSpeed,
   generatePostMetadata,
   writeTransformedPostFile,
+  inject,
 };
