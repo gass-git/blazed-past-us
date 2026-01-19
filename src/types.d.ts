@@ -13,4 +13,13 @@ interface PostsPaths {
   output: string;
 }
 
-export { PostData, PostsPaths };
+interface Config {
+  posts_data_path: string;
+  root_id: string;
+  header_id: string;
+  speed_element_id: string;
+}
+
+type PostDataType = 'title' | 'created' | 'modified' | 'brief';
+
+export { PostData, PostsPaths, Config, PostDataType };

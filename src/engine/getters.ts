@@ -1,15 +1,15 @@
-import type { PostData } from '../types';
+import type { PostData, Config, PostDataType } from '../types';
 
 function getPostData(
-  postsMetaData: any[],
+  postsMetaData: PostData[],
   id: string,
-  option: 'title' | 'created' | 'modified' | 'brief'
+  option: PostDataType
 ): string | Date | undefined {
   return postsMetaData.find((post: PostData) => post.id === id)?.[option];
 }
 
 async function getPostHtml(
-  postsMetaData: any[],
+  postsMetaData: PostData[],
   root: HTMLElement,
   postId: string
 ): Promise<String | void> {
@@ -25,7 +25,7 @@ async function getPostHtml(
   return html;
 }
 
-async function getPostsMetaData(config: any): Promise<PostData[]> {
+async function getPostsMetaData(config: Config): Promise<PostData[]> {
   const resp = await fetch(config.posts_data_path);
   const data = await resp.json();
 
