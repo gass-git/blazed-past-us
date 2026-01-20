@@ -22,4 +22,12 @@ interface Config {
 
 type PostDataType = 'title' | 'created' | 'modified' | 'brief';
 
-export { PostData, PostsPaths, Config, PostDataType };
+type View = 'home' | 'post' | '404';
+
+interface Views {
+  home: () => string;
+  post: (id: string) => Promise<string>;
+  notFound: () => string;
+}
+
+export { PostData, PostsPaths, Config, PostDataType, View, Views };

@@ -1,14 +1,11 @@
 import { postExists, inject } from './utils.js';
+import { View, Views, PostData } from '../types.js';
 
 function render(
-  view: 'home' | 'post' | '404',
+  view: View,
   root: HTMLElement,
-  views: {
-    home: () => string;
-    post: (id: string) => Promise<string>;
-    notFound: () => string;
-  },
-  postsMetaData: any[],
+  views: Views,
+  postsMetaData: PostData[],
   postId?: string
 ): void {
   const r = root;
@@ -20,9 +17,11 @@ function render(
       break;
 
     case 'post':
-      postId && postExists(postsMetaData, postId)
-        ? post(postId).then((html: string) => inject(r, html))
-        : inject(r, notFound());
+      if (postId && postExists(postsMetaData, postId)) {
+        post(postId).then((html: string) => inject(r, html));
+      } else {
+        inject(r, notFound());
+      }
       break;
 
     default:
