@@ -13,7 +13,7 @@ function beautifyDate(d: Date | undefined): undefined | string {
   });
 }
 
-function showCosmiscSpeed(el: HTMLElement): void {
+function showCosmicSpeed(el: HTMLElement): void {
   new PerformanceObserver((list) => {
     list.getEntries().forEach((en) => {
       if (en.name === 'first-contentful-paint') {
@@ -27,4 +27,4 @@ function inject(root: HTMLElement, html: string) {
   root.innerHTML = html;
 }
 
-export { postExists, beautifyDate, showCosmiscSpeed, inject };
+export { postExists, beautifyDate, showCosmicSpeed, inject };
