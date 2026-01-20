@@ -10,7 +10,7 @@ async function writeTransformedPostFile(
 ): Promise<void> {
   await fsPromises
     .writeFile(outputPath, postHtmlContent, 'utf-8')
-    .then(() => console.log(chalk.green(`✔ ${filename} built`)))
+    .then(() => console.log(chalk.green(`✔ ${filename}`)))
     .catch((error) => console.error(error));
 }
 

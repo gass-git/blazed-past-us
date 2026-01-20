@@ -5,6 +5,7 @@ import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 import chalk from 'chalk';
 import type { PostData, PostsPaths } from '../types.js';
+import pkg from '../../package.json' with { type: 'json' };
 import {
   generatePostMetadata,
   writeTransformedPostFile,
@@ -52,7 +53,7 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
     await generatePostMetadata(data, i, filePath, htmlFilename);
     await fsPromises.mkdir(paths.output, { recursive: true });
 
-    writeTransformedPostFile(
+    await writeTransformedPostFile(
       path.join(paths.output, htmlFilename),
       postHtmlContent,
       filename
@@ -62,5 +63,7 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);
 
-  console.log(chalk.yellow('All posts have been parsed into HTML ✅'));
+  console.log(
+    `${chalk.blue(pkg.name + ' v' + pkg.version)} ${chalk.yellow('all posts have been parsed into HTML ✅')}`
+  );
 }
