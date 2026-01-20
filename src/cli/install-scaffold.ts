@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
-import chalk from 'chalk';
-import pkg from '../../package.json' with { type: 'json' };
+import { log } from '../engine/utils.js';
 
 const dir = {
   template: path.resolve(import.meta.dirname, '../template'),
@@ -10,9 +9,7 @@ const dir = {
 };
 
 copyRecursive(dir.template, dir.target);
-console.log(
-  `${chalk.blue('blazed-past-us v' + pkg.version)} ${chalk.green('scafolld all set! 👷')}`
-);
+log('scafolld all set! 👷', 'green');
 
 function copyRecursive(src: string, destination: string): void {
   const srcPathExists = fs.existsSync(src);

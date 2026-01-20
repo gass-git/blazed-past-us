@@ -24,10 +24,12 @@ type PostDataType = 'title' | 'created' | 'modified' | 'brief';
 
 type View = 'home' | 'post' | '404';
 
+type MsgColor = 'yellow' | 'green' | 'red';
+
 interface Views {
   home: () => string;
   post: (id: string) => Promise<string>;
   notFound: () => string;
 }
 
-export { PostData, PostsPaths, Config, PostDataType, View, Views };
+export { PostData, PostsPaths, Config, PostDataType, View, Views, MsgColor };

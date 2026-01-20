@@ -3,9 +3,8 @@ import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import chalk from 'chalk';
 import type { PostData, PostsPaths } from '../types.js';
-import pkg from '../../package.json' with { type: 'json' };
+import { log } from '../engine/utils.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
@@ -62,8 +61,5 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
 
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);
-
-  console.log(
-    `${chalk.blue(pkg.name + ' v' + pkg.version)} ${chalk.yellow('all posts have been parsed into HTML ✅')}`
-  );
+  log('all posts have been parsed into HTML ✅', 'yellow');
 }
