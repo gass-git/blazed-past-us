@@ -1,6 +1,6 @@
 {
   "name": "blazed-past-us",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A fast blog framework for devs, where content can be written easily in Markdown via the IDE.",
   "license": "MIT",
   "author": "gass-git",
