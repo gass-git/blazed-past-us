@@ -1,16 +1,16 @@
-import { getPostData, getPostHtml } from 'blazed-past-us';
-import { beautifyDate } from 'blazed-past-us';
-import { postsMetaData } from '../main';
-import { root } from '../main';
+import { beautifyDate, getPostData, getPostHtml } from 'blazed-past-us';
+import { postsMetaData, root } from '../main';
 
 export default async function post(id) {
-  let html = '';
+  const title = getPostData(postsMetaData, id, 'title');
+  const date = beautifyDate(getPostData(postsMetaData, id, 'created'));
+  const post = await getPostHtml(postsMetaData, root, id);
 
-  html += `<div class="post">`;
-  html += `<div class="title capitalize-first">${getPostData(postsMetaData, id, 'title')}</div>`;
-  html += `<div class="date">${beautifyDate(getPostData(postsMetaData, id, 'created'))}</div>`;
-  html += await getPostHtml(postsMetaData, root, id);
-  html += `</div>`;
-
-  return html;
+  return `
+    <div class="post">
+      <div class="title capitalize-first">${title}</div>
+      <div class="date">${date}</div>
+      ${post}
+    </div>
+  `;
 }
