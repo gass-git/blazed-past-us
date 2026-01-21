@@ -36,12 +36,20 @@ function getTitle(htmlFilename: string): string {
   return htmlFilename.replace('.html', '').replaceAll('-', ' ');
 }
 
-function getBrief(fileContent: string): string {
-  return (
+function getBrief(fileContent: string, lines: number): string {
+  const A =
     fileContent
       .split('\n')
-      .find((str) => !str.includes('tags') && str.length > 10) || ''
-  );
+      .splice(1)
+      .filter((str) => !str.includes('tags') && str.length > 10) || '';
+
+  let brief = '';
+
+  for (let l = 0; l < lines; l++) {
+    brief += A[l];
+  }
+
+  return brief.replace(/\r/g, ' ');
 }
 
 function getTags(fileContent: string): string[] {

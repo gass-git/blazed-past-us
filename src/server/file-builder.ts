@@ -27,7 +27,7 @@ async function generatePostMetadata(
     id: i.toString(),
     filename: htmlFilename,
     title: getTitle(htmlFilename),
-    brief: getBrief(fileContent),
+    brief: getBrief(fileContent, 3),
     tags: getTags(fileContent),
     created: stats.birthtime,
     modified: stats.mtime,
