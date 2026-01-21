@@ -27,10 +27,20 @@ function copyRecursive(src: string, destination: string): void {
       fs.mkdirSync(destination);
     }
 
-    // Copy the content of the src folder to the destination.
+    /**
+     * Copy the content of the src folder to the destination only if
+     * it already does not exist. (to avoid unwanted overrites)
+     */
     fs.readdirSync(src).forEach((item) => {
       const itemSrcPath = path.join(src, item);
       const itemDestinationPath = path.join(destination, item);
+
+      if (
+        fs.existsSync(itemDestinationPath) &&
+        fs.statSync(itemDestinationPath).isFile()
+      ) {
+        return;
+      }
 
       copyRecursive(itemSrcPath, itemDestinationPath);
     });
