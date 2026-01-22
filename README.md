@@ -4,6 +4,8 @@
 
 # Blazed Past Us..
 
+A static blog framework that lets you write content in Markdown directly from your IDE.
+
 **Silver Surfer asked:**  
 _"How fast can a dev blog go?"_
 
@@ -21,8 +23,6 @@ _"Very well… let the cosmos bear witness."_
 - The descriptions of the posts will be a brief showcase of the first paragraph (below the tags).
 
 ## Installation
-
-#### ⚠️ Package still not available in the npm registry (🧪 under development).
 
 ### Set up scaffold:
 
