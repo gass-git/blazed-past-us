@@ -24,16 +24,10 @@ _"Very well… let the cosmos bear witness."_
 
 #### ⚠️ Package still not available in the npm registry (🧪 under development).
 
-### Install package:
-
-```sh
-npm i blazed-past-us
-```
-
 ### Set up scaffold:
 
 ```sh
-blazed-past-us
+npx blazed-past-us
 ```
 
 ### Install dependencies:
