@@ -1,7 +1,7 @@
 {
   "name": "blazed-past-us",
   "version": "0.1.0",
-  "description": "A fast blog framework for devs, where content can be written easily in Markdown via the IDE.",
+  "description": "A static blog framework that lets you write content in Markdown directly from your IDE.",
   "license": "MIT",
   "author": "gass-git",
   "type": "module",
@@ -29,5 +29,10 @@
     "remark": "^15.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2"
-  }
+  },
+  "keywords": [
+    "static-site",
+    "blog",
+    "markdown"
+  ]
 }
