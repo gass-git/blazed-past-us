@@ -2,6 +2,8 @@
   <img src="https://github.com/gass-git/blazed-past-us/raw/main/bolt.png" width="150">
 </p>
 
+> 🚧 **Work in progress** This framework is still under active development. Expect changes.
+
 # Blazed Past Us..
 
 A static blog framework that lets you write content in Markdown directly from your IDE.
