@@ -70,10 +70,11 @@ pre {
 }
 
 code {
-  font-size: 20px;
-  padding: 20px;
+  font-size: 18px;
+  padding: 10px;
   background-color: #191d27;
-  border-radius: 20px;
+  border-radius: 10px;
+  border: 1px solid #424550;
 }
 
 .date {
