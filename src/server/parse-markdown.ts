@@ -17,7 +17,7 @@ async function parseMarkdown(path: string): Promise<string> {
   const result = await remark()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypePrettyCode, { theme: 'github-dark' })
+    .use(rehypePrettyCode, { theme: 'dark-plus', keepBackground: false })
     .use(rehypeStringify)
     .process(markdown);
 
