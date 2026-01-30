@@ -113,9 +113,9 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
 
 .date {
   font-family: 'Inter Regular';
-  color: #d6d6d6;
-  margin-top: 5px;
-  font-size: 17px;
+  color: #82f9ff;
+  margin-top: 0.1rem;
+  font-size: 1rem;
 }
 
 .post {

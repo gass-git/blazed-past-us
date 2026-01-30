@@ -15,7 +15,16 @@ import path from 'node:path';
  */
 async function parseMarkdown(_path: string): Promise<string> {
   const root = process.cwd();
-  const markdown = await readFile(_path);
+
+  const markdown = await readFile(_path, { encoding: 'utf8' }).then((str) =>
+    // remove "**tags:**" string
+    str.split('**tags:**').splice(1).join()
+  );
+
+  // PENDING: use userConfig to color tags
+  const userConfig = await readFile(path.join(root, 'src/config.json'), {
+    encoding: 'utf8',
+  });
 
   const result = await remark()
     .use(remarkParse)

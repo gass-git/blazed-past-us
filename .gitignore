@@ -2,3 +2,4 @@
 /dist
 .prettierrc
 /src/template/node_modules
+*.tgz
