@@ -143,8 +143,7 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
   font-size: 1.3rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  border: 0.15rem solid var(--tag-color, #e0e0e0);
-  /* background-color: var(--tag-color, #e0e0e0); */
+  border: 0.15rem solid var(--tag-color);
   color: var(--tag-color, #e0e0e0);
   line-height: 0.7;
 }

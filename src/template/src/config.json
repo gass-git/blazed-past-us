@@ -5,6 +5,7 @@
   "speed_element_id": "speed",
   "tags": {
     "javascript": { "color": "#f5dd42" },
-    "typescript": { "color": "#42adf5" }
+    "typescript": { "color": "#42adf5" },
+    "default": { "color": "#e0e0e0" }
   }
 }

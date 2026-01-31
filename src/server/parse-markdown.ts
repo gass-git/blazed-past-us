@@ -46,11 +46,9 @@ async function colorTags(root: string, str: string): Promise<string> {
     .toLowerCase()
     .split(',')
     .map((key) => {
-      return `<span class="tag" style="--tag-color: ${userConfig.tags[key]?.color}">${key}</span>`;
+      return `<span class="tag" style="--tag-color: ${userConfig.tags[key]?.color || userConfig.tags.default.color}">${key}</span>`;
     })
     .join('');
-
-  console.log(A);
 
   // for now return the same string
   return coloredTagsHTML + str.split('</p>').splice(1).join('</p>');
