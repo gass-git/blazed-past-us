@@ -11,7 +11,7 @@ A static blog framework that lets you write content in Markdown directly from yo
 **Silver Surfer asked:**  
 _"How fast can a dev blog go?"_
 
-**Gas Git, intrigued, answered:**  
+**Gass Git, intrigued, answered:**  
 _"I don't know… shall we see?"_
 
 **Silver Surfer looked dubious and curious:**  
