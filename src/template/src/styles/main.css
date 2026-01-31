@@ -1,0 +1,38 @@
+@import 'fonts.css';
+@import 'animations.css';
+@import 'post.css';
+@import 'header.css';
+@import 'home.css';
+
+:root {
+  --bg-color: rgb(40, 44, 53);
+  --max-width: 55rem;
+  --neon: #82f9ff;
+  --light-blue: rgba(129, 213, 255, 0.9);
+  --light-yellow: #ffffb4;
+  --body-font-size: 1.1rem;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.capitalize-first::first-letter {
+  text-transform: capitalize;
+}
+
+.date {
+  font-family: 'Inter Regular';
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
