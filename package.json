@@ -1,6 +1,6 @@
 {
   "name": "blazed-past-us",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A static blog framework that lets you write content in Markdown directly from your IDE.",
   "license": "MIT",
   "author": "gass-git",
