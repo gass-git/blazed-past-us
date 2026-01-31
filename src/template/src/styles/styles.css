@@ -134,13 +134,14 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
 }
 
 .tag {
+  font-family: 'Permanent Marker Regular';
   display: inline-block;
   margin: 1rem 0.5rem 0rem 0rem;
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
   border-radius: 0.5rem;
   background-color: var(--tag-color, #e0e0e0);
   color: #111;
-  line-height: 1;
+  line-height: 0.7;
 }
