@@ -24,7 +24,8 @@ header .top .title {
 
 header .bottom {
   font-family: 'Inter Regular';
-  font-size: 16px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 
 a,
@@ -56,15 +57,15 @@ body {
 
 p {
   font-family: 'Merriweather Sans Light';
-  color: #e8e8e8;
-  font-size: 18px;
+  color: #ececec;
+  font-size: 1.1rem;
   text-align: justify;
-  line-height: 2;
-  letter-spacing: 1px;
+  line-height: 1.8;
+  letter-spacing: 0.04rem;
 }
 
 figure {
-  margin: 40px 0 20px 0px;
+  margin: 1rem 0 2rem 0px;
   font-size: 18px;
   background-color: #191d27;
   border-radius: 0.5rem;
@@ -115,7 +116,8 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
   font-family: 'Inter Regular';
   color: #82f9ff;
   margin-top: 0.1rem;
-  font-size: 1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 
 .post {
@@ -136,12 +138,13 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
 .tag {
   font-family: 'Permanent Marker Regular';
   display: inline-block;
-  margin: 1rem 0.5rem 0rem 0rem;
+  margin: 1rem 0.5rem 1rem 0rem;
   padding: 0.5rem 1rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  background-color: var(--tag-color, #e0e0e0);
-  color: #111;
+  border: 0.15rem solid var(--tag-color, #e0e0e0);
+  /* background-color: var(--tag-color, #e0e0e0); */
+  color: var(--tag-color, #e0e0e0);
   line-height: 0.7;
 }
