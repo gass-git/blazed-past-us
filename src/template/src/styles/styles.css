@@ -82,20 +82,16 @@ code {
   font-size: 18px;
 }
 
-figure pre code span {
-  margin-top: 0.7rem;
-}
-
-code[data-line-numbers] {
+code {
   counter-reset: line;
 }
 
-code[data-line-numbers] > [data-line]::before {
+code > [data-line]::before {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
   width: 0.75rem;
-  margin: 0.2rem 1.2rem 0.2rem 1.2rem;
+  margin: 0.3rem 1.2rem 0.3rem 1.2rem;
   text-align: right;
   color: rgb(92, 92, 92, 0.8);
 }
@@ -132,7 +128,7 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
 }
 
 [data-highlighted-line] {
-  background: rgba(200, 200, 255, 0.1);
+  background: rgba(200, 200, 255, 0.076);
 }
 
 .tag {
@@ -143,7 +139,8 @@ code[data-line-numbers-max-digits='4'] > [data-line]::before {
   font-size: 1.3rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  border: 0.15rem solid var(--tag-color);
+  border: 0.12rem solid var(--tag-color);
   color: var(--tag-color, #e0e0e0);
   line-height: 0.7;
+  opacity: 0.9;
 }
