@@ -20,11 +20,13 @@
     "blazed": "dist/cli/build.js"
   },
   "scripts": {
-    "build": "tsc && xcopy \"src\\template\" \"dist\\template\" /E /I /Y"
+    "build": "rimraf dist && tsc && xcopy \"src\\template\" \"dist\\template\" /E /I /Y",
+    "dev": "rimraf --glob \"*.tgz\" && npm run build && npm pack && npm link"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
     "prettier": "^3.6.2",
+    "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {

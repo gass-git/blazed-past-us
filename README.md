@@ -21,7 +21,7 @@ _"Very well… let the cosmos bear witness."_
 
 - The post file name will be the title.
 - There is no need to add the title within the .md file, this will be set by the meta data.
-- Post tags are written in every post on the very top as `**tags:** tag1, tag2,...`
+- Post tags are written in every post on the very top as `tag1, tag2,...`
 - The descriptions of the posts will be a brief showcase of the first paragraph (below the tags).
 
 ## Installation

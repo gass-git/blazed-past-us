@@ -15,18 +15,9 @@ import path from 'node:path';
  */
 async function parseMarkdown(_path: string): Promise<string> {
   const root = process.cwd();
+  const markdown = await readFile(_path, { encoding: 'utf8' });
 
-  const markdown = await readFile(_path, { encoding: 'utf8' }).then((str) =>
-    // remove "**tags:**" string
-    str.split('**tags:**').splice(1).join()
-  );
-
-  // PENDING: use userConfig to color tags
-  const userConfig = await readFile(path.join(root, 'src/config.json'), {
-    encoding: 'utf8',
-  });
-
-  const result = await remark()
+  const remarkResult = await remark()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
@@ -38,7 +29,31 @@ async function parseMarkdown(_path: string): Promise<string> {
     .use(rehypeStringify)
     .process(markdown);
 
-  return result.value as string;
+  const result = await colorTags(root, remarkResult.value as string);
+
+  return result;
+}
+
+async function colorTags(root: string, str: string): Promise<string> {
+  const userConfig = await readFile(path.join(root, 'src/config.json'), {
+    encoding: 'utf8',
+  }).then((jsonData) => JSON.parse(jsonData.toLowerCase()));
+
+  const A = str.split('<p>').splice(1).join('').split('</p>');
+
+  const coloredTagsHTML = A[0]
+    .replace(/\s/g, '')
+    .toLowerCase()
+    .split(',')
+    .map((key) => {
+      return `<span class="tag" style="--tag-color: ${userConfig.tags[key]?.color}">${key}</span>`;
+    })
+    .join('');
+
+  console.log(A);
+
+  // for now return the same string
+  return coloredTagsHTML + str.split('</p>').splice(1).join('</p>');
 }
 
 export { parseMarkdown };
