@@ -12,12 +12,12 @@ header .top {
 header .top .title {
   font-family: 'Bangers Regular';
   font-size: 3rem;
-  color: var(--light-blue);
+  color: var(--light-blue-09);
   text-transform: uppercase;
 }
 
 header .speed {
-  color: var(--light-blue);
+  color: var(--light-blue-09);
   font-family: 'Inter Regular';
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -27,7 +27,7 @@ header .speed {
   position: relative;
   width: 6.25rem;
   height: 6.25rem;
-  border: 0.25rem solid var(--light-blue);
+  border: 0.25rem solid var(--light-blue-09);
   border-radius: 50%;
   max-width: 3.75rem;
   max-height: 3.75rem;

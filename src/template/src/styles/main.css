@@ -8,9 +8,12 @@
   --bg-color: rgb(40, 44, 53);
   --max-width: 55rem;
   --neon: #82f9ff;
-  --light-blue: rgba(129, 213, 255, 0.9);
+  --light-blue-09: rgba(129, 213, 255, 0.9);
+  --light-blue-05: rgba(129, 213, 255, 0.5);
   --light-yellow: #ffffb4;
+  --body-font-family: 'Merriweather Sans Light';
   --body-font-size: 1.1rem;
+  --border-radius: 0.5rem;
 }
 
 a,

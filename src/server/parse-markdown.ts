@@ -48,10 +48,13 @@ async function colorTags(root: string, str: string): Promise<string> {
     .map((key) => {
       return `<span class="tag" style="--tag-color: ${userConfig.tags[key]?.color || userConfig.tags.default.color}">${key}</span>`;
     })
-    .join('');
+    .join(`<span class="tag-separator">, </span>`);
 
-  // for now return the same string
-  return coloredTagsHTML + str.split('</p>').splice(1).join('</p>');
+  const preTagsHTML = `<span class="tag-emoji">🏷️ </span>`;
+
+  return (
+    preTagsHTML + coloredTagsHTML + str.split('</p>').splice(1).join('</p>')
+  );
 }
 
 export { parseMarkdown };

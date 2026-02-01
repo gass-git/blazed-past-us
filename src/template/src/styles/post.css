@@ -4,12 +4,18 @@
 }
 
 .post p {
-  font-family: 'Merriweather Sans Light';
-  color: #ececec;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size);
+  color: #ececec;
   text-align: justify;
   line-height: 1.8;
   letter-spacing: 0.04rem;
+}
+
+.post .tag-separator {
+  font-size: 1.4rem;
+  font-family: 'Permanent Marker Regular';
+  color: #ececec;
 }
 
 .post .title {
@@ -18,16 +24,18 @@
   font-size: 2.25rem;
 }
 
+.post .tag-emoji {
+  font-size: 1.3rem;
+}
+
 .post .tag {
   font-family: 'Permanent Marker Regular';
   display: inline-block;
-  margin: 1rem 0.5rem 1rem 0rem;
-  padding: 0.5rem 1rem;
+  margin: 0.5rem 0 2rem 0;
   font-size: 1.3rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  border: 0.12rem solid var(--tag-color);
-  color: var(--tag-color, #e0e0e0);
+  color: var(--tag-color);
   line-height: 0.7;
   opacity: 0.9;
 }
@@ -41,8 +49,8 @@ figure {
   margin: 1rem 0 2rem 0;
   font-size: var(--body-font-size);
   background-color: #191d27;
-  border-radius: 0.5rem;
-  border: 0.0625rem solid rgb(51, 84, 154);
+  border-radius: var(--border-radius);
+  border: 0.2rem solid var(--light-blue-05);
 }
 
 code {
@@ -56,7 +64,7 @@ code > [data-line]::before {
   content: counter(line);
   display: inline-block;
   width: 0.75rem;
-  margin: 0.3rem 1.2rem 0.3rem 1.2rem;
+  margin: 0.5rem 1.2rem 0.5rem 1.2rem;
   text-align: right;
   color: rgb(92, 92, 92, 0.8);
 }

@@ -1,7 +1,7 @@
 .post-card {
   padding: 1.5625rem 2.1875rem 1.5625rem 1.25rem;
   margin-top: 1.25rem;
-  border-radius: 1.25rem;
+  border-radius: var(--border-radius);
 }
 
 .post-card .title {
@@ -29,5 +29,5 @@
 }
 
 .post-card:hover {
-  box-shadow: inset 0 0 0 2px rgb(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 2px var(--light-blue-05);
 }
