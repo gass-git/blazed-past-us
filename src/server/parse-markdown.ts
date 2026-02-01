@@ -6,6 +6,7 @@ import remarkRehype from 'remark-rehype';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import path from 'node:path';
+import { getColoredTagsHTML } from '../engine/getters.js';
 
 /**
  * Converts a Markdown file to HTML with syntax highlighting.
@@ -21,40 +22,40 @@ async function parseMarkdown(_path: string): Promise<string> {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      theme: JSON.parse(
-        readFileSync(path.join(root, 'src/moonlight-li.json'), 'utf-8')
-      ),
+      theme: JSON.parse(readFileSync(path.join(root, 'src/moonlight-li.json'), 'utf-8')),
       keepBackground: false,
     })
     .use(rehypeStringify)
     .process(markdown);
 
-  const result = await colorTags(root, remarkResult.value as string);
+  const result = await customizeHTML(root, remarkResult.value as string);
 
   return result;
 }
 
-async function colorTags(root: string, str: string): Promise<string> {
-  const userConfig = await readFile(path.join(root, 'src/config.json'), {
+/**
+ * This function allows the HTML of the post to be modified before being output to the
+ * users bundle.
+ *
+ * @param root consumers root folder
+ * @param postHTMLString post HTML string output after being parsed from Markdown
+ * @returns customized HTML
+ */
+async function customizeHTML(root: string, postHTMLString: string): Promise<string> {
+  const consumerConfig = await readFile(path.join(root, 'src/config.json'), {
     encoding: 'utf8',
   }).then((jsonData) => JSON.parse(jsonData.toLowerCase()));
 
-  const A = str.split('<p>').splice(1).join('').split('</p>');
+  // Get the HTML chunk containing the tags, split them into an array and assign it to tags.
+  const tags = postHTMLString.split('<p>').splice(1).join('').split('</p>');
 
-  const coloredTagsHTML = A[0]
-    .replace(/\s/g, '')
-    .toLowerCase()
-    .split(',')
-    .map((key) => {
-      return `<span class="tag" style="--tag-color: ${userConfig.tags[key]?.color || userConfig.tags.default.color}">${key}</span>`;
-    })
-    .join(`<span class="tag-separator">, </span>`);
+  // Post HTML string without the tags HTML chunk.
+  const postHTMLStringWithoutTags = postHTMLString.split('</p>').splice(1).join('</p>');
 
-  const preTagsHTML = `<span class="tag-emoji">🏷️ </span>`;
+  // Processes the tags array and returns the HTML with colored tags.
+  const coloredTagsHTML = getColoredTagsHTML(tags, consumerConfig);
 
-  return (
-    preTagsHTML + coloredTagsHTML + str.split('</p>').splice(1).join('</p>')
-  );
+  return `<span class="tag-emoji">🏷️ </span>` + coloredTagsHTML + postHTMLStringWithoutTags;
 }
 
 export { parseMarkdown };

@@ -1,4 +1,4 @@
-import type { PostData, Config, PostDataType } from '../types';
+import type { PostData, Config, PostDataType, ConsumerConfig } from '../types';
 
 function getPostData(
   postsMetaData: PostData[],
@@ -13,9 +13,7 @@ async function getPostHtml(
   root: HTMLElement,
   postId: string
 ): Promise<String | void> {
-  const filename = postsMetaData.find(
-    (post: PostData) => post.id === postId
-  )?.filename;
+  const filename = postsMetaData.find((post: PostData) => post.id === postId)?.filename;
 
   const html = await fetch(`./posts/${filename}`)
     .then((resp) => resp.text())
@@ -64,6 +62,23 @@ function getTags(fileContent: string): string[] {
   );
 }
 
+function getColoredTagsHTML(tags: string[], consumerConfig: ConsumerConfig): string {
+  return tags[0]
+    .replace(/\s/g, '')
+    .toLowerCase()
+    .split(',')
+    .map((key) => {
+      const tagColor = consumerConfig.tags[key]?.color ?? consumerConfig.tags.default.color;
+
+      return `
+        <span class="tag" style="--tag-color: ${tagColor}">
+          ${key}
+        </span>
+      `;
+    })
+    .join(`<span class="tag-separator">, </span>`);
+}
+
 export {
   getPostData,
   getPostHtml,
@@ -71,4 +86,5 @@ export {
   getTitle,
   getTags,
   getBrief,
+  getColoredTagsHTML,
 };

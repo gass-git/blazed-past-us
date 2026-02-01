@@ -32,4 +32,15 @@ interface Views {
   notFound: () => string;
 }
 
-export { PostData, PostsPaths, Config, PostDataType, View, Views, MsgColor };
+type ConsumerConfig = {
+  posts_data_path: string;
+  title_id: string;
+  root_id: string;
+  header_id: string;
+  speed_element_id: string;
+  tags: {
+    default: { color: string };
+  } & Record<string, { color: string }>;
+};
+
+export { PostData, PostsPaths, Config, PostDataType, View, Views, MsgColor, ConsumerConfig };
