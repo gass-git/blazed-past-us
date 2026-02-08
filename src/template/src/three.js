@@ -81,10 +81,6 @@ renderer.setSize(width, height / heightDivisor);
 renderer.setClearColor(0x000000, 0);
 document.body.appendChild(renderer.domElement);
 
-window.addEventListener('load', (e) => {
-  console.log('load');
-});
-
 window.addEventListener('resize', () => {
   width = window.innerWidth;
   height = window.innerHeight;
@@ -100,3 +96,13 @@ function animate() {
 }
 
 animate();
+
+const navEntries = performance.getEntriesByType('navigation');
+
+if (navEntries.length > 0) {
+  const type = navEntries[0].type;
+
+  if (type === 'reload') {
+    localStorage.clear();
+  }
+}
