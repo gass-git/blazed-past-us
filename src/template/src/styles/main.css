@@ -5,7 +5,7 @@
 @import 'home.css';
 
 :root {
-  --bg-color: rgb(27, 29, 35);
+  --background: linear-gradient(#0a0a1a, rgb(40, 44, 53));
   --max-width: 55rem;
   --neon: #82f9ff;
   --light-blue-09: rgba(129, 213, 255, 0.9);
@@ -25,15 +25,14 @@ a:visited {
 html {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 body {
-  background-color: var(--bg-color);
+  background: var(--background);
   max-width: var(--max-width);
   margin: 0 auto;
-  overflow: hidden;
   padding: 0;
+  min-height: 100vh;
 }
 
 canvas {
