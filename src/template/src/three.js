@@ -1,54 +1,78 @@
-import {
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
-  BufferAttribute,
-  BufferGeometry,
-  AdditiveBlending,
-  Points,
-  ShaderMaterial,
-} from 'three';
+import * as THREE from 'three';
 
-let { innerWidth: width, innerHeight: height } = window;
-const heightDivisor = 4;
-const scene = new Scene();
-const renderer = new WebGLRenderer();
-const camera = new PerspectiveCamera(75, width / height, 0.1, 1000);
+init(window);
 
-const numberOfStars = 100;
-const positions = new Array(numberOfStars * 3);
+let { innerWidth: w, innerHeight: h } = window;
+const scene = new THREE.Scene();
+const positions = new Float32Array(getPositions());
+const [geometry, material] = [starGeometry(), starMaterial()];
+const stars = new THREE.Points(geometry, material);
+const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
 
-if (!localStorage.getItem('starsPos')) {
-  for (let i = 0; i < numberOfStars; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * width;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * height;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * width;
+scene.add(stars);
+camera.position.z = 100;
+
+renderer.setSize(w, h / 4);
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+
+handleResize();
+animate();
+// clearLocalStorageOnReload(); <-- bug
+
+function init({ innerHeight: h, innerWidth: w }) {
+  if (!localStorage.getItem('positions')) {
+    localStorage.setItem('positions', JSON.stringify(createPositions(100, h, w)));
+  }
+}
+
+function createPositions(n, h, w) {
+  const A = new Array(n * 3);
+
+  for (let i = 0; i < n; i++) {
+    A[i * 3] = (Math.random() - 0.5) * w;
+    A[i * 3 + 1] = (Math.random() - 0.5) * h;
+    A[i * 3 + 2] = (Math.random() - 0.5) * w;
   }
 
-  localStorage.setItem('starsPos', JSON.stringify(positions));
+  return A;
 }
 
-const storedPositions = JSON.parse(localStorage.getItem('starsPos'));
-const positionsArray = new Float32Array(storedPositions);
+function createTwinkleSpeeds(n) {
+  const twinkleSpeeds = new Float32Array(n);
 
-const geometry = new BufferGeometry();
-geometry.setAttribute('position', new BufferAttribute(positionsArray, 3));
+  for (let i = 0; i < n; i++) {
+    twinkleSpeeds[i] = Math.random();
+  }
 
-const twinkleSpeeds = new Float32Array(numberOfStars);
-
-for (let i = 0; i < numberOfStars; i++) {
-  twinkleSpeeds[i] = Math.random() * 2.0;
+  return twinkleSpeeds;
 }
 
-geometry.setAttribute('aTwinkle', new BufferAttribute(twinkleSpeeds, 1));
+function getPositions() {
+  return JSON.parse(localStorage.getItem('positions'));
+}
 
-const material = new ShaderMaterial({
-  transparent: true,
-  blending: AdditiveBlending,
-  uniforms: {
-    uTime: { value: 0 },
-  },
-  vertexShader: `
+function starGeometry() {
+  const geometry = new THREE.BufferGeometry();
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute(
+    'aTwinkle',
+    new THREE.BufferAttribute(createTwinkleSpeeds(positions.length / 3), 1)
+  );
+
+  return geometry;
+}
+
+function starMaterial() {
+  return new THREE.ShaderMaterial({
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+    },
+    vertexShader: `
     attribute float aTwinkle;
     uniform float uTime;
 
@@ -61,33 +85,30 @@ const material = new ShaderMaterial({
       gl_PointSize = 3.5;
     }
   `,
-  fragmentShader: `
+    fragmentShader: `
     varying float vTwinkle;
 
     void main() {
       float dist = length(gl_PointCoord - vec2(0.5));
       float strength = 1.0 - smoothstep(0.4, 0.5, dist);
 
-      gl_FragColor = vec4(vec3(1.0), strength * vTwinkle);
+      float alpha = mix(0.1, 1.0, strength * vTwinkle);
+      gl_FragColor = vec4(vec3(1.0), alpha);
     }
   `,
-});
+  });
+}
 
-const stars = new Points(geometry, material);
-scene.add(stars);
+function handleResize() {
+  window.addEventListener('resize', () => {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    console.log(w);
 
-camera.position.z = 100;
-renderer.setSize(width, height / heightDivisor);
-renderer.setClearColor(0x000000, 0);
-document.body.appendChild(renderer.domElement);
-
-window.addEventListener('resize', () => {
-  width = window.innerWidth;
-  height = window.innerHeight;
-
-  renderer.setSize(width, height / heightDivisor);
-  camera.updateProjectionMatrix();
-});
+    renderer.setSize(w, h / 4);
+    camera.updateProjectionMatrix();
+  });
+}
 
 function animate() {
   requestAnimationFrame(animate);
@@ -95,14 +116,9 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-animate();
-
-const navEntries = performance.getEntriesByType('navigation');
-
-if (navEntries.length > 0) {
-  const type = navEntries[0].type;
-
-  if (type === 'reload') {
+function clearLocalStorageOnReload() {
+  if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     localStorage.clear();
+    console.log('reload');
   }
 }
