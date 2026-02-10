@@ -5,7 +5,7 @@
 @import 'home.css';
 
 :root {
-  --background: linear-gradient(#0a0a1a, rgb(40, 44, 53));
+  --background: linear-gradient(#0f0f23, #1d1d43);
   --max-width: 55rem;
   --neon: #82f9ff;
   --light-blue-09: rgba(129, 213, 255, 0.9);

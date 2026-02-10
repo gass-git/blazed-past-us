@@ -42,20 +42,17 @@
 
 pre {
   overflow-x: auto;
-  background-color: #191d27;
 }
 
 figure {
-  margin: 1rem 0 2rem 0;
+  margin: 1.5rem 0 2rem 0;
   font-size: var(--body-font-size);
-  background-color: #191d27;
   border-radius: var(--border-radius);
-  border: 0.2rem solid var(--light-blue-05);
+  border: 0.1rem solid var(--light-blue-05);
 }
 
 code {
   counter-reset: line;
-  background-color: #191d27;
   font-size: var(--body-font-size);
 }
 
