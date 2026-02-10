@@ -32,14 +32,14 @@ header .speed {
   max-width: 3.75rem;
   max-height: 3.75rem;
   margin-right: 1.25rem;
+  box-shadow: inset -0.2rem -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
 }
 
 .logo .wrapper {
   min-width: 3.75rem;
   min-height: 3.75rem;
-  filter: drop-shadow(0 0 0.0625rem #00edfa63)
-    drop-shadow(0 0 0.125rem #00edfa57) drop-shadow(0 0 0.1875rem #00edfa54)
-    drop-shadow(0 0 0.25rem #00edfa6b);
+  filter: drop-shadow(0 0 0.0625rem #00edfa63) drop-shadow(0 0 0.125rem #00edfa57)
+    drop-shadow(0 0 0.1875rem #00edfa54) drop-shadow(0 0 0.25rem #00edfa6b);
   animation: flicker 5s infinite;
 }
 
@@ -63,4 +63,9 @@ header .speed {
   height: 0;
   border-right: 0.9375rem solid transparent;
   border-top: 1.40625rem solid #ffffb4;
+}
+
+.logo .wrapper.rotate {
+  animation: rotate360 0.4s linear backwards;
+  transform-origin: center center;
 }
