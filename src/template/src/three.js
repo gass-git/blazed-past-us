@@ -1,6 +1,12 @@
 import * as THREE from 'three';
 
-init(window);
+const config = {
+  numberOfStars: Math.floor(0.05 * window.innerWidth),
+  heightUsage: 0.25,
+  twinkleSpeed: 0.05,
+};
+
+handleLocalStorageActions(window);
 
 let { innerWidth: w, innerHeight: h } = window;
 const scene = new THREE.Scene();
@@ -13,19 +19,12 @@ const renderer = new THREE.WebGLRenderer();
 scene.add(stars);
 camera.position.z = 100;
 
-renderer.setSize(w, h / 4);
+renderer.setSize(w, h * config.heightUsage);
 renderer.setClearColor(0x000000, 0);
 document.body.appendChild(renderer.domElement);
 
 handleResize();
 animate();
-// clearLocalStorageOnReload(); <-- bug
-
-function init({ innerHeight: h, innerWidth: w }) {
-  if (!localStorage.getItem('positions')) {
-    localStorage.setItem('positions', JSON.stringify(createPositions(100, h, w)));
-  }
-}
 
 function createPositions(n, h, w) {
   const A = new Array(n * 3);
@@ -103,22 +102,24 @@ function handleResize() {
   window.addEventListener('resize', () => {
     w = window.innerWidth;
     h = window.innerHeight;
-    console.log(w);
 
-    renderer.setSize(w, h / 4);
+    renderer.setSize(w, h * config.heightUsage);
     camera.updateProjectionMatrix();
   });
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  material.uniforms.uTime.value += 0.05;
+  material.uniforms.uTime.value += config.twinkleSpeed;
   renderer.render(scene, camera);
 }
 
-function clearLocalStorageOnReload() {
+function handleLocalStorageActions({ innerHeight: h, innerWidth: w }) {
   if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     localStorage.clear();
-    console.log('reload');
+  }
+
+  if (!localStorage.getItem('positions')) {
+    localStorage.setItem('positions', JSON.stringify(createPositions(config.numberOfStars, h, w)));
   }
 }
