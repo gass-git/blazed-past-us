@@ -17,14 +17,18 @@ function beautifyDate(d: Date | undefined): undefined | string {
   });
 }
 
-function showCosmicSpeed(el: HTMLElement): void {
-  new PerformanceObserver((list) => {
-    list.getEntries().forEach((en) => {
-      if (en.name === 'first-contentful-paint') {
-        el.innerHTML = `<span>${en.startTime} ms</span>`;
-      }
-    });
-  }).observe({ type: 'paint', buffered: true });
+function showCosmicSpeed(document: HTMLDocument, elementID: string): void {
+  const el = document.getElementById(elementID);
+
+  if (el) {
+    new PerformanceObserver((list) => {
+      list.getEntries().forEach((en) => {
+        if (en.name === 'first-contentful-paint') {
+          el.innerHTML = `<span>${en.startTime} ms</span>`;
+        }
+      });
+    }).observe({ type: 'paint', buffered: true });
+  }
 }
 
 function inject(root: HTMLElement, html: string) {
@@ -54,4 +58,20 @@ function log(msg: string, color: MsgColor): void {
   console.log(`${chalk.blue(pkg.name + ' v' + pkg.version)} ${coloredMsg}`);
 }
 
-export { postExists, beautifyDate, showCosmicSpeed, inject, log };
+function boltRotator(document: HTMLDocument, elementID: string): void {
+  const el = document.getElementById(elementID);
+
+  if (el) {
+    el.classList.add('rotate');
+  }
+}
+
+function setTitle(document: HTMLDocument, elementID: string): void {
+  const el = document.getElementById(elementID);
+
+  if (el) {
+    el.innerText = pkg.name.replaceAll('-', ' ');
+  }
+}
+
+export { postExists, beautifyDate, showCosmicSpeed, inject, log, boltRotator, setTitle };
