@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { getTitle, getBrief, getTags } from '../engine/getters.js';
+import { getTitle, getBrief, getTags, getSlug } from '../engine/getters.js';
 import { PostData } from '../types';
 import fsPromises from 'node:fs/promises';
 
@@ -24,7 +24,7 @@ async function generatePostMetadata(
   const fileContent = await fsPromises.readFile(filePath, 'utf-8');
 
   data.push({
-    id: i.toString(),
+    slug: getSlug(htmlFilename),
     filename: htmlFilename,
     title: getTitle(htmlFilename),
     brief: getBrief(fileContent, 3),

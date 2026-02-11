@@ -2,8 +2,8 @@ import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
 import { MsgColor } from '../types';
 
-function postExists(postsMetaData: any[], id: string): boolean {
-  return postsMetaData.some((post) => post.id === id);
+function postExists(postsMetaData: any[], slug: string): boolean {
+  return postsMetaData.some((post) => post.slug === slug);
 }
 
 function beautifyDate(d: Date | undefined): undefined | string {

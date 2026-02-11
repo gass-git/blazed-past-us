@@ -2,18 +2,18 @@ import type { PostData, Config, PostDataType, ConsumerConfig } from '../types';
 
 function getPostData(
   postsMetaData: PostData[],
-  id: string,
+  slug: string,
   option: PostDataType
 ): string | Date | undefined {
-  return postsMetaData.find((post: PostData) => post.id === id)?.[option];
+  return postsMetaData.find((post: PostData) => post.slug === slug)?.[option];
 }
 
 async function getPostHtml(
   postsMetaData: PostData[],
   root: HTMLElement,
-  postId: string
+  postSlug: string
 ): Promise<String | void> {
-  const filename = postsMetaData.find((post: PostData) => post.id === postId)?.filename;
+  const filename = postsMetaData.find((post: PostData) => post.slug === postSlug)?.filename;
 
   const html = await fetch(`./posts/${filename}`)
     .then((resp) => resp.text())
@@ -28,6 +28,10 @@ async function getPostsMetaData(config: Config): Promise<PostData[]> {
   const data = await resp.json();
 
   return data;
+}
+
+function getSlug(htmlFilename: string): string {
+  return htmlFilename.replace('.html', '');
 }
 
 function getTitle(htmlFilename: string): string {
@@ -87,4 +91,5 @@ export {
   getTags,
   getBrief,
   getColoredTagsHTML,
+  getSlug,
 };

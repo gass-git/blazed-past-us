@@ -4,7 +4,7 @@ import { beautifyDate } from 'blazed-past-us';
 export default function home() {
   const postsHtmlArray = postsMetaData.map(
     (post) => `
-      <a href="${post.id}">
+      <a href="${post.slug}">
         <div class="post-card">
           <div class="title capitalize-first">${post.title}</div>
           <div class="date">${beautifyDate(post.created)}</div>

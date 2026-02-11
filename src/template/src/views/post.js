@@ -1,10 +1,10 @@
 import { beautifyDate, getPostData, getPostHtml } from 'blazed-past-us';
 import { postsMetaData, root } from '../main';
 
-export default async function post(id) {
-  const title = getPostData(postsMetaData, id, 'title');
-  const date = beautifyDate(getPostData(postsMetaData, id, 'created'));
-  const post = await getPostHtml(postsMetaData, root, id);
+export default async function post(slug) {
+  const title = getPostData(postsMetaData, slug, 'title');
+  const date = beautifyDate(getPostData(postsMetaData, slug, 'created'));
+  const post = await getPostHtml(postsMetaData, root, slug);
 
   return `
     <div class="post">

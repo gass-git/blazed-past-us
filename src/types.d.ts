@@ -1,5 +1,5 @@
 interface PostData {
-  id: string;
+  slug: string;
   filename: string;
   title: string;
   brief: string;
@@ -28,7 +28,7 @@ type MsgColor = 'yellow' | 'green' | 'red';
 
 interface Views {
   home: () => string;
-  post: (id: string) => Promise<string>;
+  post: (slug: string) => Promise<string>;
   notFound: () => string;
 }
 
