@@ -35,6 +35,10 @@ body {
   min-height: 100vh;
 }
 
+h1 {
+  color: rgb(241, 241, 241);
+}
+
 canvas {
   position: fixed;
   top: 0;

@@ -6,7 +6,7 @@ import notFound from './views/notFound';
 
 export default async function router(root, postsMetaData) {
   const pathname = window.location.pathname;
-  const postId = pathname.split('/')[1];
+  const postSlug = pathname.split('/')[1];
   const views = { home, post, notFound };
 
   if (pathname === '/') {
@@ -14,8 +14,8 @@ export default async function router(root, postsMetaData) {
     return;
   }
 
-  if (postExists(postsMetaData, postId)) {
-    render('post', root, views, postsMetaData, postId);
+  if (postExists(postsMetaData, postSlug)) {
+    render('post', root, views, postsMetaData, postSlug);
     return;
   }
 
