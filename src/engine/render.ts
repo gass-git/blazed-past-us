@@ -6,19 +6,20 @@ function render(
   root: HTMLElement,
   views: Views,
   postsMetaData: PostData[],
-  postId?: string
+  postTagFilter?: string,
+  postSlug?: string
 ): void {
   const r = root;
   const { home, post, notFound } = views;
 
   switch (view) {
     case 'home':
-      inject(r, home());
+      inject(r, home(postTagFilter));
       break;
 
     case 'post':
-      if (postId && postExists(postsMetaData, postId)) {
-        post(postId).then((html: string) => inject(r, html));
+      if (postSlug && postExists(postsMetaData, postSlug)) {
+        post(postSlug).then((html: string) => inject(r, html));
       } else {
         inject(r, notFound());
       }

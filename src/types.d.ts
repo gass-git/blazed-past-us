@@ -20,6 +20,11 @@ interface Config {
   speed_element_id: string;
 }
 
+interface ParsedPostData {
+  html: string;
+  tags: string[];
+}
+
 type PostDataType = 'title' | 'created' | 'modified' | 'brief';
 
 type View = 'home' | 'post' | '404';
@@ -27,7 +32,7 @@ type View = 'home' | 'post' | '404';
 type MsgColor = 'yellow' | 'green' | 'red';
 
 interface Views {
-  home: () => string;
+  home: (tag: string | undefined) => string;
   post: (slug: string) => Promise<string>;
   notFound: () => string;
 }
@@ -43,4 +48,14 @@ type ConsumerConfig = {
   } & Record<string, { color: string }>;
 };
 
-export { PostData, PostsPaths, Config, PostDataType, View, Views, MsgColor, ConsumerConfig };
+export {
+  PostData,
+  PostsPaths,
+  Config,
+  PostDataType,
+  View,
+  Views,
+  MsgColor,
+  ConsumerConfig,
+  ParsedPostData,
+};

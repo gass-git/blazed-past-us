@@ -16,9 +16,9 @@ async function writeTransformedPostFile(
 
 async function generatePostMetadata(
   data: Array<PostData>,
-  i: number,
   filePath: string,
-  htmlFilename: string
+  htmlFilename: string,
+  postTags: string[]
 ): Promise<void> {
   const stats = await fsPromises.stat(filePath);
   const fileContent = await fsPromises.readFile(filePath, 'utf-8');
@@ -28,7 +28,7 @@ async function generatePostMetadata(
     filename: htmlFilename,
     title: getTitle(htmlFilename),
     brief: getBrief(fileContent, 3),
-    tags: getTags(fileContent),
+    tags: postTags,
     created: stats.birthtime,
     modified: stats.mtime,
   });

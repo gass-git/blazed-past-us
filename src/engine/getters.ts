@@ -66,8 +66,8 @@ function getTags(fileContent: string): string[] {
   );
 }
 
-function getColoredTagsHTML(tags: string[], consumerConfig: ConsumerConfig): string {
-  return tags[0]
+function getColoredTagsHTML(tags: string, consumerConfig: ConsumerConfig): string {
+  return tags
     .replace(/\s/g, '')
     .toLowerCase()
     .split(',')

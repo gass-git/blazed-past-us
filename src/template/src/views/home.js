@@ -1,9 +1,11 @@
 import { postsMetaData } from '../main';
 import { beautifyDate } from 'blazed-past-us';
 
-export default function home() {
-  const postsHtmlArray = postsMetaData.map(
-    (post) => `
+export default function home(tag) {
+  const postsHtmlArray = postsMetaData
+    .filter((post) => (tag ? post.tags.includes(tag) : true))
+    .map(
+      (post) => `
       <a href="${post.slug}">
         <div class="post-card">
           <div class="title capitalize-first">${post.title}</div>
@@ -12,7 +14,7 @@ export default function home() {
         </div>
       </a>
     `
-  );
+    );
 
   return postsHtmlArray.join('');
 }

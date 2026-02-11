@@ -3,12 +3,9 @@ import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import type { PostData, PostsPaths } from '../types.js';
+import type { PostData, PostsPaths, ParsedPostData } from '../types.js';
 import { log } from '../engine/utils.js';
-import {
-  generatePostMetadata,
-  writeTransformedPostFile,
-} from '../server/file-builder.js';
+import { generatePostMetadata, writeTransformedPostFile } from '../server/file-builder.js';
 
 /**
  * CLI entry point.
@@ -44,17 +41,18 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input);
   const data: Array<PostData> = [];
 
-  for (const [i, filename] of postsFiles.entries()) {
+  for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
-    const postHtmlContent = await parseMarkdown(filePath);
+    // const postHtmlContent = await parseMarkdown(filePath);
+    const parsedPostData: ParsedPostData = await parseMarkdown(filePath);
     const htmlFilename = filename.replace('.md', '.html');
 
-    await generatePostMetadata(data, i, filePath, htmlFilename);
+    await generatePostMetadata(data, filePath, htmlFilename, parsedPostData.tags);
     await fsPromises.mkdir(paths.output, { recursive: true });
 
     await writeTransformedPostFile(
       path.join(paths.output, htmlFilename),
-      postHtmlContent,
+      parsedPostData.html,
       filename
     );
   }

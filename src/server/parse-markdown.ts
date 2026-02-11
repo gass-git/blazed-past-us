@@ -7,6 +7,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import path from 'node:path';
 import { getColoredTagsHTML } from '../engine/getters.js';
+import { ParsedPostData } from '../types.js';
 
 /**
  * Converts a Markdown file to HTML with syntax highlighting.
@@ -14,7 +15,7 @@ import { getColoredTagsHTML } from '../engine/getters.js';
  * Uses remark and rehype to parse Markdown, transform it to HTML,
  * and apply pretty code highlighting.
  */
-async function parseMarkdown(_path: string): Promise<string> {
+async function parseMarkdown(_path: string): Promise<ParsedPostData> {
   const root = process.cwd();
   const markdown = await readFile(_path, { encoding: 'utf8' });
 
@@ -41,13 +42,13 @@ async function parseMarkdown(_path: string): Promise<string> {
  * @param postHTMLString post HTML string output after being parsed from Markdown
  * @returns customized HTML
  */
-async function customizeHTML(root: string, postHTMLString: string): Promise<string> {
+async function customizeHTML(root: string, postHTMLString: string): Promise<ParsedPostData> {
   const consumerConfig = await readFile(path.join(root, 'src/config.json'), {
     encoding: 'utf8',
   }).then((jsonData) => JSON.parse(jsonData.toLowerCase()));
 
   // Get the HTML chunk containing the tags, split them into an array and assign it to tags.
-  const tags = postHTMLString.split('<p>').splice(1).join('').split('</p>');
+  const tags = postHTMLString.split('<p>').splice(1).join('').split('</p>')[0];
 
   // Post HTML string without the tags HTML chunk.
   const postHTMLStringWithoutTags = postHTMLString.split('</p>').splice(1).join('</p>');
@@ -55,7 +56,15 @@ async function customizeHTML(root: string, postHTMLString: string): Promise<stri
   // Processes the tags array and returns the HTML with colored tags.
   const coloredTagsHTML = getColoredTagsHTML(tags, consumerConfig);
 
-  return `<span class="tag-emoji">🏷️ </span>` + coloredTagsHTML + postHTMLStringWithoutTags;
+  return {
+    html: `<span class="tag-emoji">🏷️ </span>` + coloredTagsHTML + postHTMLStringWithoutTags,
+    tags: tags
+      .split(',')
+      .map((s) => s.trim())
+      .join()
+      .toLowerCase()
+      .split(','),
+  };
 }
 
 export { parseMarkdown };
