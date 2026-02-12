@@ -2,6 +2,12 @@
   padding: 1.5625rem 2.1875rem 1.5625rem 1.25rem;
   margin-top: 1.25rem;
   border-radius: var(--border-radius);
+  opacity: 0.9;
+}
+
+.post-card:hover {
+  opacity: 1;
+  box-shadow: var(--primary-box-shadow);
 }
 
 .post-card .title {
@@ -26,8 +32,4 @@
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.post-card:hover {
-  box-shadow: inset 0 0 0 2px var(--light-blue-05);
 }
