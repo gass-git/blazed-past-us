@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 
 const config = {
-  numberOfStars: Math.floor(0.05 * window.innerWidth),
+  numberOfStars: Math.floor(0.07 * window.innerWidth),
   heightUsage: 0.25,
-  twinkleSpeed: 0.05,
+  twinkleSpeed: 0.01,
+  twinkleCycleLength: 3,
   background: { color: 0x000000, opacity: 0 },
+  starMaxSize: 4,
 };
 
 (function main() {
@@ -75,11 +77,23 @@ function getPositions() {
 
 function starGeometry(positions) {
   const geometry = new THREE.BufferGeometry();
+  const count = positions.length / 3;
+
+  const sizes = new Float32Array(count);
+  const opacities = new Float32Array(count);
+
+  for (let i = 0; i < count; i++) {
+    sizes[i] = Math.random() * config.starMaxSize + 1;
+    opacities[i] = Math.random() * 4;
+  }
 
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+  geometry.setAttribute('aOpacity', new THREE.BufferAttribute(opacities, 1));
+  geometry.setAttribute('aTwinkle', new THREE.BufferAttribute(createTwinkleSpeeds(count), 1));
   geometry.setAttribute(
-    'aTwinkle',
-    new THREE.BufferAttribute(createTwinkleSpeeds(positions.length / 3), 1)
+    'aOffset',
+    new THREE.BufferAttribute(createRandomStarPhases(count, config.numberOfStars / 10), 1)
   );
 
   return geometry;
@@ -91,31 +105,49 @@ function starMaterial() {
     blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
+      cycle: { value: config.twinkleCycleLength },
     },
     vertexShader: `
-    attribute float aTwinkle;
-    uniform float uTime;
+      attribute float aTwinkle;
+      attribute float aSize;
+      attribute float aOffset;
+      attribute float aOpacity;
 
-    varying float vTwinkle;
+      uniform float uTime;
+      uniform float cycle;
 
-    void main() {
-      vTwinkle = sin(uTime * aTwinkle) * 0.5 + 0.5;
+      varying float vTwinkle;
+      varying float vOpacity;
 
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      gl_PointSize = 3.5;
-    }
-  `,
+      void main() {
+        float t = mod(uTime * aTwinkle + aOffset, cycle);
+
+        // short bright flash window
+        float flash = smoothstep(0.0, 0.15, t) *
+                      (1.0 - smoothstep(0.15, 0.3, t));
+
+        vTwinkle = flash;
+        vOpacity = aOpacity;
+
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_Position = projectionMatrix * mvPosition;
+
+        gl_PointSize = aSize;
+      }
+    `,
     fragmentShader: `
-    varying float vTwinkle;
+      varying float vTwinkle;
+      varying float vOpacity;
 
-    void main() {
-      float dist = length(gl_PointCoord - vec2(0.5));
-      float strength = 1.0 - smoothstep(0.4, 0.5, dist);
+      void main() {
+        float dist = length(gl_PointCoord - vec2(0.5));
+        float strength = 1.0 - smoothstep(0.35, 0.5, dist);
 
-      float alpha = mix(0.1, 1.0, strength * vTwinkle);
-      gl_FragColor = vec4(vec3(1.0), alpha);
-    }
-  `,
+        float alpha = vOpacity * strength * (0.2 + vTwinkle);
+
+        gl_FragColor = vec4(vec3(1.0), alpha);
+      }
+    `,
   });
 }
 
@@ -124,4 +156,11 @@ function handleResize(renderer, camera) {
     renderer.setSize(window.innerWidth, window.innerHeight * config.heightUsage);
     camera.updateProjectionMatrix();
   });
+}
+
+// This avoids stars to twinkle together.
+function createRandomStarPhases(n, max) {
+  const pauses = new Float32Array(n);
+  pauses.forEach((_el, i) => (pauses[i] = Math.random() * max + 1));
+  return pauses;
 }
