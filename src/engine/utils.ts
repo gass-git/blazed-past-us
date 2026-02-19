@@ -66,11 +66,11 @@ function boltRotator(document: HTMLDocument, elementID: string): void {
   }
 }
 
-function setTitle(document: HTMLDocument, elementID: string): void {
+function setTitle(document: HTMLDocument, elementID: string, packageName: string): void {
   const el = document.getElementById(elementID);
 
   if (el) {
-    el.innerText = pkg.name.replaceAll('-', ' ');
+    el.innerText = packageName.replaceAll('-', ' ');
   }
 }
 
