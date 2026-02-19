@@ -9,7 +9,7 @@
     "module": "ESNext", // ESM modules
 
     // Other Outputs
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": true, // generate .d.ts types
     "strict": true, // enable strict type checking
     "moduleResolution": "Node",
