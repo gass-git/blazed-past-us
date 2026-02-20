@@ -15,7 +15,7 @@ async function getPostHtml(
 ): Promise<String | void> {
   const filename = postsMetaData.find((post: PostData) => post.slug === postSlug)?.filename;
 
-  const html = await fetch(`./posts/${filename}`)
+  const html = await fetch(`/posts/${filename}`)
     .then((resp) => resp.text())
     .then((htmlString) => (root.innerHTML = htmlString))
     .catch((error) => console.error(error));
