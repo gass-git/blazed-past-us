@@ -2,7 +2,7 @@ import { postsMetaData } from '../main';
 import { beautifyDate } from 'blazed-past-us';
 
 export default function home(tag) {
-  const baseURL = import.meta.env.baseURL;
+  const baseURL = import.meta.env.BASE_URL;
 
   const postsHtmlArray = postsMetaData
     .filter((post) => (tag ? post.tags.includes(tag) : true))
