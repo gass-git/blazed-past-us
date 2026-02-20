@@ -5,20 +5,27 @@ import post from './views/post';
 import notFound from './views/notFound';
 
 export default async function router(root, postsMetaData) {
-  const pathname = window.location.pathname;
+  const pathname = unbasePath(window.location.pathname);
   const urlParams = new URLSearchParams(window.location.search);
-  const postSlug = pathname.split('/')[1];
   const views = { home, post, notFound };
 
-  if (pathname === '/') {
+  if (pathname === '' || pathname === 'home') {
     render('home', root, views, postsMetaData, urlParams.get('tag'));
     return;
   }
 
-  if (postExists(postsMetaData, postSlug)) {
-    render('post', root, views, postsMetaData, undefined, postSlug);
+  if (postExists(postsMetaData, pathname)) {
+    render('post', root, views, postsMetaData, undefined, pathname);
     return;
   }
 
   render('404', root, views, postsMetaData);
+}
+
+// Removes the BASE_URL from the pathname if present.
+function unbasePath(pathname) {
+  return pathname
+    .split('/')
+    .filter((name) => !import.meta.env.BASE_URL.split('/').includes(name))
+    .join('');
 }

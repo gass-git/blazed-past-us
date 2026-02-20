@@ -23,11 +23,23 @@ async function getPostHtml(
   return html;
 }
 
-async function getPostsMetaData(config: Config): Promise<PostData[]> {
-  const resp = await fetch(config.posts_data_path);
-  const data = await resp.json();
+async function getPostsMetaData(baseURL: string, config: Config): Promise<PostData[]> {
+  const postsRelativeDataPath = config.posts_data_path;
+  const postsPath = [baseURL, postsRelativeDataPath].join('');
 
-  return data;
+  try {
+    const resp = await fetch(postsPath);
+
+    if (!resp.ok) {
+      throw new Error(`HTTP error! Status: ${resp.status}`);
+    }
+
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch posts metadata:', error);
+    throw error;
+  }
 }
 
 function getSlug(htmlFilename: string): string {

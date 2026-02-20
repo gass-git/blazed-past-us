@@ -4,7 +4,7 @@ import router from './router';
 import pkg from '../package.json';
 
 const root = document.getElementById(config.root_id);
-const postsMetaData = await getPostsMetaData(config);
+const postsMetaData = await getPostsMetaData(import.meta.env.BASE_URL, config);
 
 router(root, postsMetaData);
 
