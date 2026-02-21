@@ -18,4 +18,6 @@ initRouter(root, postsMetaData);
 blazed.setTitle(document, config.title_id, pkg.name);
 blazed.boltRotator(document, config.logo_wrapper_id);
 
-export { root, postsMetaData };
+const postsHTML = await blazed.getAllPostsHTML(postsMetaData, import.meta.env.BASE_URL);
+
+export { root, postsMetaData, postsHTML };

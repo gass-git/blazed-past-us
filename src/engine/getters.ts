@@ -8,20 +8,22 @@ function getPostData(
   return postsMetaData.find((post: PostData) => post.slug === slug)?.[option];
 }
 
-async function getPostHtml(
+async function getAllPostsHTML(
   postsMetaData: PostData[],
-  root: HTMLElement,
-  baseURL: string,
-  postSlug: string
-): Promise<String | void> {
-  const filename = postsMetaData.find((post: PostData) => post.slug === postSlug)?.filename;
+  baseURL: string
+): Promise<{ slug: string; html: string | void }[]> {
+  const allPostsFilename = postsMetaData.map((el) => ({ slug: el.slug, filename: el.filename }));
+  const allPostsHTML = [];
 
-  const html = await fetch(`${baseURL}posts/${filename}`)
-    .then((resp) => resp.text())
-    .then((htmlString) => (root.innerHTML = htmlString))
-    .catch((error) => console.error(error));
+  for (const post of allPostsFilename) {
+    const HTML = await fetch(`${baseURL}posts/${post.filename}`)
+      .then((resp) => resp.text())
+      .catch((error) => console.error(error));
 
-  return html;
+    allPostsHTML.push({ slug: post.slug, html: HTML });
+  }
+
+  return allPostsHTML;
 }
 
 async function getPostsMetaData(baseURL: string, config: Config): Promise<PostData[]> {
@@ -98,7 +100,7 @@ function getColoredTagsHTML(tags: string, consumerConfig: ConsumerConfig): strin
 
 export {
   getPostData,
-  getPostHtml,
+  getAllPostsHTML,
   getPostsMetaData,
   getTitle,
   getTags,
