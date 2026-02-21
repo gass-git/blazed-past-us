@@ -17,7 +17,16 @@ _"I don't know… shall we see?"_
 **Silver Surfer looked dubious and curious:**  
 _"Very well… let the cosmos bear witness."_
 
-## Notes
+## About the framework
+
+- Designed for static hosting environments (e.g. GitHub Pages) — no server-side rewrites required.
+- Uses hash routing.
+- Fetches static JSON.
+- Fetches HTML fragments.
+- Avoids history API clean URLs.
+- Doesn’t rely on server fallback.
+
+## How to write posts ?
 
 - The post file name will be the title.
 - There is no need to add the title within the .md file, this will be set by the meta data.
