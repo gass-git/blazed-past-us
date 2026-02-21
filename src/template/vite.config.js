@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
+import config from './src/config.json';
 
 export default defineConfig({
-  base: '/blog/',
+  base: config.base_url,
 });

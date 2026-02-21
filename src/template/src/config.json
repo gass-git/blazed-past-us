@@ -1,4 +1,5 @@
 {
+  "base_url": "",
   "posts_data_path": "posts/data.json",
   "title_id": "title",
   "root_id": "root",
