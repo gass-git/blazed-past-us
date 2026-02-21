@@ -17,20 +17,6 @@ function beautifyDate(d: Date | undefined): undefined | string {
   });
 }
 
-function showCosmicSpeed(document: HTMLDocument, elementID: string): void {
-  const el = document.getElementById(elementID);
-
-  if (el) {
-    new PerformanceObserver((list) => {
-      list.getEntries().forEach((en) => {
-        if (en.name === 'first-contentful-paint') {
-          el.innerHTML = `<span>${en.startTime} ms</span>`;
-        }
-      });
-    }).observe({ type: 'paint', buffered: true });
-  }
-}
-
 function inject(root: HTMLElement, html: string) {
   root.innerHTML = html;
 }
@@ -74,4 +60,4 @@ function setTitle(document: HTMLDocument, elementID: string, packageName: string
   }
 }
 
-export { postExists, beautifyDate, showCosmicSpeed, inject, log, boltRotator, setTitle };
+export { postExists, beautifyDate, inject, log, boltRotator, setTitle };

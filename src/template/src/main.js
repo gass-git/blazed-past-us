@@ -17,6 +17,5 @@ initRouter(root, postsMetaData);
  */
 blazed.setTitle(document, config.title_id, pkg.name);
 blazed.boltRotator(document, config.logo_wrapper_id);
-blazed.showCosmicSpeed(document, config.speed_element_id);
 
 export { root, postsMetaData };
