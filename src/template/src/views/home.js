@@ -8,7 +8,7 @@ export default function home(tag) {
     .filter((post) => (tag ? post.tags.includes(tag) : true))
     .map(
       (post) => `
-      <a href="${baseURL}/${post.slug}">
+      <a href="${baseURL}#/${post.slug}">
         <div class="post-card">
           <div class="title capitalize-first">${post.title}</div>
           <div class="date">${beautifyDate(post.created)}</div>
