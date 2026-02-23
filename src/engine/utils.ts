@@ -64,7 +64,7 @@ function setTitle(document: HTMLDocument, elementID: string, packageName: string
   }
 }
 
-function filterByUrlQueryIsPresent(
+function filterByUrlQueryIfPresent(
   postsMetaData: PostMetaData[],
   tags: string[]
 ): PostMetaData[] {
@@ -81,5 +81,5 @@ export {
   boltRotator,
   setTitle,
   getPathnameFromLocationHash,
-  filterByUrlQueryIsPresent,
+  filterByUrlQueryIfPresent,
 };
