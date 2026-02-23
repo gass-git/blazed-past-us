@@ -33,6 +33,10 @@ _"Very well… let the cosmos bear witness."_
 - Post tags are written in every post on the very top as `tag1, tag2,...`
 - The descriptions of the posts will be a brief showcase of the first paragraph (below the tags).
 
+## Useful notes
+
+- Append `/#/?tags=` to the base URL to filter home page posts by tag.
+
 ## Installation
 
 ### Set up scaffold:

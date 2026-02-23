@@ -1,5 +1,4 @@
-import { render } from 'blazed-past-us';
-import { postExists } from 'blazed-past-us';
+import { render, postExists, getPathnameFromLocationHash } from 'blazed-past-us';
 import home from './views/home';
 import post from './views/post';
 import notFound from './views/notFound';
@@ -19,7 +18,7 @@ export default function initRouter(root, postsMetaData) {
  */
 async function handleRoute(root, postsMetaData) {
   const hashRoute = window.location.hash;
-  const pathname = getPathname(hashRoute);
+  const pathname = getPathnameFromLocationHash(hashRoute);
   const queryString = hashRoute.split('?')[1] || '';
   const urlParams = new URLSearchParams(queryString);
   const views = { home, post, notFound };
@@ -35,9 +34,4 @@ async function handleRoute(root, postsMetaData) {
   }
 
   render('404', root, views, postsMetaData);
-}
-
-// Removes "#/" from the location hash.
-function getPathname(locationHash) {
-  return locationHash.split('/').splice(1).join('/');
 }

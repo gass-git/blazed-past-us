@@ -1,9 +1,13 @@
 import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
-import { MsgColor } from '../types';
+import { MsgColor, PostMetaData } from '../types';
 
 function postExists(postsMetaData: any[], slug: string): boolean {
   return postsMetaData.some((post) => post.slug === slug);
+}
+
+function getPathnameFromLocationHash(locationHash: string) {
+  return locationHash.split('/').splice(1).join('/');
 }
 
 function beautifyDate(d: Date | undefined): undefined | string {
@@ -60,4 +64,22 @@ function setTitle(document: HTMLDocument, elementID: string, packageName: string
   }
 }
 
-export { postExists, beautifyDate, inject, log, boltRotator, setTitle };
+function filterByUrlQueryIsPresent(
+  postsMetaData: PostMetaData[],
+  tags: string[]
+): PostMetaData[] {
+  return postsMetaData.filter((post) =>
+    tags ? tags.some((tag) => post.tags.includes(tag)) : true
+  );
+}
+
+export {
+  postExists,
+  beautifyDate,
+  inject,
+  log,
+  boltRotator,
+  setTitle,
+  getPathnameFromLocationHash,
+  filterByUrlQueryIsPresent,
+};

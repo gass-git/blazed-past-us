@@ -1,11 +1,11 @@
 import { postsMetaData } from '../main';
-import { beautifyDate } from 'blazed-past-us';
+import { beautifyDate, filterByUrlQueryIfPresent } from 'blazed-past-us';
 
 export default function home(tags) {
   const baseURL = import.meta.env.BASE_URL;
+  const postsToShow = filterByUrlQueryIfPresent(postsMetaData, tags);
 
-  const postsHtmlArray = postsMetaData
-    .filter((post) => (tags ? tags.some((tag) => post.tags.includes(tag)) : true))
+  return postsToShow
     .map(
       (post) => `
       <a href="${baseURL}#/${post.slug}">
@@ -16,7 +16,6 @@ export default function home(tags) {
         </div>
       </a>
     `
-    );
-
-  return postsHtmlArray.join('');
+    )
+    .join('');
 }
