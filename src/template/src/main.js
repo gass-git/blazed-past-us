@@ -16,7 +16,7 @@ initRouter(root, postsMetaData);
  * You can safely remove any of them.
  */
 blazed.setTitle(document, config.title_id, pkg.name);
-blazed.boltRotator(document, config.logo_wrapper_id);
+blazed.boltRotator(document, config.logo_id);
 
 const postsHTML = await blazed.getAllPostsHTML(postsMetaData, import.meta.env.BASE_URL);
 

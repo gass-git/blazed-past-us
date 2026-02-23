@@ -1,11 +1,11 @@
 {
-  "base_url": "",
+  "base_url": "/blog/",
   "posts_data_path": "posts/data.json",
   "title_id": "title",
   "root_id": "root",
   "header_id": "header",
   "speed_element_id": "speed",
-  "logo_wrapper_id": "logo-wrapper",
+  "logo_id": "logo",
   "tags": {
     "javascript": { "color": "#f5dd42" },
     "typescript": { "color": "#42adf5" },

@@ -1,7 +1,9 @@
 header {
-  margin: 4.5rem 1.25rem 3.5rem 1.25rem;
   display: flex;
   justify-content: left;
+  margin: 4.5rem 0 3.5rem 0;
+  padding: 0 0 0 1rem;
+  align-items: center;
 }
 
 header .top {
@@ -11,36 +13,37 @@ header .top {
 
 header .top .title {
   font-family: 'Bangers Regular';
-  font-size: 3rem;
+  font-size: 3.1rem;
   color: var(--light-blue-09);
   text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  display: inline-block;
 }
 
-header .speed {
-  color: var(--light-blue-09);
-  font-family: 'Inter Regular';
-  font-size: 0.85rem;
-  text-transform: uppercase;
-}
-
-.logo {
-  position: relative;
-  width: 6.25rem;
+header .logo {
   height: 6.25rem;
   border: 0.25rem solid var(--light-blue-09);
   border-radius: 50%;
+  width: 6.25rem;
   max-width: 3.75rem;
   max-height: 3.75rem;
   margin-right: 1.25rem;
-  box-shadow: inset -0.2rem -0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+
+.logo.rotate {
+  animation: rotate360 0.4s linear backwards;
+  transform-origin: center center;
+}
+
+.logo #logo-wrapper {
+  animation: flicker 5s infinite;
 }
 
 .logo .wrapper {
   min-width: 3.75rem;
   min-height: 3.75rem;
-  filter: drop-shadow(0 0 0.0625rem #00edfa63) drop-shadow(0 0 0.125rem #00edfa57)
-    drop-shadow(0 0 0.1875rem #00edfa54) drop-shadow(0 0 0.25rem #00edfa6b);
-  animation: flicker 5s infinite;
+  filter: drop-shadow(0 0 0.2rem #00edfa6e) drop-shadow(0 0 0.345rem #00edfa6b)
+    drop-shadow(0 0 0.4275rem #00edfa69) drop-shadow(0 0 0.55rem #00edfa70);
 }
 
 .logo .wrapper .top {
@@ -63,9 +66,4 @@ header .speed {
   height: 0;
   border-right: 0.9375rem solid transparent;
   border-top: 1.40625rem solid #ffffb4;
-}
-
-.logo .wrapper.rotate {
-  animation: rotate360 0.4s linear backwards;
-  transform-origin: center center;
 }
