@@ -158,7 +158,7 @@ function handleResize(renderer, camera) {
   });
 }
 
-// This avoids stars to twinkle together.
+// This avoids stars twinkling together.
 function createRandomStarPhases(n, max) {
   const pauses = new Float32Array(n);
   pauses.forEach((_el, i) => (pauses[i] = Math.random() * max + 1));

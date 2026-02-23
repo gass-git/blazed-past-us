@@ -6,7 +6,7 @@ function render(
   root: HTMLElement,
   views: Views,
   postsMetaData: PostMetaData[],
-  postTagFilter?: string,
+  postTagsFilter?: string,
   postSlug?: string
 ): void {
   const r = root;
@@ -14,7 +14,7 @@ function render(
 
   switch (view) {
     case 'home':
-      inject(r, home(postTagFilter));
+      inject(r, home(postTagsFilter?.split(',')));
       break;
 
     case 'post':

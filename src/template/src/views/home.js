@@ -1,11 +1,11 @@
 import { postsMetaData } from '../main';
 import { beautifyDate } from 'blazed-past-us';
 
-export default function home(tag) {
+export default function home(tags) {
   const baseURL = import.meta.env.BASE_URL;
 
   const postsHtmlArray = postsMetaData
-    .filter((post) => (tag ? post.tags.includes(tag) : true))
+    .filter((post) => (tags ? tags.some((tag) => post.tags.includes(tag)) : true))
     .map(
       (post) => `
       <a href="${baseURL}#/${post.slug}">

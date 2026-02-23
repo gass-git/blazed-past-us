@@ -18,12 +18,14 @@ export default function initRouter(root, postsMetaData) {
  * This is the reason why we use hash routing.
  */
 async function handleRoute(root, postsMetaData) {
-  const pathname = removeHash(window.location.hash);
-  const urlParams = new URLSearchParams(window.location.search);
+  const hashRoute = window.location.hash;
+  const pathname = getPathname(hashRoute);
+  const queryString = hashRoute.split('?')[1] || '';
+  const urlParams = new URLSearchParams(queryString);
   const views = { home, post, notFound };
 
-  if (pathname === '' || pathname === 'home') {
-    render('home', root, views, postsMetaData, urlParams.get('tag'));
+  if (pathname === '' || pathname === 'home' || queryString) {
+    render('home', root, views, postsMetaData, urlParams.get('tags'));
     return;
   }
 
@@ -36,6 +38,6 @@ async function handleRoute(root, postsMetaData) {
 }
 
 // Removes "#/" from the location hash.
-function removeHash(locationHash) {
+function getPathname(locationHash) {
   return locationHash.split('/').splice(1).join('/');
 }
