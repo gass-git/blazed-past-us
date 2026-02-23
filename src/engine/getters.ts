@@ -4,7 +4,7 @@ function getPostData(
   postsMetaData: PostMetaData[],
   slug: string,
   option: PostDataType
-): string | Date | undefined {
+): string | string[] | Date | undefined {
   return postsMetaData.find((post: PostMetaData) => post.slug === slug)?.[option];
 }
 

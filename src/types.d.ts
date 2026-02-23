@@ -3,7 +3,7 @@ interface PostMetaData {
   filename: string;
   title: string;
   brief: string;
-  tags: Array<string>;
+  tags: string[];
   created: Date;
   modified: Date;
 }
@@ -11,6 +11,11 @@ interface PostMetaData {
 interface PostsPaths {
   input: string;
   output: string;
+}
+
+interface ParsedPostData {
+  html: string;
+  tags: string[];
 }
 
 interface Config {
@@ -26,13 +31,8 @@ interface Config {
   } & Record<string, { color: string }>;
 }
 
-interface ParsedPostData {
-  html: string;
-  tags: string[];
-}
-
-type PostDataType = 'title' | 'created' | 'modified' | 'brief';
-type MsgColor = 'yellow' | 'green' | 'red';
+type PostDataType = keyof PostMetaData;
 type Views = Record<string, function>;
+type MsgColor = 'yellow' | 'green' | 'red';
 
 export { PostMetaData, PostsPaths, Config, PostDataType, Views, MsgColor, ParsedPostData };
