@@ -1,4 +1,4 @@
-import type { PostData, Config, PostDataType, ConsumerConfig } from '../types';
+import type { PostData, Config, PostDataType } from '../types';
 
 function getPostData(
   postsMetaData: PostData[],
@@ -81,13 +81,13 @@ function getTags(fileContent: string): string[] {
   );
 }
 
-function getColoredTagsHTML(tags: string, consumerConfig: ConsumerConfig): string {
+function getColoredTagsHTML(tags: string, config: Config): string {
   return tags
     .replace(/\s/g, '')
     .toLowerCase()
     .split(',')
     .map((key) => {
-      const tagColor = consumerConfig.tags[key]?.color ?? consumerConfig.tags.default.color;
+      const tagColor = config.tags[key]?.color ?? config.tags.default.color;
 
       return `
         <span class="tag" style="--tag-color: ${tagColor}">

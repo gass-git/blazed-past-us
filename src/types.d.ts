@@ -14,10 +14,16 @@ interface PostsPaths {
 }
 
 interface Config {
+  base_url: string;
   posts_data_path: string;
+  title_id: string;
   root_id: string;
   header_id: string;
   speed_element_id: string;
+  logo_wrapper_id: string;
+  tags: {
+    default: { color: string };
+  } & Record<string, { color: string }>;
 }
 
 interface ParsedPostData {
@@ -36,17 +42,6 @@ interface Views {
   post: (slug: string) => Promise<string>;
   notFound: () => string;
 }
-
-type ConsumerConfig = {
-  posts_data_path: string;
-  title_id: string;
-  root_id: string;
-  header_id: string;
-  speed_element_id: string;
-  tags: {
-    default: { color: string };
-  } & Record<string, { color: string }>;
-};
 
 export {
   PostData,
