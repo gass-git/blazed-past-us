@@ -32,25 +32,7 @@ interface ParsedPostData {
 }
 
 type PostDataType = 'title' | 'created' | 'modified' | 'brief';
-
-type View = 'home' | 'post' | '404';
-
 type MsgColor = 'yellow' | 'green' | 'red';
+type Views = Record<string, function>;
 
-interface Views {
-  home: (tag: string | undefined) => string;
-  post: (slug: string) => Promise<string>;
-  notFound: () => string;
-}
-
-export {
-  PostMetaData,
-  PostsPaths,
-  Config,
-  PostDataType,
-  View,
-  Views,
-  MsgColor,
-  ConsumerConfig,
-  ParsedPostData,
-};
+export { PostMetaData, PostsPaths, Config, PostDataType, Views, MsgColor, ParsedPostData };

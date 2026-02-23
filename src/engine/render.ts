@@ -1,8 +1,8 @@
 import { postExists, inject } from './utils.js';
-import { View, Views, PostMetaData } from '../types.js';
+import { Views, PostMetaData } from '../types.js';
 
 function render(
-  view: View,
+  view: string,
   root: HTMLElement,
   views: Views,
   postsMetaData: PostMetaData[],
