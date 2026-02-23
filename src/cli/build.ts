@@ -43,7 +43,6 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
-    // const postHtmlContent = await parseMarkdown(filePath);
     const parsedPostData: ParsedPostData = await parseMarkdown(filePath);
     const htmlFilename = filename.replace('.md', '.html');
 
