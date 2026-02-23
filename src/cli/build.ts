@@ -3,7 +3,7 @@ import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import type { PostData, PostsPaths, ParsedPostData } from '../types.js';
+import type { PostMetaData, PostsPaths, ParsedPostData } from '../types.js';
 import { log } from '../engine/utils.js';
 import { generatePostMetadata, writeTransformedPostFile } from '../server/file-builder.js';
 
@@ -34,12 +34,12 @@ function initPaths(root: string): PostsPaths {
 /**
  * Processes all post files:
  *
- * parses Markdown to HTML, generates metadata,
+ * Parses Markdown to HTML, generates metadata,
  * writes transformed files, and emits a JSON index.
  */
 async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input);
-  const data: Array<PostData> = [];
+  const data: Array<PostMetaData> = [];
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);

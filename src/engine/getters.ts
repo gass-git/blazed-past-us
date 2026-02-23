@@ -1,15 +1,15 @@
-import type { PostData, Config, PostDataType } from '../types';
+import type { PostMetaData, Config, PostDataType } from '../types';
 
 function getPostData(
-  postsMetaData: PostData[],
+  postsMetaData: PostMetaData[],
   slug: string,
   option: PostDataType
 ): string | Date | undefined {
-  return postsMetaData.find((post: PostData) => post.slug === slug)?.[option];
+  return postsMetaData.find((post: PostMetaData) => post.slug === slug)?.[option];
 }
 
 async function getAllPostsHTML(
-  postsMetaData: PostData[],
+  postsMetaData: PostMetaData[],
   baseURL: string
 ): Promise<{ slug: string; html: string | void }[]> {
   const allPostsFilename = postsMetaData.map((el) => ({ slug: el.slug, filename: el.filename }));
@@ -26,7 +26,7 @@ async function getAllPostsHTML(
   return allPostsHTML;
 }
 
-async function getPostsMetaData(baseURL: string, config: Config): Promise<PostData[]> {
+async function getPostsMetaData(baseURL: string, config: Config): Promise<PostMetaData[]> {
   const postsRelativeDataPath = config.posts_data_path;
   const postsPath = [baseURL, postsRelativeDataPath].join('');
 

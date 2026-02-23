@@ -1,4 +1,4 @@
-interface PostData {
+interface PostMetaData {
   slug: string;
   filename: string;
   title: string;
@@ -44,7 +44,7 @@ interface Views {
 }
 
 export {
-  PostData,
+  PostMetaData,
   PostsPaths,
   Config,
   PostDataType,
