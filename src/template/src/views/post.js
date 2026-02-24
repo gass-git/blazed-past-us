@@ -1,4 +1,4 @@
-import { beautifyDate, getPostData, getPostHtml } from 'blazed-past-us';
+import { beautifyDate, getPostData } from 'blazed-past-us';
 import { postsMetaData, postsHTML } from '../main';
 
 export default async function post(slug) {
