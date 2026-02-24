@@ -48,8 +48,8 @@ function log(msg: string, color: MsgColor): void {
   console.log(`${chalk.blue(pkg.name + ' v' + pkg.version)} ${coloredMsg}`);
 }
 
-function boltRotator(document: HTMLDocument, elementID: string): void {
-  const el = document.getElementById(elementID);
+function boltRotator(document: HTMLDocument): void {
+  const el = document.querySelector('.logo');
 
   if (el) {
     el.classList.add('rotate');

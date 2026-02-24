@@ -35,18 +35,18 @@ header .logo {
   transform-origin: center center;
 }
 
-.logo #logo-wrapper {
+.logo #bolt {
   animation: flicker 5s infinite;
 }
 
-.logo .wrapper {
+.logo .bolt-wrapper {
   min-width: 3.75rem;
   min-height: 3.75rem;
   filter: drop-shadow(0 0 0.2rem #00edfa6e) drop-shadow(0 0 0.345rem #00edfa6b)
     drop-shadow(0 0 0.4275rem #00edfa69) drop-shadow(0 0 0.55rem #00edfa70);
 }
 
-.logo .wrapper .top {
+.logo .bolt-wrapper .top {
   position: absolute;
   transform-origin: center;
   top: 19%;
@@ -57,7 +57,7 @@ header .logo {
   border-bottom: 1.384375rem solid #ffff90;
 }
 
-.logo .wrapper .bottom {
+.logo .bolt-wrapper .bottom {
   position: absolute;
   transform-origin: center;
   top: 46%;

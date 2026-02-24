@@ -23,8 +23,6 @@ interface Config {
   posts_data_path: string;
   title_id: string;
   root_id: string;
-  header_id: string;
-  speed_element_id: string;
   logo_wrapper_id: string;
   tags: {
     default: { color: string };
@@ -35,4 +33,12 @@ type PostDataType = keyof PostMetaData;
 type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
 
-export { PostMetaData, PostsPaths, Config, PostDataType, Views, MsgColor, ParsedPostData };
+export {
+  PostMetaData,
+  PostsPaths,
+  Config,
+  PostDataType,
+  Views,
+  MsgColor,
+  ParsedPostData,
+};
