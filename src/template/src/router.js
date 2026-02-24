@@ -5,18 +5,12 @@ import notFound from './views/notFound';
 
 export default function initRouter(root, postsMetaData) {
   // Render current route immediately.
-  handleRoute(root, postsMetaData);
+  routeRenderer(root, postsMetaData);
 
-  window.addEventListener('hashchange', () => handleRoute(root, postsMetaData));
+  window.addEventListener('hashchange', () => routeRenderer(root, postsMetaData));
 }
 
-/**
- * GitHub Pages is a static file server. It does not understand client-side routing.
- * Everything after # stays client-side.
- *
- * This is the reason why we use hash routing.
- */
-async function handleRoute(root, postsMetaData) {
+function routeRenderer(root, postsMetaData) {
   const hashRoute = window.location.hash;
   const pathname = getPathnameFromLocationHash(hashRoute);
   const queryString = hashRoute.split('?')[1] || '';
