@@ -73,6 +73,19 @@ function filterByUrlQueryIfPresent(
   );
 }
 
+function getLocationHashSpecifics(window: Window): {
+  pathname: string;
+  queryString: string;
+  urlParams: URLSearchParams;
+} {
+  const hashRoute = window.location.hash;
+  const pathname = getPathnameFromLocationHash(hashRoute);
+  const queryString = hashRoute.split('?')[1] || '';
+  const urlParams = new URLSearchParams(queryString);
+
+  return { pathname, queryString, urlParams };
+}
+
 export {
   postExists,
   beautifyDate,
@@ -82,4 +95,5 @@ export {
   setTitle,
   getPathnameFromLocationHash,
   filterByUrlQueryIfPresent,
+  getLocationHashSpecifics,
 };
