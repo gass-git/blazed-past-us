@@ -3,8 +3,9 @@ import * as blazed from 'blazed-past-us';
 import initRouter from './router';
 import pkg from '../package.json';
 
-const root = document.getElementById(config.root_id);
-const postsMetaData = await blazed.getPostsMetaData(import.meta.env.BASE_URL, config);
+const root = document.getElementById('root');
+const baseUrl = import.meta.env.BASE_URL;
+const postsMetaData = await blazed.getPostsMetaData(baseUrl, config);
 
 initRouter(root, postsMetaData);
 
@@ -18,6 +19,6 @@ initRouter(root, postsMetaData);
 blazed.setTitleAndSubtitle(document, pkg.name, config);
 blazed.boltRotator(document);
 
-const postsHTML = await blazed.getAllPostsHTML(postsMetaData, import.meta.env.BASE_URL);
+const postsHTML = await blazed.getAllPostsHTML(postsMetaData, baseUrl);
 
 export { root, postsMetaData, postsHTML };
