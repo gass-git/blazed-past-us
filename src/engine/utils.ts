@@ -56,11 +56,11 @@ function boltRotator(document: HTMLDocument): void {
   }
 }
 
-function setTitle(document: HTMLDocument, elementID: string, packageName: string): void {
-  const el = document.getElementById(elementID);
+function setTitle(document: HTMLDocument, packageName: string): void {
+  const el = document.querySelector('.title');
 
   if (el) {
-    el.innerText = packageName.replaceAll('-', ' ');
+    el.innerHTML = packageName.replaceAll('-', ' ');
   }
 }
 
