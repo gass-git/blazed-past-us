@@ -1,26 +1,33 @@
 header {
   display: flex;
-  justify-content: left;
-  margin: 4.5rem 0 3.5rem 0;
-  padding: 0 0 0 1rem;
-  align-items: center;
+  flex-direction: row;
+  margin: 4.5rem 0 3.5rem 1rem;
 }
 
 header .top {
-  justify-content: left;
   display: flex;
+  flex-direction: column;
 }
 
 header .top .title {
   font-family: 'Bangers Regular';
   font-size: 3.1rem;
   color: var(--light-blue-09);
+  letter-spacing: 0.15rem;
+}
+
+header .top .subtitle {
+  font-size: 0.85rem;
+  font-family: 'Inter Extra Bold';
+  color: var(--light-yellow);
   text-transform: uppercase;
   letter-spacing: 0.15rem;
-  display: inline-block;
+  opacity: 1;
+  animation: flicker 4s infinite;
 }
 
 header .logo {
+  border: 1px solid white;
   height: 6.25rem;
   border: 0.25rem solid var(--light-blue-09);
   border-radius: 50%;
