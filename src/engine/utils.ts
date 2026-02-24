@@ -59,11 +59,7 @@ function activateBoltRotator(): void {
   };
 }
 
-function setTitleAndSubtitle(
-  document: HTMLDocument,
-  packageName: string,
-  config: Config
-): void {
+function setTitleAndSubtitle(packageName: string, config: Config): void {
   const titleElement = document.querySelector('.title');
   const subtitleElement = document.querySelector('.subtitle');
 
