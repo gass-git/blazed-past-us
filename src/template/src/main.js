@@ -17,7 +17,7 @@ initRouter(root, postsMetaData);
  * You can safely remove any of them.
  */
 blazed.setTitleAndSubtitle(document, pkg.name, config);
-blazed.boltRotator(document);
+blazed.activateBoltRotator();
 
 const postsHTML = await blazed.getAllPostsHTML(postsMetaData, baseUrl);
 

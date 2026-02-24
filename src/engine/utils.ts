@@ -48,12 +48,15 @@ function log(msg: string, color: MsgColor): void {
   console.log(`${chalk.blue(pkg.name + ' v' + pkg.version)} ${coloredMsg}`);
 }
 
-function boltRotator(document: HTMLDocument): void {
-  const el = document.querySelector('.logo');
+function activateBoltRotator(): void {
+  const logoElement = document.querySelector('.logo');
 
-  if (el) {
-    el.classList.add('rotate');
-  }
+  window.onhashchange = () => {
+    if (logoElement) {
+      logoElement.classList.add('rotate');
+      setTimeout(() => logoElement.classList.remove('rotate'), 400);
+    }
+  };
 }
 
 function setTitleAndSubtitle(
@@ -99,7 +102,7 @@ export {
   beautifyDate,
   inject,
   log,
-  boltRotator,
+  activateBoltRotator,
   setTitleAndSubtitle,
   getPathnameFromLocationHash,
   filterByUrlQueryIfPresent,
