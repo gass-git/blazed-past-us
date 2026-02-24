@@ -21,9 +21,8 @@ interface ParsedPostData {
 interface Config {
   base_url: string;
   posts_data_path: string;
-  title_id: string;
   root_id: string;
-  logo_wrapper_id: string;
+  subtitle: string;
   tags: {
     default: { color: string };
   } & Record<string, { color: string }>;

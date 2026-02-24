@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
-import { MsgColor, PostMetaData } from '../types';
+import { Config, MsgColor, PostMetaData } from '../types';
 
 function postExists(postsMetaData: any[], slug: string): boolean {
   return postsMetaData.some((post) => post.slug === slug);
@@ -56,11 +56,19 @@ function boltRotator(document: HTMLDocument): void {
   }
 }
 
-function setTitle(document: HTMLDocument, packageName: string): void {
-  const el = document.querySelector('.title');
+function setTitleAndSubtitle(
+  document: HTMLDocument,
+  packageName: string,
+  config: Config
+): void {
+  const titleElement = document.querySelector('.title');
+  const subtitleElement = document.querySelector('.subtitle');
 
-  if (el) {
-    el.innerHTML = packageName.replaceAll('-', ' ');
+  if (titleElement) {
+    titleElement.innerHTML = packageName.replaceAll('-', ' ');
+  }
+  if (subtitleElement) {
+    subtitleElement.innerHTML = config.subtitle;
   }
 }
 
@@ -92,7 +100,7 @@ export {
   inject,
   log,
   boltRotator,
-  setTitle,
+  setTitleAndSubtitle,
   getPathnameFromLocationHash,
   filterByUrlQueryIfPresent,
   getLocationHashSpecifics,
