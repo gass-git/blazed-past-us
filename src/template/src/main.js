@@ -4,11 +4,9 @@ import initRouter from './router';
 import pkg from '../package.json';
 
 const root = document.getElementById('root');
-const baseUrl = import.meta.env.BASE_URL;
-const postsMetaData = await blazed.getPostsMetaData(baseUrl, config);
-const postsHTML = await blazed.getAllPostsHTML(postsMetaData, baseUrl);
+const { postsMetadata, postsHTML } = await blazed.fetchResources(config);
 
-initRouter(root, postsMetaData);
+initRouter(root, postsMetadata);
 
 /**
  * ----------------------------
@@ -20,4 +18,4 @@ initRouter(root, postsMetaData);
 blazed.setTitleAndSubtitle(pkg.name, config);
 blazed.activateBoltRotator();
 
-export { root, postsMetaData, postsHTML };
+export { root, postsMetadata, postsHTML };

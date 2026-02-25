@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
-import { Config, MsgColor, PostMetaData } from '../types';
+import { Config, MsgColor, PostMetadata } from '../types';
 
-function postExists(postsMetaData: any[], slug: string): boolean {
-  return postsMetaData.some((post) => post.slug === slug);
+function postExists(postsMetadata: any[], slug: string): boolean {
+  return postsMetadata.some((post) => post.slug === slug);
 }
 
 function getPathnameFromLocationHash(locationHash: string) {
@@ -72,10 +72,10 @@ function setTitleAndSubtitle(packageName: string, config: Config): void {
 }
 
 function filterByUrlQueryIfPresent(
-  postsMetaData: PostMetaData[],
+  postsMetadata: PostMetadata[],
   tags: string[]
-): PostMetaData[] {
-  return postsMetaData.filter((post) =>
+): PostMetadata[] {
+  return postsMetadata.filter((post) =>
     tags ? tags.some((tag) => post.tags.includes(tag)) : true
   );
 }

@@ -1,48 +1,11 @@
-import type { PostMetaData, Config, PostDataType } from '../types';
+import type { PostMetadata, Config, PostDataType } from '../types';
 
 function getPostData(
-  postsMetaData: PostMetaData[],
+  postsMetadata: PostMetadata[],
   slug: string,
   option: PostDataType
 ): string | string[] | Date | undefined {
-  return postsMetaData.find((post: PostMetaData) => post.slug === slug)?.[option];
-}
-
-async function getAllPostsHTML(
-  postsMetaData: PostMetaData[],
-  baseURL: string
-): Promise<{ slug: string; html: string | void }[]> {
-  const allPostsFilename = postsMetaData.map((el) => ({ slug: el.slug, filename: el.filename }));
-  const allPostsHTML = [];
-
-  for (const post of allPostsFilename) {
-    const HTML = await fetch(`${baseURL}posts/${post.filename}`)
-      .then((resp) => resp.text())
-      .catch((error) => console.error(error));
-
-    allPostsHTML.push({ slug: post.slug, html: HTML });
-  }
-
-  return allPostsHTML;
-}
-
-async function getPostsMetaData(baseURL: string, config: Config): Promise<PostMetaData[]> {
-  const postsRelativeDataPath = config.posts_data_path;
-  const postsPath = [baseURL, postsRelativeDataPath].join('');
-
-  try {
-    const resp = await fetch(postsPath);
-
-    if (!resp.ok) {
-      throw new Error(`HTTP error! Status: ${resp.status}`);
-    }
-
-    const data = await resp.json();
-    return data;
-  } catch (error) {
-    console.error('Failed to fetch posts metadata:', error);
-    throw error;
-  }
+  return postsMetadata.find((post: PostMetadata) => post.slug === slug)?.[option];
 }
 
 function getSlug(htmlFilename: string): string {
@@ -98,13 +61,4 @@ function getColoredTagsHTML(tags: string, config: Config): string {
     .join(`<span class="tag-separator">, </span>`);
 }
 
-export {
-  getPostData,
-  getAllPostsHTML,
-  getPostsMetaData,
-  getTitle,
-  getTags,
-  getBrief,
-  getColoredTagsHTML,
-  getSlug,
-};
+export { getPostData, getTitle, getTags, getBrief, getColoredTagsHTML, getSlug };

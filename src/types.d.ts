@@ -1,4 +1,4 @@
-interface PostMetaData {
+interface PostMetadata {
   slug: string;
   filename: string;
   title: string;
@@ -28,12 +28,12 @@ interface Config {
   } & Record<string, { color: string }>;
 }
 
-type PostDataType = keyof PostMetaData;
+type PostDataType = keyof PostMetadata;
 type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
 
 export {
-  PostMetaData,
+  PostMetadata,
   PostsPaths,
   Config,
   PostDataType,

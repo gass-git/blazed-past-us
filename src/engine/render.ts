@@ -1,11 +1,11 @@
 import { postExists, inject } from './utils.js';
-import { Views, PostMetaData } from '../types.js';
+import { Views, PostMetadata } from '../types.js';
 
 function render(
   view: string,
   root: HTMLElement,
   views: Views,
-  postsMetaData: PostMetaData[],
+  postsMetadata: PostMetadata[],
   postTagsFilter?: string,
   postSlug?: string
 ): void {
@@ -18,7 +18,7 @@ function render(
       break;
 
     case 'post':
-      if (postSlug && postExists(postsMetaData, postSlug)) {
+      if (postSlug && postExists(postsMetadata, postSlug)) {
         post(postSlug).then((html: string) => inject(r, html));
       } else {
         inject(r, notFound());

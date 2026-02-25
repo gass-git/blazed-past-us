@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { getTitle, getBrief, getTags, getSlug } from '../engine/getters.js';
-import { PostMetaData } from '../types';
+import { PostMetadata } from '../types';
 import fsPromises from 'node:fs/promises';
 
 async function writeTransformedPostFile(
@@ -15,7 +15,7 @@ async function writeTransformedPostFile(
 }
 
 async function generatePostMetadata(
-  data: Array<PostMetaData>,
+  data: Array<PostMetadata>,
   filePath: string,
   htmlFilename: string,
   postTags: string[]

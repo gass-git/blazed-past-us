@@ -1,9 +1,9 @@
 import { beautifyDate, getPostData } from 'blazed-past-us';
-import { postsMetaData, postsHTML } from '../main';
+import { postsMetadata, postsHTML } from '../main';
 
 export default async function post(slug) {
-  const title = getPostData(postsMetaData, slug, 'title');
-  const date = beautifyDate(getPostData(postsMetaData, slug, 'created'));
+  const title = getPostData(postsMetadata, slug, 'title');
+  const date = beautifyDate(getPostData(postsMetadata, slug, 'created'));
   const HTMLcontent = postsHTML.find((post) => post.slug === slug).html;
 
   return `

@@ -1,9 +1,9 @@
-import { postsMetaData } from '../main';
+import { postsMetadata } from '../main';
 import { beautifyDate, filterByUrlQueryIfPresent } from 'blazed-past-us';
 
 export default function home(tags) {
   const baseURL = import.meta.env.BASE_URL;
-  const postsToShow = filterByUrlQueryIfPresent(postsMetaData, tags);
+  const postsToShow = filterByUrlQueryIfPresent(postsMetadata, tags);
 
   return postsToShow
     .map(
