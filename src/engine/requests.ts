@@ -37,8 +37,11 @@ async function fetchAllPostsHTML(
 }
 
 async function fetchPostsMetaData(config: Config): Promise<PostMetadata[]> {
-  const postsRelativeDataPath = config.posts_data_path;
-  const postsPath = [config.base_url, postsRelativeDataPath].join('');
+  // If config.base_url does not end with "/" append it.
+  const baseUrl = config.base_url.endsWith('/') ? config.base_url : config.base_url + '/';
+
+  const postsRelativeDataPath = 'posts/data.json';
+  const postsPath = [baseUrl, postsRelativeDataPath].join('');
 
   try {
     const resp = await fetch(postsPath);
