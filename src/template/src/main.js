@@ -6,7 +6,7 @@ import pkg from '../package.json';
 const root = document.getElementById('root');
 const { postsMetadata, postsHTML } = await blazed.fetchResources(config);
 
-initRouter(root, postsMetadata);
+initRouter(root, postsMetadata, postsHTML);
 
 /**
  * ----------------------------
@@ -17,5 +17,3 @@ initRouter(root, postsMetadata);
  */
 blazed.setTitleAndSubtitle(pkg.name, config);
 blazed.activateBoltRotator();
-
-export { root, postsMetadata, postsHTML };

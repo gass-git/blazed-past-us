@@ -1,8 +1,8 @@
-import { Config, PostMetadata } from '../types';
+import { Config, PostMetadata, PostHTML } from '../types';
 
 export async function fetchResources(config: Config): Promise<void | {
   postsMetadata: PostMetadata[];
-  postsHTML: { slug: string; html: string | void }[];
+  postsHTML: PostHTML[];
 }> {
   try {
     const postsMetadata = await fetchPostsMetaData(config);
@@ -18,7 +18,7 @@ export async function fetchResources(config: Config): Promise<void | {
 async function fetchAllPostsHTML(
   baseURL: string,
   postsMetadata: PostMetadata[]
-): Promise<{ slug: string; html: string | void }[]> {
+): Promise<PostHTML[]> {
   const allPostsFilename = postsMetadata.map((el) => ({
     slug: el.slug,
     filename: el.filename,

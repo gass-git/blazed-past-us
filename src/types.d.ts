@@ -28,6 +28,11 @@ interface Config {
   } & Record<string, { color: string }>;
 }
 
+interface PostHTML {
+  slug: string;
+  html: string | void;
+}
+
 type PostDataType = keyof PostMetadata;
 type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
@@ -40,4 +45,5 @@ export {
   Views,
   MsgColor,
   ParsedPostData,
+  PostHTML,
 };
