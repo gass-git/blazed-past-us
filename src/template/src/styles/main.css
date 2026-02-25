@@ -59,7 +59,7 @@ canvas {
 .date {
   font-family: 'Inter Regular';
   font-size: 0.85rem;
-  color: rgba(--light-grey-06);
+  color: var(--light-grey-06);
   margin-top: 0.1rem;
   text-transform: uppercase;
 }
