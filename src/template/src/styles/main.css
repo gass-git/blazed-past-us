@@ -8,8 +8,11 @@
   --background: linear-gradient(#0f0f23, #1d1d43);
   --max-width: 55rem;
   --neon: #82f9ff;
+  --post-title-color: rgb(241, 241, 241);
+  --body-text-color: #ececec;
   --light-blue-09: rgba(129, 213, 255, 0.9);
   --light-blue-05: rgba(129, 213, 255, 0.5);
+  --light-grey-06: rgba(255, 255, 255, 0.6);
   --light-yellow: #ffffb4;
   --body-font-family: 'Merriweather Sans Light';
   --body-font-size: 1.1rem;
@@ -55,8 +58,8 @@ canvas {
 
 .date {
   font-family: 'Inter Regular';
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 0.1rem;
   font-size: 0.85rem;
+  color: rgba(--light-grey-06);
+  margin-top: 0.1rem;
   text-transform: uppercase;
 }

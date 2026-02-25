@@ -6,7 +6,7 @@
 .post p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
-  color: #ececec;
+  color: var(--body-text-color);
   text-align: justify;
   line-height: 1.8;
   letter-spacing: 0.04rem;
@@ -15,12 +15,12 @@
 .post .tag-separator {
   font-size: 1.4rem;
   font-family: 'Permanent Marker Regular';
-  color: #ececec;
+  color: var(--body-text-color);
 }
 
 .post .title {
   font-family: 'Inter Extra Bold';
-  color: rgb(241, 241, 241);
+  color: var(--post-title-color);
   font-size: 2.25rem;
 }
 
