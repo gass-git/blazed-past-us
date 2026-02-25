@@ -23,7 +23,9 @@ async function parseMarkdown(_path: string): Promise<ParsedPostData> {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      theme: JSON.parse(readFileSync(path.join(root, 'src/moonlight-li.json'), 'utf-8')),
+      theme: JSON.parse(
+        readFileSync(path.join(root, 'src/code-block-theme.json'), 'utf-8')
+      ),
       keepBackground: false,
     })
     .use(rehypeStringify)
@@ -42,7 +44,10 @@ async function parseMarkdown(_path: string): Promise<ParsedPostData> {
  * @param postHTMLString post HTML string output after being parsed from Markdown
  * @returns customized HTML
  */
-async function customizeHTML(root: string, postHTMLString: string): Promise<ParsedPostData> {
+async function customizeHTML(
+  root: string,
+  postHTMLString: string
+): Promise<ParsedPostData> {
   const consumerConfig = await readFile(path.join(root, 'src/config.json'), {
     encoding: 'utf8',
   }).then((jsonData) => JSON.parse(jsonData.toLowerCase()));
@@ -57,7 +62,8 @@ async function customizeHTML(root: string, postHTMLString: string): Promise<Pars
   const coloredTagsHTML = getColoredTagsHTML(tags, consumerConfig);
 
   return {
-    html: `<span class="tag-emoji">🏷️ </span>` + coloredTagsHTML + postHTMLStringWithoutTags,
+    html:
+      `<span class="tag-emoji">🏷️ </span>` + coloredTagsHTML + postHTMLStringWithoutTags,
     tags: tags
       .split(',')
       .map((s) => s.trim())
