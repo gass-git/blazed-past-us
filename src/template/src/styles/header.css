@@ -8,35 +8,30 @@ header {
 header .top {
   display: flex;
   flex-direction: column;
+  letter-spacing: 0.15rem;
 }
 
 header .top .title {
   font-family: 'Bangers Regular';
   font-size: 3.1rem;
   color: var(--light-blue-09);
-  letter-spacing: 0.15rem;
 }
 
 header .top .subtitle {
-  font-size: 0.85rem;
   padding-left: 0.3rem;
+  font-size: 0.85rem;
   font-family: 'Inter Extra Bold';
-  color: var(--light-yellow);
   text-transform: uppercase;
-  letter-spacing: 0.15rem;
-  opacity: 1;
+  color: var(--light-yellow);
   animation: flicker 4s infinite;
 }
 
 header .logo {
-  border: 1px solid white;
-  height: 6.25rem;
+  height: 3.75rem;
+  width: 3.75rem;
+  margin-right: 1.25rem;
   border: 0.25rem solid var(--light-blue-09);
   border-radius: 50%;
-  width: 6.25rem;
-  max-width: 3.75rem;
-  max-height: 3.75rem;
-  margin-right: 1.25rem;
 }
 
 .logo.rotate {
@@ -45,34 +40,31 @@ header .logo {
 }
 
 .logo #bolt {
-  animation: flicker 5s infinite;
+  animation: flicker 4s infinite;
 }
 
 .logo .bolt-wrapper {
-  min-width: 3.75rem;
-  min-height: 3.75rem;
-  filter: drop-shadow(0 0 0.2rem #00edfa6e) drop-shadow(0 0 0.345rem #00edfa6b)
-    drop-shadow(0 0 0.4275rem #00edfa69) drop-shadow(0 0 0.55rem #00edfa70);
+  width: 3.75rem;
+  height: 3.75rem;
+  filter: drop-shadow(0 0 0.5rem #00edfa41) drop-shadow(0 0 0.4rem #00edfa6b)
+    drop-shadow(0 0 0.4em #00edfa69) drop-shadow(0 0 0.6rem #00edfa70);
+}
+
+.logo .bolt-wrapper > * {
+  position: absolute;
+  transform-origin: center;
 }
 
 .logo .bolt-wrapper .top {
-  position: absolute;
-  transform-origin: center;
   top: 19%;
   left: 33%;
-  width: 0;
-  height: 0;
   border-left: 0.9375rem solid transparent;
   border-bottom: 1.384375rem solid #ffff90;
 }
 
 .logo .bolt-wrapper .bottom {
-  position: absolute;
-  transform-origin: center;
   top: 46%;
   right: 30%;
-  width: 0;
-  height: 0;
   border-right: 0.9375rem solid transparent;
   border-top: 1.40625rem solid #ffffb4;
 }
