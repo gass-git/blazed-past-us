@@ -8,6 +8,7 @@ import { log } from '../engine/utils.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
+  processPersistentPostsMetadata,
 } from '../server/file-builder.js';
 
 /**
@@ -58,6 +59,8 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filename
     );
   }
+
+  processPersistentPostsMetadata(paths.input);
 
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);

@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { getTitle, getBrief, getTags, getSlug } from '../engine/getters.js';
 import { PostMetadata } from '../types';
 import fsPromises from 'node:fs/promises';
+import path from 'node:path';
 
 async function writeTransformedPostFile(
   outputPath: string,
@@ -34,4 +35,12 @@ async function generatePostMetadata(
   });
 }
 
-export { generatePostMetadata, writeTransformedPostFile };
+async function processPersistentPostsMetadata(postsDirectoryPath: string): Promise<void> {
+  const fileContent = await fsPromises.readFile(
+    path.join(postsDirectoryPath, 'persistentMetadata.json'),
+    'utf8'
+  );
+  console.log(fileContent);
+}
+
+export { generatePostMetadata, writeTransformedPostFile, processPersistentPostsMetadata };
