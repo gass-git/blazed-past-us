@@ -8,8 +8,9 @@ import { log } from '../engine/utils.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
-  processPersistentPostsMetadata,
+  fetchPersistentPostsMetadata,
 } from '../server/file-builder.js';
+import { getSlug } from '../engine/getters.js';
 
 /**
  * CLI entry point.
@@ -42,15 +43,23 @@ function initPaths(root: string): PostsPaths {
  * writes transformed files, and emits a JSON index.
  */
 async function buildBundle(paths: PostsPaths): Promise<void> {
-  const postsFiles = fs.readdirSync(paths.input);
+  const postsFiles = fs.readdirSync(paths.input).filter((f) => f.endsWith('.md'));
   const data: Array<PostMetadata> = [];
+  const persistentPostsMetadata = await fetchPersistentPostsMetadata(paths.input);
+  let updatePersistentPostsMetadata = false;
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
     const parsedPostData: ParsedPostData = await parseMarkdown(filePath);
     const htmlFilename = filename.replace('.md', '.html');
 
-    await generatePostMetadata(data, filePath, htmlFilename, parsedPostData.tags);
+    await generatePostMetadata(
+      data,
+      filePath,
+      htmlFilename,
+      parsedPostData.tags,
+      persistentPostsMetadata
+    );
     await fsPromises.mkdir(paths.output, { recursive: true });
 
     await writeTransformedPostFile(
@@ -58,9 +67,27 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       parsedPostData.html,
       filename
     );
+
+    // Update persistentPostsMetadata.json if slug is not found.
+    if (!persistentPostsMetadata?.some((p) => p.slug === getSlug(htmlFilename))) {
+      updatePersistentPostsMetadata = true;
+      const stats = await fsPromises.stat(filePath);
+
+      persistentPostsMetadata?.push({
+        slug: getSlug(htmlFilename),
+        created: stats.birthtime,
+      });
+    }
   }
 
-  processPersistentPostsMetadata(paths.input);
+  if (updatePersistentPostsMetadata) {
+    const persistentPostsMetadataJSON = JSON.stringify(persistentPostsMetadata);
+
+    fs.writeFileSync(
+      path.join(paths.input, 'persistentMetadata.json'),
+      persistentPostsMetadataJSON
+    );
+  }
 
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);

@@ -1,8 +1,6 @@
-{
-  "posts": [
+[
     {
       "slug": "this-is-a-post-title",
-      "created": "2026-02-21T11:55:11.189Z"
+      "created": "2026-02-01T11:55:11.189Z"
     }
   ]
-}

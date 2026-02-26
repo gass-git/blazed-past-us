@@ -1,3 +1,5 @@
+type PersistentPostsMetadata = { slug: string; created: Date }[];
+
 interface PostMetadata {
   slug: string;
   filename: string;
@@ -36,6 +38,7 @@ type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
 
 export {
+  PersistentPostsMetadata,
   PostMetadata,
   PostsPaths,
   Config,
