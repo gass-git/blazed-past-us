@@ -67,3 +67,47 @@ npm run dev
 ```
 npm run build
 ```
+
+## Action that works for deploying to Github pages
+
+```
+name: deploy to Github pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm install
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - uses: actions/deploy-pages@v4
+
+      - name: Create Deployment Record
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: github-pages
+          environment-url: https://{you-username-here}.github.io/
+          ref: main
+```
