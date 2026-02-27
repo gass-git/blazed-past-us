@@ -5,9 +5,11 @@
   opacity: 0.9;
 }
 
-.post-card:hover {
-  opacity: 1;
-  box-shadow: var(--primary-box-shadow);
+@media (hover: hover) and (pointer: fine) {
+  .post-card:hover {
+    opacity: 1;
+    box-shadow: var(--primary-box-shadow);
+  }
 }
 
 .post-card .title {

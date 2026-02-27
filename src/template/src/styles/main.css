@@ -24,6 +24,7 @@ a,
 a:link,
 a:visited {
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
