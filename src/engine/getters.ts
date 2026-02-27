@@ -8,6 +8,23 @@ function getPostData(
   return postsMetadata.find((post: PostMetadata) => post.slug === slug)?.[option];
 }
 
+function getPathnameFromLocationHash(locationHash: string) {
+  return locationHash.split('/').splice(1).join('/');
+}
+
+function getLocationHashSpecifics(window: Window): {
+  pathname: string;
+  queryString: string;
+  urlParams: URLSearchParams;
+} {
+  const hashRoute = window.location.hash;
+  const pathname = getPathnameFromLocationHash(hashRoute);
+  const queryString = hashRoute.split('?')[1] || '';
+  const urlParams = new URLSearchParams(queryString);
+
+  return { pathname, queryString, urlParams };
+}
+
 function getSlug(htmlFilename: string): string {
   return htmlFilename.replace('.html', '');
 }
@@ -61,4 +78,13 @@ function getColoredTagsHTML(tags: string, config: Config): string {
     .join(`<span class="tag-separator">, </span>`);
 }
 
-export { getPostData, getTitle, getTags, getBrief, getColoredTagsHTML, getSlug };
+export {
+  getPostData,
+  getTitle,
+  getTags,
+  getBrief,
+  getColoredTagsHTML,
+  getSlug,
+  getPathnameFromLocationHash,
+  getLocationHashSpecifics,
+};

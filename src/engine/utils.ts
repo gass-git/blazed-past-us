@@ -6,10 +6,6 @@ function postExists(postsMetadata: any[], slug: string): boolean {
   return postsMetadata.some((post) => post.slug === slug);
 }
 
-function getPathnameFromLocationHash(locationHash: string) {
-  return locationHash.split('/').splice(1).join('/');
-}
-
 function beautifyDate(d: Date | undefined): undefined | string {
   if (!d) return;
   const date = new Date(d);
@@ -80,19 +76,6 @@ function filterByUrlQueryIfPresent(
   );
 }
 
-function getLocationHashSpecifics(window: Window): {
-  pathname: string;
-  queryString: string;
-  urlParams: URLSearchParams;
-} {
-  const hashRoute = window.location.hash;
-  const pathname = getPathnameFromLocationHash(hashRoute);
-  const queryString = hashRoute.split('?')[1] || '';
-  const urlParams = new URLSearchParams(queryString);
-
-  return { pathname, queryString, urlParams };
-}
-
 export {
   postExists,
   beautifyDate,
@@ -100,7 +83,5 @@ export {
   log,
   activateBoltRotator,
   setTitleAndSubtitle,
-  getPathnameFromLocationHash,
   filterByUrlQueryIfPresent,
-  getLocationHashSpecifics,
 };
