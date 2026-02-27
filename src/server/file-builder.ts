@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { getTitle, getBrief, getSlug } from '../engine/getters.js';
-import { PostMetadata, PersistentPostsMetadata } from '../types';
+import { PostMetadata, PostsRegistry } from '../types';
 import fsPromises from 'node:fs/promises';
 
 async function writeTransformedPostFile(
@@ -19,7 +19,7 @@ async function generatePostMetadata(
   filePath: string,
   htmlFilename: string,
   postTags: string[],
-  persistentPostsMetadata: PersistentPostsMetadata | void
+  persistentPostsMetadata: PostsRegistry | void
 ): Promise<void> {
   const stats = await fsPromises.stat(filePath);
   const fileContent = await fsPromises.readFile(filePath, 'utf-8');

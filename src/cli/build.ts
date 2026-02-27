@@ -10,7 +10,7 @@ import {
   writeTransformedPostFile,
 } from '../server/file-builder.js';
 import { getSlug } from '../engine/getters.js';
-import { fetchPersistentPostsMetadata } from '../engine/requests.js';
+import { fetchPostsRegistry } from '../engine/requests.js';
 
 /**
  * CLI entry point.
@@ -45,8 +45,8 @@ function initPaths(root: string): PostsPaths {
 async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input).filter((f) => f.endsWith('.md'));
   const data: Array<PostMetadata> = [];
-  const persistentPostsMetadata = await fetchPersistentPostsMetadata(paths.input);
-  let updatePersistentPostsMetadata = false;
+  const postsRegistry = await fetchPostsRegistry(paths.input);
+  let updatePostsRegistry = false;
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
@@ -58,7 +58,7 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filePath,
       htmlFilename,
       parsedPostData.tags,
-      persistentPostsMetadata
+      postsRegistry
     );
     await fsPromises.mkdir(paths.output, { recursive: true });
 
@@ -68,24 +68,21 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filename
     );
 
-    if (!persistentPostsMetadata?.some((p) => p.slug === getSlug(htmlFilename))) {
-      updatePersistentPostsMetadata = true;
+    if (!postsRegistry?.some((p) => p.slug === getSlug(htmlFilename))) {
+      updatePostsRegistry = true;
       const stats = await fsPromises.stat(filePath);
 
-      persistentPostsMetadata?.push({
+      postsRegistry?.push({
         slug: getSlug(htmlFilename),
         created: stats.birthtime,
       });
     }
   }
 
-  if (updatePersistentPostsMetadata) {
-    const persistentPostsMetadataJSON = JSON.stringify(persistentPostsMetadata);
+  if (updatePostsRegistry) {
+    const postsRegistryJSON = JSON.stringify(postsRegistry);
 
-    fs.writeFileSync(
-      path.join(paths.input, 'persistentMetadata.json'),
-      persistentPostsMetadataJSON
-    );
+    fs.writeFileSync(path.join(paths.input, 'registry.json'), postsRegistryJSON);
   }
 
   const jsonPosts = JSON.stringify(data);

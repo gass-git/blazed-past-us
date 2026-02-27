@@ -1,4 +1,4 @@
-import { Config, PostMetadata, PostHTML, PersistentPostsMetadata } from '../types';
+import { Config, PostMetadata, PostHTML, PostsRegistry } from '../types';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 
@@ -60,12 +60,12 @@ async function fetchPostsMetaData(config: Config): Promise<PostMetadata[]> {
   }
 }
 
-async function fetchPersistentPostsMetadata(
+async function fetchPostsRegistry(
   postsDirectoryPath: string
-): Promise<void | PersistentPostsMetadata> {
+): Promise<void | PostsRegistry> {
   try {
     const resp = await fsPromises.readFile(
-      path.join(postsDirectoryPath, 'persistentMetadata.json'),
+      path.join(postsDirectoryPath, 'registry.json'),
       'utf8'
     );
     const data = JSON.parse(resp);
@@ -75,4 +75,4 @@ async function fetchPersistentPostsMetadata(
   }
 }
 
-export { fetchResources, fetchPersistentPostsMetadata };
+export { fetchResources, fetchPostsRegistry };

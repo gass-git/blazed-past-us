@@ -1,5 +1,3 @@
-type PersistentPostsMetadata = { slug: string; created: Date }[];
-
 interface PostMetadata {
   slug: string;
   filename: string;
@@ -36,9 +34,10 @@ interface PostHTML {
 type PostDataType = keyof PostMetadata;
 type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
+type PostsRegistry = { slug: string; created: Date }[];
 
 export {
-  PersistentPostsMetadata,
+  PostsRegistry,
   PostMetadata,
   PostsPaths,
   Config,
