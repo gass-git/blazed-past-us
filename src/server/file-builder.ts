@@ -34,7 +34,6 @@ async function generatePostMetadata(
     brief: getBrief(fileContent, 3),
     tags: postTags,
     created: createdDate,
-    modified: stats.mtime,
   });
 }
 

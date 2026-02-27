@@ -5,7 +5,6 @@ interface PostMetadata {
   brief: string;
   tags: string[];
   created: Date;
-  modified: Date;
 }
 
 interface PostsPaths {
