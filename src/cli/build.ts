@@ -3,7 +3,12 @@ import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import type { PostMetadata, PostsPaths, ParsedPostData } from '../types.js';
+import type {
+  PostMetadata,
+  PostsPaths,
+  ParsedPostData,
+  PostsRegistry,
+} from '../types.js';
 import { log } from '../engine/utils.js';
 import {
   generatePostMetadata,
@@ -44,22 +49,23 @@ function initPaths(root: string): PostsPaths {
  */
 async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input).filter((f) => f.endsWith('.md'));
-  const data: Array<PostMetadata> = [];
-  const postsRegistry = await fetchPostsRegistry(paths.input);
-  let updatePostsRegistry = false;
+  const data: Array<PostMetadata> = new Array();
+  const postsRegistry = { data: await fetchPostsRegistry(paths.input), update: false };
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
     const parsedPostData: ParsedPostData = await parseMarkdown(filePath);
     const htmlFilename = filename.replace('.md', '.html');
+    const slug = getSlug(htmlFilename);
 
     await generatePostMetadata(
       data,
       filePath,
       htmlFilename,
       parsedPostData.tags,
-      postsRegistry
+      postsRegistry.data
     );
+
     await fsPromises.mkdir(paths.output, { recursive: true });
 
     await writeTransformedPostFile(
@@ -68,24 +74,37 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filename
     );
 
-    if (!postsRegistry?.some((p) => p.slug === getSlug(htmlFilename))) {
-      updatePostsRegistry = true;
+    if (postNotInRegistry(postsRegistry.data, slug)) {
+      postsRegistry.update = true;
       const stats = await fsPromises.stat(filePath);
 
-      postsRegistry?.push({
+      postsRegistry.data?.push({
         slug: getSlug(htmlFilename),
         created: stats.birthtime,
       });
     }
   }
 
-  if (updatePostsRegistry) {
-    const postsRegistryJSON = JSON.stringify(postsRegistry);
-
-    fs.writeFileSync(path.join(paths.input, 'registry.json'), postsRegistryJSON);
+  if (postsRegistry.update) {
+    handlePostsRegistryUpdate(postsRegistry.data, paths);
   }
 
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);
   log('all posts have been parsed into HTML ✅', 'yellow');
+}
+
+function postNotInRegistry(registry: PostsRegistry | [] | void, slug: string): boolean {
+  return !registry?.some((p) => p.slug === slug);
+}
+
+function handlePostsRegistryUpdate(
+  postsRegistry: PostsRegistry | void,
+  paths: PostsPaths
+): void {
+  if (postsRegistry) {
+    const postsRegistryJSON = JSON.stringify(postsRegistry);
+    fs.writeFileSync(path.join(paths.input, 'registry.json'), postsRegistryJSON);
+    log('posts registry updated 💾', 'yellow');
+  }
 }

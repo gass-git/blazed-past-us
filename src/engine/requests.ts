@@ -68,8 +68,8 @@ async function fetchPostsRegistry(
       path.join(postsDirectoryPath, 'registry.json'),
       'utf8'
     );
-    const data = JSON.parse(resp);
-    return data;
+
+    return JSON.parse(resp);
   } catch (error) {
     console.error(error);
   }
