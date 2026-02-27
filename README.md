@@ -38,6 +38,9 @@ _"Very well… let the cosmos bear witness."_
 ## Useful notes
 
 - Append `/#/?tags=` to the base URL to filter home page posts by tag.
+- Posts creation dates are persisted.
+- The creation date is not updated when editing a post.
+- The posts titles are used as the identifiers (slugs).
 
 ## Installation
 
@@ -57,4 +60,10 @@ npm i
 
 ```
 npm run dev
+```
+
+### For final build:
+
+```
+npm run build
 ```
