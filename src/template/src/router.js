@@ -15,7 +15,7 @@ function routeRenderer(root, postsMetadata, postsHTML) {
   const views = { home, post, notFound };
 
   switch (true) {
-    case pathname === '' || pathname === 'home' || queryString:
+    case pathname === '' || pathname === 'home' || !!queryString:
       render('home', root, views, postsMetadata, postsHTML, urlParams.get('tags'));
       break;
 
