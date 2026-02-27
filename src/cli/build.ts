@@ -3,19 +3,18 @@ import { parseMarkdown } from '../server/parse-markdown.js';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import type {
-  PostMetadata,
-  PostsPaths,
-  ParsedPostData,
-  PostsRegistry,
-} from '../types.js';
-import { log } from '../engine/utils.js';
+import type { PostMetadata, PostsPaths, ParsedPostData } from '../types.js';
+import {
+  getPostsRegistry,
+  handlePostsRegistryUpdate,
+  log,
+  postNotInRegistry,
+} from '../server/server-utils.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
 } from '../server/file-builder.js';
-import { getSlug } from '../engine/getters.js';
-import { fetchPostsRegistry } from '../engine/requests.js';
+import { getSlug } from '../runtime/getters.js';
 
 /**
  * CLI entry point.
@@ -50,7 +49,7 @@ function initPaths(root: string): PostsPaths {
 async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input).filter((f) => f.endsWith('.md'));
   const data: Array<PostMetadata> = new Array();
-  const postsRegistry = { data: await fetchPostsRegistry(paths.input), update: false };
+  const postsRegistry = { data: await getPostsRegistry(paths.input), update: false };
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
@@ -92,19 +91,4 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
   const jsonPosts = JSON.stringify(data);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);
   log('all posts have been parsed into HTML ✅', 'yellow');
-}
-
-function postNotInRegistry(registry: PostsRegistry | [] | void, slug: string): boolean {
-  return !registry?.some((p) => p.slug === slug);
-}
-
-function handlePostsRegistryUpdate(
-  postsRegistry: PostsRegistry | void,
-  paths: PostsPaths
-): void {
-  if (postsRegistry) {
-    const postsRegistryJSON = JSON.stringify(postsRegistry);
-    fs.writeFileSync(path.join(paths.input, 'registry.json'), postsRegistryJSON);
-    log('posts registry updated 💾', 'yellow');
-  }
 }

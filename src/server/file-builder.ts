@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { getTitle, getBrief, getSlug } from '../engine/getters.js';
+import { getTitle, getBrief, getSlug } from '../runtime/getters.js';
 import { PostMetadata, PostsRegistry } from '../types';
 import fsPromises from 'node:fs/promises';
 
