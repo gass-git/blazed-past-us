@@ -1,8 +1,7 @@
 import chalk from 'chalk';
-import { getTitle, getBrief, getTags, getSlug } from '../engine/getters.js';
+import { getTitle, getBrief, getSlug } from '../engine/getters.js';
 import { PostMetadata, PersistentPostsMetadata } from '../types';
 import fsPromises from 'node:fs/promises';
-import path from 'node:path';
 
 async function writeTransformedPostFile(
   outputPath: string,
@@ -39,25 +38,4 @@ async function generatePostMetadata(
   });
 }
 
-async function fetchPersistentPostsMetadata(
-  postsDirectoryPath: string
-): Promise<void | PersistentPostsMetadata> {
-  try {
-    const resp = await fsPromises.readFile(
-      path.join(postsDirectoryPath, 'persistentMetadata.json'),
-      'utf8'
-    );
-    const data = JSON.parse(resp);
-    return data.posts;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-/**
-async function processPersistentPostsMetadata(
-  postsDirectoryPath: string
-): Promise<void> {}
-*/
-
-export { generatePostMetadata, writeTransformedPostFile, fetchPersistentPostsMetadata };
+export { generatePostMetadata, writeTransformedPostFile };

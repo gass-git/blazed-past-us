@@ -1,6 +1,8 @@
-import { Config, PostMetadata, PostHTML } from '../types';
+import { Config, PostMetadata, PostHTML, PersistentPostsMetadata } from '../types';
+import fsPromises from 'node:fs/promises';
+import path from 'node:path';
 
-export async function fetchResources(config: Config): Promise<void | {
+async function fetchResources(config: Config): Promise<void | {
   postsMetadata: PostMetadata[];
   postsHTML: PostHTML[];
 }> {
@@ -57,3 +59,20 @@ async function fetchPostsMetaData(config: Config): Promise<PostMetadata[]> {
     throw error;
   }
 }
+
+async function fetchPersistentPostsMetadata(
+  postsDirectoryPath: string
+): Promise<void | PersistentPostsMetadata> {
+  try {
+    const resp = await fsPromises.readFile(
+      path.join(postsDirectoryPath, 'persistentMetadata.json'),
+      'utf8'
+    );
+    const data = JSON.parse(resp);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { fetchResources, fetchPersistentPostsMetadata };

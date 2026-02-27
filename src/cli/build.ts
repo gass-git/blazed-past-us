@@ -8,9 +8,9 @@ import { log } from '../engine/utils.js';
 import {
   generatePostMetadata,
   writeTransformedPostFile,
-  fetchPersistentPostsMetadata,
 } from '../server/file-builder.js';
 import { getSlug } from '../engine/getters.js';
+import { fetchPersistentPostsMetadata } from '../engine/requests.js';
 
 /**
  * CLI entry point.
@@ -68,7 +68,6 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filename
     );
 
-    // Update persistentPostsMetadata.json if slug is not found.
     if (!persistentPostsMetadata?.some((p) => p.slug === getSlug(htmlFilename))) {
       updatePersistentPostsMetadata = true;
       const stats = await fsPromises.stat(filePath);
