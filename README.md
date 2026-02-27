@@ -6,7 +6,7 @@
 
 # Blazed Past Us..
 
-A static blog framework that lets you write content in Markdown directly from your IDE. It promises speed. Be careful about the pointer catching fire when the click event is triggered.
+A static blog framework made for developers that allows content to be written in Markdown directly from the IDE. Plus it's fast.
 
 ## Commit 0
 
