@@ -34,6 +34,7 @@ _"Very well… let the cosmos bear witness."_
 - There is no need to add the title within the .md file, this will be set by the meta data.
 - Post tags are written in every post on the very top as `tag1, tag2,...`
 - The descriptions of the posts will be a brief showcase of the first paragraph (below the tags).
+- Add svg images by dropping the svg file within the directory `src/assets/svgs/` and using the following Markdown native syntax `![whatever](filename.svg)`
 
 ## Useful notes
 

@@ -8,6 +8,8 @@ import rehypeStringify from 'rehype-stringify';
 import path from 'node:path';
 import { getColoredTagsHTML } from '../runtime/getters.js';
 import { ParsedPostData } from '../types.js';
+import { remarkInlineSvg } from './server-utils.js';
+import rehypeRaw from 'rehype-raw';
 
 /**
  * Converts a Markdown file to HTML with syntax highlighting.
@@ -21,13 +23,15 @@ async function parseMarkdown(_path: string): Promise<ParsedPostData> {
 
   const remarkResult = await remark()
     .use(remarkParse)
-    .use(remarkRehype)
+    .use(remarkInlineSvg)
+    .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypePrettyCode, {
       theme: JSON.parse(
         readFileSync(path.join(root, 'src/code-block-theme.json'), 'utf-8')
       ),
       keepBackground: false,
     })
+    .use(rehypeRaw)
     .use(rehypeStringify)
     .process(markdown);
 

@@ -4,6 +4,9 @@ import { MsgColor, PostsPaths, PostsRegistry } from '../types';
 import fs from 'node:fs';
 import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
+import { visit } from 'unist-util-visit';
+import type { Plugin } from 'unified';
+import type { Root, Image } from 'mdast';
 
 function postNotInRegistry(registry: PostsRegistry | [] | void, slug: string): boolean {
   return !registry?.some((p) => p.slug === slug);
@@ -96,10 +99,34 @@ function log(msg: string, color: MsgColor): void {
   console.log(`${chalk.blue(pkg.name + ' v' + pkg.version)} ${coloredMsg}`);
 }
 
+const remarkInlineSvg: Plugin<[], Root, Root> = function () {
+  const baseDirectory = process.cwd();
+
+  return function transformer(tree: Root) {
+    visit(tree, 'image', (node: Image, index, parent: any | undefined) => {
+      if (!node.url?.endsWith('.svg')) return;
+      if (index === undefined || !parent) return;
+
+      try {
+        const svgPath = path.resolve(baseDirectory, `./src/assets/svgs/${node.url}`);
+        const svgContent = fs.readFileSync(svgPath, 'utf8');
+
+        parent.children[index] = {
+          type: 'html',
+          value: svgContent,
+        };
+      } catch (error) {
+        console.warn(error);
+      }
+    });
+  };
+};
+
 export {
   postNotInRegistry,
   handlePostsRegistryUpdate,
   getPostsRegistry,
   copyRecursive,
   log,
+  remarkInlineSvg,
 };

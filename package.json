@@ -1,6 +1,6 @@
 {
   "name": "blazed-past-us",
-  "version": "0.6.7",
+  "version": "0.7.1",
   "description": "A static blog framework made for developers that allows content to be written in Markdown directly from the IDE.",
   "license": "MIT",
   "author": "gass-git",
@@ -30,12 +30,15 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@types/mdast": "^4.0.4",
     "chalk": "^5.6.2",
     "rehype-pretty-code": "^0.14.1",
+    "rehype-raw": "^7.0.0",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.2"
+    "remark-rehype": "^11.1.2",
+    "unist-util-visit": "^5.1.0"
   },
   "keywords": [
     "static-site",
