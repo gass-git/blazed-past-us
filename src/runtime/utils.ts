@@ -51,6 +51,19 @@ function filterByUrlQueryIfPresent(
   );
 }
 
+function appendPageLoader(): void {
+  const htmlElement = document.createElement('div');
+
+  htmlElement.id = 'loader';
+  htmlElement.innerHTML = '<div class="spinner"></div>';
+
+  document.body.appendChild(htmlElement);
+}
+
+function removePageLoader(): void {
+  document.getElementById('loader')?.remove();
+}
+
 export {
   postExists,
   beautifyDate,
@@ -58,4 +71,6 @@ export {
   activateBoltRotator,
   setTitleAndSubtitle,
   filterByUrlQueryIfPresent,
+  appendPageLoader,
+  removePageLoader,
 };

@@ -1,17 +1,24 @@
-import { Config, PostMetadata, PostHTML, PostsRegistry } from '../types';
+import { Config, PostMetadata, PostHTML } from '../types';
+import { appendPageLoader, removePageLoader } from './utils';
 
 async function fetchResources(config: Config): Promise<void | {
   postsMetadata: PostMetadata[];
   postsHTML: PostHTML[];
 }> {
+  appendPageLoader();
+  let resources;
+
   try {
     const postsMetadata = await fetchPostsMetaData(config);
     const postsHTML = await fetchAllPostsHTML(config.base_url, postsMetadata);
 
-    return { postsMetadata, postsHTML };
+    resources = { postsMetadata, postsHTML };
   } catch (error) {
     console.log(`Failed to fetch resources.`);
     console.error(error);
+  } finally {
+    removePageLoader();
+    return resources;
   }
 }
 
