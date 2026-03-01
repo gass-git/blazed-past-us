@@ -113,7 +113,7 @@ const remarkInlineSvg: Plugin<[], Root, Root> = function () {
 
         parent.children[index] = {
           type: 'html',
-          value: svgContent,
+          value: `<div align="center">${svgContent}</div>`,
         };
       } catch (error) {
         console.warn(error);
