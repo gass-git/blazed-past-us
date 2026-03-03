@@ -2,11 +2,12 @@ import config from './config.json';
 import * as blazed from 'blazed-past-us';
 import initRouter from './router';
 import pkg from '../package.json';
+import layout from './layout';
 
-const root = document.getElementById('root');
 const { postsMetadata, postsHTML } = await blazed.fetchResources(config);
 
-initRouter(root, postsMetadata, postsHTML);
+blazed.inject(document.body, layout());
+initRouter(document.getElementById('root'), postsMetadata, postsHTML);
 
 /**
  * ----------------------------

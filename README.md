@@ -38,6 +38,7 @@ _"Very well… let the cosmos bear witness."_
 
 ## Useful notes
 
+- The HTML layout can be modified in `src/layout.js`
 - Append `/#/?tags=` to the base URL to filter home page posts by tag.
 - Posts creation dates are persisted.
 - The creation date is not updated when editing a post.

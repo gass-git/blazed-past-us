@@ -1,4 +1,4 @@
-import { Config, MsgColor, PostMetadata } from '../types';
+import { Config, PostMetadata } from '../types';
 
 function postExists(postsMetadata: any[], slug: string): boolean {
   return postsMetadata.some((post) => post.slug === slug);
