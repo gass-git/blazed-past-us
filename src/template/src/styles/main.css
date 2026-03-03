@@ -1,5 +1,4 @@
 @import 'fonts.css';
-@import 'media.css';
 @import 'animations.css';
 @import 'loader.css';
 @import 'post.css';
@@ -84,4 +83,14 @@ canvas {
   margin-top: 0.1rem;
   font-size: 0.85rem;
   text-transform: uppercase;
+}
+
+@media (max-width: 60rem) {
+  header {
+    width: clamp(95%, 95%, 95%);
+  }
+
+  section {
+    width: clamp(95%, 95%, 95%);
+  }
 }
