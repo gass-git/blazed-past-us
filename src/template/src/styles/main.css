@@ -7,7 +7,7 @@
 @import 'home.css';
 
 :root {
-  --background: #172330;
+  --background: #181e3f;
   --max-width: 55rem;
   --neon: #82f9ff;
   --post-title-color: rgb(241, 241, 241);
@@ -65,10 +65,10 @@ main {
 }
 
 canvas {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   z-index: -1;
 }
@@ -92,9 +92,5 @@ canvas {
 
   section {
     width: clamp(95%, 95%, 95%);
-  }
-
-  footer {
-    background: transparent;
   }
 }
