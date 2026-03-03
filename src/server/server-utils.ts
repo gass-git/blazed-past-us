@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fsPromises from 'node:fs/promises';
-import { MsgColor, PostsPaths, PostsRegistry } from '../types';
+import { MsgColor, PostMetadata, PostsPaths, PostsRegistry } from '../types';
 import fs from 'node:fs';
 import chalk from 'chalk';
 import pkg from '../../package.json' with { type: 'json' };
@@ -122,6 +122,10 @@ const remarkInlineSvg: Plugin<[], Root, Root> = function () {
   };
 };
 
+function sortPostsByNewest(postsMetadata: PostMetadata[]): PostMetadata[] {
+  return postsMetadata.sort((a, b) => b.created.localeCompare(a.created));
+}
+
 export {
   postNotInRegistry,
   handlePostsRegistryUpdate,
@@ -129,4 +133,5 @@ export {
   copyRecursive,
   log,
   remarkInlineSvg,
+  sortPostsByNewest,
 };

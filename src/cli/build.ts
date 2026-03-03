@@ -9,6 +9,7 @@ import {
   handlePostsRegistryUpdate,
   log,
   postNotInRegistry,
+  sortPostsByNewest,
 } from '../server/server-utils.js';
 import {
   generatePostMetadata,
@@ -89,7 +90,8 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
     handlePostsRegistryUpdate(postsRegistry.data, paths);
   }
 
-  const jsonPosts = JSON.stringify(data);
+  const sortedData = sortPostsByNewest(data);
+  const jsonPosts = JSON.stringify(sortedData);
   fs.writeFileSync(path.join(paths.output, '/data.json'), jsonPosts);
   log('all posts have been parsed into HTML ✅', 'yellow');
 }

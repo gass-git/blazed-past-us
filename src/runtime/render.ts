@@ -15,7 +15,9 @@ function render(
 
   switch (view) {
     case 'home':
-      inject(r, home(postTagsFilter?.split(','), postsMetadata));
+      const tags = postTagsFilter?.split(',');
+
+      inject(r, home(tags, postsMetadata));
       break;
 
     case 'post':
