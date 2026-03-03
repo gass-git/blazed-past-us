@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/gass-git/blazed-past-us/raw/main/bolt.png" width="150">
+  <img src="https://github.com/gass-git/blazed-past-us/raw/main/bolt.png" width="100">
 </p>
 
 > 🚧 **Work in progress** This framework is still under active development. Expect changes.
