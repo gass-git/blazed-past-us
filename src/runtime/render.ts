@@ -13,6 +13,9 @@ function render(
   const r = root;
   const { home, post, notFound } = views;
 
+  // start from the very top on each render.
+  window.scrollTo(0, 0);
+
   switch (view) {
     case 'home':
       const tags = postTagsFilter?.split(',');
