@@ -93,4 +93,8 @@ canvas {
   section {
     width: clamp(95%, 95%, 95%);
   }
+
+  footer {
+    background: transparent;
+  }
 }

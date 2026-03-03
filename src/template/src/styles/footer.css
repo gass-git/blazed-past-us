@@ -5,9 +5,9 @@ footer {
   align-items: center;
   justify-content: center;
   color: white;
-  font-family: "Merriweather Sans Light";
+  font-family: 'Merriweather Sans Light';
   font-size: 0.8rem;
-  background-color: black;
+  background-color: rgb(0, 0, 0, 0.4);
   height: 2rem;
 }
 
