@@ -50,6 +50,7 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
   const postsFiles = fs.readdirSync(paths.input).filter((f) => f.endsWith('.md'));
   const data: Array<PostMetadata> = new Array();
   const postsRegistry = { data: await getPostsRegistry(paths.input), update: false };
+  const date = new Date().toISOString();
 
   for (const filename of postsFiles) {
     const filePath = path.join(paths.input, filename);
@@ -62,7 +63,8 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
       filePath,
       htmlFilename,
       parsedPostData.tags,
-      postsRegistry.data
+      postsRegistry.data,
+      date
     );
 
     await fsPromises.mkdir(paths.output, { recursive: true });
@@ -75,11 +77,10 @@ async function buildBundle(paths: PostsPaths): Promise<void> {
 
     if (postNotInRegistry(postsRegistry.data, slug)) {
       postsRegistry.update = true;
-      const stats = await fsPromises.stat(filePath);
 
       postsRegistry.data?.push({
         slug: getSlug(htmlFilename),
-        created: stats.birthtime,
+        created: date,
       });
     }
   }

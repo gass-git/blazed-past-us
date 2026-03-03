@@ -19,13 +19,13 @@ async function generatePostMetadata(
   filePath: string,
   htmlFilename: string,
   postTags: string[],
-  persistentPostsMetadata: PostsRegistry | void
+  persistentPostsMetadata: PostsRegistry | void,
+  date: string
 ): Promise<void> {
-  const stats = await fsPromises.stat(filePath);
   const fileContent = await fsPromises.readFile(filePath, 'utf-8');
   const slug = getSlug(htmlFilename);
   const createdDate =
-    persistentPostsMetadata?.find((p) => p.slug === slug)?.created || stats.birthtime;
+    persistentPostsMetadata?.find((p) => p.slug === slug)?.created || date;
 
   data.push({
     slug: getSlug(htmlFilename),

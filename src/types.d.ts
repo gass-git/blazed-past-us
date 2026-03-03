@@ -4,7 +4,7 @@ interface PostMetadata {
   title: string;
   brief: string;
   tags: string[];
-  created: Date;
+  created: string;
 }
 
 interface PostsPaths {
@@ -33,7 +33,7 @@ interface PostHTML {
 type PostDataType = keyof PostMetadata;
 type Views = Record<string, function>;
 type MsgColor = 'yellow' | 'green' | 'red';
-type PostsRegistry = { slug: string; created: Date }[];
+type PostsRegistry = { slug: string; created: string }[];
 
 export {
   PostsRegistry,
