@@ -14,6 +14,10 @@ permissions:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/template
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +30,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./src/template/dist
+          path: ./dist
 
       - uses: actions/deploy-pages@v4
 
