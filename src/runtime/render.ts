@@ -13,7 +13,7 @@ function render(
   const r = root;
   const { home, post, notFound } = views;
 
-  // start from the very top on each render.
+  // start from the very top on every render.
   window.scrollTo(0, 0);
 
   switch (view) {

@@ -73,6 +73,11 @@ canvas {
   z-index: -1;
 }
 
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
 .capitalize-first::first-letter {
   text-transform: capitalize;
 }
