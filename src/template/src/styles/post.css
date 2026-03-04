@@ -46,7 +46,7 @@ pre {
 
 figure {
   margin: 1.5rem 0 2rem 0;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0.5rem 3rem 0.5rem 0;
   font-size: var(--body-font-size);
   border-radius: var(--border-radius);
   box-shadow: var(--primary-box-shadow);
