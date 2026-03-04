@@ -39,5 +39,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: github-pages
-          environment-url: https://gass-git.github.io/
+          environment-url: https://gass-git.github.io/blazed-past-us/
           ref: main
