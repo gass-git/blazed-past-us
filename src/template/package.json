@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "three": "^0.182.0",
-    "blazed-past-us": "^0.7.8"
+    "blazed-past-us": "^0.7.9"
   }
 }
