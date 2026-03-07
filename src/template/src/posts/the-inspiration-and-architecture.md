@@ -36,16 +36,16 @@ Then I had my commit 0 moment. Why not build my own blog system which would allo
 
 ![silver-surfer](./images/silver-surfer.png)
 
-What started as a blog system it eventually mutated into a framework. Why not ? I've never built a framework before and I'm currently unemployed which means I have time, so why not ?
+What started as a blog system it eventually mutated into a framework. I've never built a framework before and I'm currently unemployed which means I have time, so why not ?
 
-⚡Blazed past us was born.
+And so, [Blazed Past Us](https://github.com/gass-git/blazed-past-us) was born.
 
 Let me show you a bit what is going on under the hood. This is the server side build process architecture:
 
 ![server-side-arch](server-side-arch.svg)
 
-And the client side (runtime) architecture. Just one thing though. This is an early implementation. I have few more ideas which change this a bit.
+And the client side (runtime) architecture. Just one thing though. This is an early implementation. I have few more ideas that could change this a bit.
 
 ![client-side-runtime](client-side-runtime.svg)
 
-The thing I'm most proud of is about how simple and straightforward it is to write a post. As you can [see here](https://github.com/gass-git/blazed-past-us/blob/main/src/template/src/posts/the-inspiration-and-architecture.md), the post you are now reading looks identical to a regular README.md file.
+The thing I'm most happy about is how simple and straightforward it is to write a post. As you can [see here](https://github.com/gass-git/blazed-past-us/blob/main/src/template/src/posts/the-inspiration-and-architecture.md), the post you are now reading looks identical to a regular README.md file.
