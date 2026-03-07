@@ -108,7 +108,7 @@ const remarkInlineSvg: Plugin<[], Root, Root> = function () {
       if (index === undefined || !parent) return;
 
       try {
-        const svgPath = path.resolve(baseDirectory, `./src/assets/svgs/${node.url}`);
+        const svgPath = path.resolve(baseDirectory, `./src/svgs/${node.url}`);
         const svgContent = fs.readFileSync(svgPath, 'utf8');
 
         parent.children[index] = {

@@ -32,7 +32,9 @@ layout: layout.html
 
 It feels off. An HTML file that looks like that ? ... It reminds me of Laravel blade syntax (nothing wrong with that though, I kind a liked it).
 
-Then I had my commit 0 moment. Why not build my own blog system which would allow to write .md files in a breaze and explore just for fun how fast it can go. I had just read a book about the life of Stan Lee and reading Silver Surfer comic. Since that super hero has the "surfer" word in its name it motivated me to create a short dialogue between me and him about a blog and that gave birth to the whole theme and easthetics.
+Then I had my commit 0 moment. Why not build my own blog system which would allow to write .md files in a breaze and explore just for fun how fast it can go. I had just read The Marvelous Life and a few Silver Surfer comics. Since that super hero has the "surfer" word in its name it motivated me to create a short dialogue between me and him about a blog and that gave birth to the whole theme and easthetics.
+
+![silver-surfer](./images/silver-surfer.png)
 
 What started as a blog system it eventually mutated into a framework. Why not ? I've never build a framework before and I'm currently unemployed which means I have time, so why not ?
 
@@ -42,7 +44,7 @@ Let me show you a bit what is going on under the hood. This is the server side b
 
 ![server-side-arch](server-side-arch.svg)
 
-And the client side (runtime) architecture
+And the client side (runtime) architecture. Just one thing though. This is an early implementation. I have few more ideas which change this a bit.
 
 ![client-side-runtime](client-side-runtime.svg)
 

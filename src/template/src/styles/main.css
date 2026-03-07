@@ -28,6 +28,7 @@ a:link,
 a:visited {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+  color: var(--light-yellow);
 }
 
 html,
@@ -39,6 +40,12 @@ body {
 
 html {
   background: var(--background);
+}
+
+img {
+  width: auto;
+  max-width: 100%;
+  border-radius: 1rem;
 }
 
 h1 {
