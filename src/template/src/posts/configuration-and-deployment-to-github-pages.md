@@ -21,5 +21,3 @@ This JSON file allows you to configure the base_url, the subtitle (that shows un
 The base_url it what comes after the origin url. E.g. in the case of this blog you can see that is what comes after https://gass-git.github.io.
 
 .. to be continued
-
-![whatever](intersection.svg)
