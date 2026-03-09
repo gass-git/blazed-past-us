@@ -1,8 +1,6 @@
 documentation
 
-This is a brief explainer on how to configure the blog, set up the CI action and deploy to Github pages.
-
-Once you install the scaffolding you will find the file `config.json` in the src directory. It looks like this:
+This is a brief explainer on how to configure the blog, set up the CI action and deploy to Github pages. Once you install the scaffolding you will find the file `config.json` in the src directory. It looks like this:
 
 ```json
 {
