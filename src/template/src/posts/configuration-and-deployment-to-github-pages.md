@@ -16,7 +16,7 @@ This is a brief explainer on how to configure the blog, set up the CI action and
 
 This JSON file allows you to configure the `base_url`, the `subtitle` and add your custom `tags` with their respective font color.
 
-The `base_url` is what comes after the origin url. E.g. in the case of this blog you can see that is what comes after `https://gass-git.github.io`
+The `base_url` is what comes after the origin URL, E.g. in the case of this blog you can see that is what comes after `https://gass-git.github.io`
 
 In your Github repository create a new workflow with the following code and replace where it says `blazed-past-us` with your `base_url`
 
