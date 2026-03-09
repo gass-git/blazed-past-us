@@ -1,13 +1,15 @@
-@import 'fonts.css';
-@import 'animations.css';
-@import 'loader.css';
-@import 'post.css';
-@import 'footer.css';
-@import 'header.css';
-@import 'home.css';
+@import "fonts.css";
+@import "animations.css";
+@import "loader.css";
+@import "post.css";
+@import "footer.css";
+@import "header.css";
+@import "home.css";
+@import "code.css";
 
 :root {
   --background: #181e3f;
+  --inline-code-bg-color: #3b4683;
   --max-width: 55rem;
   --neon: #82f9ff;
   --post-title-color: rgb(241, 241, 241);
@@ -15,7 +17,7 @@
   --light-blue-09: rgba(129, 213, 255, 0.9);
   --light-blue-05: rgba(129, 213, 255, 0.5);
   --light-yellow: #ffffb4;
-  --body-font-family: 'Merriweather Sans Light';
+  --body-font-family: "Merriweather Sans Light";
   --body-font-size: 1.1rem;
   --border-radius: 0.5rem;
   --primary-box-shadow: inset 0 0 0 0.1rem var(--light-blue-05);
@@ -42,14 +44,14 @@ html {
   background: var(--background);
 }
 
+h1 {
+  color: var(--h1-color);
+}
+
 img {
   width: auto;
   max-width: 100%;
   border-radius: 1rem;
-}
-
-h1 {
-  color: var(--h1-color);
 }
 
 section {
@@ -90,7 +92,7 @@ svg {
 }
 
 .date {
-  font-family: 'Inter Regular';
+  font-family: "Inter Regular";
   color: var(--date-color);
   margin-top: 0.1rem;
   font-size: 0.85rem;

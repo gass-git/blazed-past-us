@@ -1,0 +1,52 @@
+pre {
+  overflow-x: auto;
+}
+
+figure {
+  margin: 1.5rem 0 2rem 0;
+  padding: 0.5rem 0rem 0.5rem 0;
+  font-size: var(--body-font-size);
+  border-radius: var(--border-radius);
+  box-shadow: var(--primary-box-shadow);
+}
+
+p code {
+  padding: 0.2rem 0.35rem 0.2rem 0.35rem;
+  margin: 0 0.2rem 0 0.2rem;
+  background: var(--inline-code-bg-color);
+  border-radius: 0.4rem;
+}
+
+span[data-highlighted-line] {
+  background: rgba(200, 200, 255, 0.2);
+}
+
+span[data-line] {
+  padding: 0.5rem 2rem 0.5rem 1rem;
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 0.75rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: rgb(92, 92, 92, 0.8);
+}
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 1.25rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 1.75rem;
+}
+
+code[data-line-numbers-max-digits="4"] > [data-line]::before {
+  width: 2.25rem;
+}
