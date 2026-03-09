@@ -46,10 +46,7 @@ function getBrief(fileContent: string, lines: number): string {
     brief += A[l];
   }
 
-  // Remove unwanted chars.
-  const cleanedBrief = brief.replace(/\r/g, ' ').replace(/`/g, '');
-
-  return cleanedBrief;
+  return brief.replace(/[\r`]/g, '');
 }
 
 function getTags(fileContent: string): string[] {
