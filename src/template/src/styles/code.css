@@ -1,29 +1,39 @@
+:root{
+  --code-font-size: 1.1rem;
+  --snippet-border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  --snippet-border-radius: 0.4rem;
+  --snippet-background:rgba(0, 0, 0, 0.4);
+  --line-padding:  0.35rem 2rem 0.35rem 1.5rem;
+  --highlighted-line-background: rgba(255, 255, 255, 0.05);
+  --inline-code-bg-color: var(--snippet-background);
+}
+
 pre {
   overflow-x: auto;
 }
 
 figure {
   margin: 1.5rem 0 2rem 0;
-  padding: 0.5rem 0rem 0.5rem 0;
-  font-size: var(--body-font-size);
-  border-radius: var(--border-radius);
-  border: 0.1rem solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.4);
+  padding: 0;
+  font-size: var(--code-font-size);
+  border-radius: var(--snippet-border-radius);
+  border: var(--snippet-border);
+  background: var(--snippet-background);
 }
 
 p code {
   padding: 0.2rem 0.35rem 0.2rem 0.35rem;
-  margin: 0 0.2rem 0 0.2rem;
+  margin: 0;
   background: var(--inline-code-bg-color);
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
 }
 
 span[data-highlighted-line] {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--highlighted-line-background);
 }
 
 span[data-line] {
-  padding: 0.5rem 2rem 0.5rem 1rem;
+  padding: var(--line-padding);
 }
 
 code[data-line-numbers] {
