@@ -7,7 +7,8 @@ figure {
   padding: 0.5rem 0rem 0.5rem 0;
   font-size: var(--body-font-size);
   border-radius: var(--border-radius);
-  box-shadow: var(--primary-box-shadow);
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 p code {
@@ -18,7 +19,7 @@ p code {
 }
 
 span[data-highlighted-line] {
-  background: rgba(200, 200, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 span[data-line] {
