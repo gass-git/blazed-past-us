@@ -1,11 +1,14 @@
-:root{
-  --code-font-size: 1.1rem;
+:root {
+  --code-font-size: 1rem;
   --snippet-border: 0.1rem solid rgba(255, 255, 255, 0.2);
   --snippet-border-radius: 0.4rem;
-  --snippet-background:rgba(0, 0, 0, 0.4);
-  --line-padding:  0.35rem 2rem 0.35rem 1.5rem;
+  --snippet-background: rgba(0, 0, 0, 0.4);
+  --line-padding: 0.35rem 2rem 0.35rem 1.5rem;
   --highlighted-line-background: rgba(255, 255, 255, 0.05);
-  --inline-code-bg-color: var(--snippet-background);
+  --inline-code-bg-color: rgba(255, 255, 255, 0.1);
+  --inline-code-padding: 0rem 0.35rem 0.15rem 0.35rem;
+  --inline-code-border: 0.1rem solid rgba(255, 255, 255, 0.15);
+  --inline-code-border-radius: 0.1rem;
 }
 
 pre {
@@ -22,10 +25,11 @@ figure {
 }
 
 p code {
-  padding: 0.2rem 0.35rem 0.2rem 0.35rem;
+  padding: var(--inline-code-padding);
   margin: 0;
   background: var(--inline-code-bg-color);
-  border-radius: 0.2rem;
+  border-radius: var(--inline-code-border-radius);
+  border: var(--inline-code-border);
 }
 
 span[data-highlighted-line] {
