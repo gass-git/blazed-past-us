@@ -5,6 +5,12 @@
   opacity: 0.9;
 }
 
+@media (max-width: 40rem) {
+  .post-card {
+    padding: 1.6rem 0.5rem 1.6rem 0.5rem;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .post-card:hover {
     opacity: 1;

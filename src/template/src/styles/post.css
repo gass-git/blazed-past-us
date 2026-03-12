@@ -3,6 +3,12 @@
   margin-top: 1.25rem;
 }
 
+@media (max-width: 40rem) {
+  .post {
+    padding: 1.6rem 0.5rem 1.6rem 0.5rem;
+  }
+}
+
 .post p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size);
@@ -14,12 +20,12 @@
 
 .post .tag-separator {
   font-size: 1.4rem;
-  font-family: "Permanent Marker Regular";
+  font-family: 'Permanent Marker Regular';
   color: var(--body-text-color);
 }
 
 .post .title {
-  font-family: "Inter Extra Bold";
+  font-family: 'Inter Extra Bold';
   color: var(--post-title-color);
   font-size: 2.25rem;
 }
@@ -29,7 +35,7 @@
 }
 
 .post .tag {
-  font-family: "Permanent Marker Regular";
+  font-family: 'Permanent Marker Regular';
   display: inline-block;
   margin: 0.5rem 0 2rem 0;
   font-size: 1.3rem;
