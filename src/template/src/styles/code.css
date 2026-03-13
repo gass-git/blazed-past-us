@@ -5,7 +5,8 @@
   --snippet-background: rgba(0, 0, 0, 0.4);
   --line-padding: 0.35rem 2rem 0.35rem 1.5rem;
   --highlighted-line-background: rgba(255, 255, 255, 0.05);
-  --inline-code-bg-color: rgba(255, 255, 255, 0.1);
+  --highlighted-chars-background: rgba(82, 82, 91, 0.502);
+  --inline-code-bg-color: rgba(255, 255, 255, 0.2);
   --inline-code-padding: 0rem 0.35rem 0.15rem 0.35rem;
   --inline-code-border: 0.1rem solid rgba(255, 255, 255, 0.15);
   --inline-code-border-radius: 0.1rem;
@@ -34,6 +35,13 @@ p code {
 
 span[data-highlighted-line] {
   background: var(--highlighted-line-background);
+}
+
+mark[data-highlighted-chars] {
+  background-color: var(--highlighted-chars-background);
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.5em 0.3rem 0.5em;
+  margin: 0 0.2rem 0 0.2rem;
 }
 
 span[data-line] {

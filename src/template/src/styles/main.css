@@ -1,11 +1,11 @@
-@import 'fonts.css';
-@import 'animations.css';
-@import 'loader.css';
-@import 'post.css';
-@import 'footer.css';
-@import 'header.css';
-@import 'home.css';
-@import 'code.css';
+@import "fonts.css";
+@import "animations.css";
+@import "loader.css";
+@import "post.css";
+@import "footer.css";
+@import "header.css";
+@import "home.css";
+@import "code.css";
 
 :root {
   --background: #181e3f;
@@ -15,8 +15,10 @@
   --body-text-color: #ececec;
   --light-blue-09: rgba(129, 213, 255, 0.9);
   --light-blue-05: rgba(129, 213, 255, 0.5);
+  --light-blue-02: rgba(129, 213, 255, 0.2);
   --light-yellow: #ffffb4;
-  --body-font-family: 'Merriweather Sans Light';
+  --yellow: #ffff5c;
+  --body-font-family: "Merriweather Sans Light";
   --body-font-size: 1rem;
   --border-radius: 0.5rem;
   --primary-box-shadow: inset 0 0 0 0.1rem var(--light-blue-05);
@@ -29,7 +31,7 @@ a:link,
 a:visited {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  color: var(--light-yellow);
+  color: var(--yellow);
 }
 
 html,
@@ -91,7 +93,7 @@ svg {
 }
 
 .date {
-  font-family: 'Inter Regular';
+  font-family: "Inter Regular";
   color: var(--date-color);
   margin-top: 0.1rem;
   font-size: 0.85rem;
