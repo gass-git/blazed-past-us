@@ -1,7 +1,9 @@
 /node_modules
 .gitignore
+.github
 .prettierrc
 /tsconfig.json
 /src
 bolt.png
 /miscellaneous
+*.tgz
