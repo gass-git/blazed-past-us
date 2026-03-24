@@ -2,9 +2,9 @@
 
 > 🚧 **Work in progress** This framework is still under active development. Expect changes.
 
-> [![Downloads](https://img.shields.io/npm/dm/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
-> [![version](https://img.shields.io/npm/v/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
-> [![MIT License](https://img.shields.io/npm/l/blazed-past-us.svg?style=flat-square)](https://github.com/gass-git/blazed-past-us/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/npm/dm/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
+[![version](https://img.shields.io/npm/v/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
+[![MIT License](https://img.shields.io/npm/l/blazed-past-us.svg?style=flat-square)](https://github.com/gass-git/blazed-past-us/blob/main/LICENSE)
 
 Developer centric static blog framework. Write in Markdown from your IDE, share code and SVGs effortlessly, and ship server-rendered HTML for blazing⚡fast load times.
 
