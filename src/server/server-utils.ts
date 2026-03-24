@@ -99,29 +99,6 @@ function log(msg: string, color: MsgColor): void {
   console.log(`${chalk.blue(pkg.name + ' v' + pkg.version)} ${coloredMsg}`);
 }
 
-const remarkInlineSvg: Plugin<[], Root, Root> = function () {
-  const baseDirectory = process.cwd();
-
-  return function transformer(tree: Root) {
-    visit(tree, 'image', (node: Image, index, parent: any | undefined) => {
-      if (!node.url?.endsWith('.svg')) return;
-      if (index === undefined || !parent) return;
-
-      try {
-        const svgPath = path.resolve(baseDirectory, `./src/svgs/${node.url}`);
-        const svgContent = fs.readFileSync(svgPath, 'utf8');
-
-        parent.children[index] = {
-          type: 'html',
-          value: `<div align="center">${svgContent}</div>`,
-        };
-      } catch (error) {
-        console.warn(error);
-      }
-    });
-  };
-};
-
 function sortPostsByNewest(postsMetadata: PostMetadata[]): PostMetadata[] {
   return postsMetadata.sort((a, b) => b.created.localeCompare(a.created));
 }
@@ -132,6 +109,5 @@ export {
   getPostsRegistry,
   copyRecursive,
   log,
-  remarkInlineSvg,
   sortPostsByNewest,
 };

@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readSync } from 'node:fs';
 import { remark } from 'remark';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -8,8 +8,8 @@ import rehypeStringify from 'rehype-stringify';
 import path from 'node:path';
 import { getColoredTagsHTML } from '../runtime/getters.js';
 import { ParsedPostData } from '../types.js';
-import { remarkInlineSvg } from './server-utils.js';
 import rehypeRaw from 'rehype-raw';
+import { remarkInlineSvg } from 'remark-inline-svg-flex';
 
 /**
  * Converts a Markdown file to HTML with syntax highlighting.
@@ -23,7 +23,10 @@ async function parseMarkdown(_path: string): Promise<ParsedPostData> {
 
   const remarkResult = await remark()
     .use(remarkParse)
-    .use(remarkInlineSvg)
+    .use(remarkInlineSvg, {
+      wrapper: '<div align="center"></div>',
+      assetsDir: './src/svgs/',
+    })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypePrettyCode, {
       theme: JSON.parse(
@@ -33,7 +36,7 @@ async function parseMarkdown(_path: string): Promise<ParsedPostData> {
     })
     .use(rehypeRaw)
     .use(rehypeStringify)
-    .process(markdown);
+    .process({ value: markdown, path: _path });
 
   const result = await customizeHTML(root, remarkResult.value as string);
 
