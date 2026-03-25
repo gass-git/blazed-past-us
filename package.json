@@ -21,11 +21,12 @@
     "blazed": "dist/cli/build.js"
   },
   "scripts": {
-    "build": "rimraf dist && tsc && xcopy \"src\\template\" \"dist\\template\" /E /I /Y",
+    "build": "rimraf dist && tsc && node copy-template.js",
     "dev": "rimraf --glob \"*.tgz\" && npm run build && npm pack && npm link"
   },
   "devDependencies": {
     "@types/node": "^25.3.5",
+    "fs-extra": "^11.3.4",
     "prettier": "^3.6.2",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
