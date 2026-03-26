@@ -41,7 +41,8 @@ jobs:
         if: steps.tagcheck.outputs.exists == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm ci
+        run: |
+          npm ci
           npm run build
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
