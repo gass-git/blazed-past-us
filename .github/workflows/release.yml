@@ -15,12 +15,11 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: get version
-        id: version
         run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
 
       - name: check if tag exists
@@ -54,5 +53,5 @@ jobs:
         if: steps.tagcheck.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
           name: Release v${{ env.VERSION }}
