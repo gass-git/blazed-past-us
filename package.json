@@ -38,7 +38,7 @@
     "rehype-raw": "^7.0.0",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
-    "remark-inline-svg-flex": "^0.3.9",
+    "remark-inline-svg-flex": "^0.4.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unist-util-visit": "^5.1.0"
