@@ -1,6 +1,6 @@
 ![banner](blazed-logo.png)
 
-> 🚧 **Work in progress** This framework is still under active development. Expect breaking changes.
+> 🚧 **WORK IN PROGRESS** - THIS FRAMEWORK IS STILL UNDER ACTIVE DEVELOPMENT. EXPECT BREAKING CHANGES!
 
 [![Downloads](https://img.shields.io/npm/dm/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
 [![version](https://img.shields.io/npm/v/blazed-past-us.svg?style=flat-square)](https://www.npmjs.com/package/blazed-past-us)
