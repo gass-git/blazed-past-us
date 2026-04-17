@@ -35,20 +35,14 @@ jobs:
         if: steps.tagcheck.outputs.exists == 'false'
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org/
 
-      - name: build, publish and release
+      - name: build and release
         if: steps.tagcheck.outputs.exists == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm i
           npm run build
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
           git tag "v$VERSION"
           git push origin "v$VERSION"
-          npm publish
 
       - name: create Github release
         if: steps.tagcheck.outputs.exists == 'false'
