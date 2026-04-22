@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: 24
 
+      - run: rm -rf node_modules package-lock.json
+      - run: npm cache clean --force
       - run: npm i
       - run: npm run build
 
