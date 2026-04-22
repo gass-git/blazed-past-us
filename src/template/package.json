@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "three": "^0.182.0",
-    "blazed-past-us": "^0.8.1"
+    "blazed-past-us": "../../blazed-past-us-0.9.7.tgz"
   }
 }
