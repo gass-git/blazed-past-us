@@ -6,7 +6,7 @@
 [![version](https://img.shields.io/npm/v/blazed-past-us)](https://www.npmjs.com/package/blazed-past-us)
 [![MIT License](https://img.shields.io/npm/l/blazed-past-us)](https://github.com/gass-git/blazed-past-us/blob/main/LICENSE)
 
-Developer centric static blog framework. Write in Markdown from your IDE, share code and SVGs effortlessly, and ship server-rendered HTML for blazing⚡fast load times.
+Developer centric static blog kit. Write in Markdown from your IDE, share code and SVGs effortlessly, and ship server-rendered HTML for blazing⚡fast load times.
 
 [Live demo](https://gass-git.github.io/blazed-past-us/)
 
