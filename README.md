@@ -1,10 +1,6 @@
 ![banner](blazed-logo.png)
 
-> 🚧 **WORK IN PROGRESS** - THIS FRAMEWORK IS STILL UNDER ACTIVE DEVELOPMENT. EXPECT BREAKING CHANGES!
-
-[![Downloads](https://img.shields.io/npm/dm/blazed-past-us)](https://www.npmjs.com/package/blazed-past-us)
-[![version](https://img.shields.io/npm/v/blazed-past-us)](https://www.npmjs.com/package/blazed-past-us)
-[![MIT License](https://img.shields.io/npm/l/blazed-past-us)](https://github.com/gass-git/blazed-past-us/blob/main/LICENSE)
+> 🚧🛑 I STOPPED WORKING ON THIS. I MAY RESUME DEVELOPMENT AT SOME POINT IN THE FUTURE.
 
 Developer centric static blog kit. Write in Markdown from your IDE, share code and SVGs effortlessly, and ship server-rendered HTML for blazing⚡fast load times.
 
