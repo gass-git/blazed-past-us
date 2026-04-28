@@ -44,6 +44,8 @@ _"Very well… let the cosmos bear witness."_
 
 ## Installation
 
+> 🚧🛑 I REMOVED THE PACKET FROM THE NPM REGISTRY WHICH MEANS THE INSTALLATION WILL NOT WORK. I WILL PUBLISH TO THE NPM REGISTRY WHENEVER I FINISH IT.
+
 ### Set up scaffold:
 
 ```sh
